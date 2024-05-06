@@ -1,0 +1,116 @@
+.kokua {
+    display: flex;
+    justify-content: space-between;
+    width: 139px;
+    height: 59px;
+    padding: 10px;
+    
+}
+
+
+.container {
+    border-bottom: 1px solid black;
+}
+
+#nav1 {
+    display: flex;
+    align-items: center;
+    gap: 2vw;
+    flex-grow: 1;
+    justify-content: space-around;
+}
+
+.nav-links {
+    display: flex;
+    gap: 10vw;
+    border-width: 1px solid black;
+    justify-content: space-between;
+    margin-left: auto;
+}
+
+.nav-links .Espaciado {
+    border-right: 2px solid black;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+}
+
+.register-button {
+    margin-left: auto;
+    padding-right: 10px;
+}
+
+.register-button a {
+    background-color: #4DD7FA;
+    color: #fff;
+    border: none;
+    padding: 1vw 2vw;
+    border-radius: 0.5vw;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f8f9fa; /* Cambia el color de fondo según tus preferencias */
+    text-align: center;
+    padding: 20px 0; /* Añade espaciado interno */
+    border-top: 1px solid black; /* Borde superior */
+
+}
+.footercopy p{
+    font-size: 15px;
+    border-top: 1px solid #ccc; /* Borde superior */
+    padding-top: 10px;
+}
+
+
+.Espaciadoabajo {
+    border-color: 2px solid black;
+    /* Agrega línea vertical */
+}
+
+.footer-contenido {
+    display: flex;
+    flex-direction: row; /* Alinea los elementos en fila */
+    align-items: center; /* Alinea verticalmente los elementos */
+}
+
+.footer-primeracolumna {
+    margin-right: 20px; 
+    text-align: left; /* Alinea el texto a la izquierda */
+    font-size: 12px;
+}
+
+.footer-segundacolumna {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start;
+    padding: 0px 50px;
+
+}
+.footer-segundacolumna a{
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+    font-family: Source Sans Pro;
+    
+}
+.footer-segundacolumna p{
+    font-size: 16px;
+    font-family: Source Sans Pro;
+    font-weight: bolder;
+
+}
+
+.kokua2 {
+    width: 100px; /* Ancho fijo para la imagen */
+    height: 100%; /* Altura automática para mantener la proporción */
+    display: flex;
+
+}
