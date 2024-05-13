@@ -38,20 +38,20 @@ export default function Layout({ children }) {
                             </div>
                             <div className="footer-segundacolumna">
                                 <p>Menú principal</p>
-                                <a href="/Nosotros">Nosotros</a>
-                                <a href="/Organizaciones">Organizaciones</a>
+                                <Link href="/Nosotros">Nosotros</Link>
+                                <Link href="/Organizaciones">Organizaciones</Link>
                             </div>
                             <div className="footer-segundacolumna">
                                 <p>UWU</p>
-                                <a href="/Preguntas">Preguntas frecuentas</a>
-                                <a href="/Terminos">Terminos y condiciones</a>
-                                <a href="/Politicas">Politicas de privacidad</a>
+                                <Link href="/Preguntas">Preguntas frecuentas</Link>
+                                <Link href="/Terminos">Terminos y condiciones</Link>
+                                <Link href="/Politicas">Politicas de privacidad</Link>
                             </div>
                             <div className="footer-segundacolumna">
                                 <p>ENCUENTRANOS EN </p>
-                                <a href="/Instagram">Instagram</a>
-                                <a href="/Facebook">Facebook</a>
-                                <a href="/Twiter">Twiter</a>
+                                <Link href="/Instagram">Instagram</Link>
+                                <Link href="/Facebook">Facebook</Link>
+                                <Link href="/Twiter">Twiter</Link>
                             </div>
                         </div>
                     </div>
