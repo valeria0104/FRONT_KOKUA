@@ -10,7 +10,7 @@ function App() {
   const handleAceptacionPolitica = () => {
     setAceptarPolitica(!aceptarPolitica);
   };
-
+ 
   const handleAceptacionTerminos = () => {
     setAceptarTerminos(!aceptarTerminos);
   };
