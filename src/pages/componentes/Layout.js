@@ -17,14 +17,14 @@ export default function Layout({ children }) {
                         <div className="Espaciado"></div>
                         <Link href="/IniciarSesion">Iniciar sesión</Link>
                     </div>
-                    <div className="register-button">
+                    <div className="Layout-button">
                         <Link href="/Registrar">Registrarse</Link>
                     </div>
                 </nav>
-                <main>
-                    {children}
-                </main>
             </div>
+            <main>
+                {children}
+            </main>
             <footer>
                 <div className="Footerfeo">
                     <div className="footerconimagen">
@@ -38,28 +38,28 @@ export default function Layout({ children }) {
                             </div>
                             <div className="footer-segundacolumna">
                                 <p>Menú principal</p>
-                                <Link href="/Nosotros">Nosotros</Link>
-                                <Link href="/Organizaciones">Organizaciones</Link>
+                                <a href="/Nosotros">Nosotros</a>
+                                <a href="/Organizaciones">Organizaciones</a>
                             </div>
                             <div className="footer-segundacolumna">
                                 <p>UWU</p>
-                                <Link href="/Preguntas">Preguntas frecuentas</Link>
-                                <Link href="/Terminos">Terminos y condiciones</Link>
-                                <Link href="/Politicas">Politicas de privacidad</Link>
+                                <a href="/Preguntas">Preguntas frecuentas</a>
+                                <a href="/Terminos">Terminos y condiciones</a>
+                                <a href="/Politicas">Politicas de privacidad</a>
                             </div>
                             <div className="footer-segundacolumna">
                                 <p>ENCUENTRANOS EN </p>
-                                <Link href="/Instagram">Instagram</Link>
-                                <Link href="/Facebook">Facebook</Link>
-                                <Link href="/Twiter">Twiter</Link>
+                                <a href="/Instagram">Instagram</a>
+                                <a href="/Facebook">Facebook</a>
+                                <a href="/Twiter">Twiter</a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="footercopy">
-                <p> © Copyright (©) 2023 KOKUA. Todos los derechos reservados.</p></div>
+                    <p> © Copyright (©) 2023 KOKUA. Todos los derechos reservados.</p>
+                </div>
             </footer>
-
         </>
     );
 }
