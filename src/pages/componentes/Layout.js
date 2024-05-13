@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Head from "next/head";
+import { Children } from "react";
 
-export default function Layout({ children }) {
+export default function Layout ({children}) {
     return (
         <>
             <Head>
@@ -17,14 +18,14 @@ export default function Layout({ children }) {
                         <div className="Espaciado"></div>
                         <Link href="/IniciarSesion">Iniciar sesión</Link>
                     </div>
-                    <div className="Layout-button">
+                    <div className="register-button">
                         <Link href="/Registrar">Registrarse</Link>
                     </div>
                 </nav>
-            </div>
-            <main>
+                <main>
                 {children}
-            </main>
+                </main>
+            </div>
             <footer>
                 <div className="Footerfeo">
                     <div className="footerconimagen">
@@ -38,28 +39,28 @@ export default function Layout({ children }) {
                             </div>
                             <div className="footer-segundacolumna">
                                 <p>Menú principal</p>
-                                <a href="/Nosotros">Nosotros</a>
-                                <a href="/Organizaciones">Organizaciones</a>
+                                <Link href="/Nosotros">Nosotros</Link>
+                                <Link href="/Organizaciones">Organizaciones</Link>
                             </div>
                             <div className="footer-segundacolumna">
                                 <p>UWU</p>
-                                <a href="/Preguntas">Preguntas frecuentas</a>
-                                <a href="/Terminos">Terminos y condiciones</a>
-                                <a href="/Politicas">Politicas de privacidad</a>
+                                <Link href="/Preguntas">Preguntas frecuentas</Link>
+                                <Link href="/Terminos">Terminos y condiciones</Link>
+                                <Link href="/Politicas">Politicas de privacidad</Link>
                             </div>
                             <div className="footer-segundacolumna">
                                 <p>ENCUENTRANOS EN </p>
-                                <a href="/Instagram">Instagram</a>
-                                <a href="/Facebook">Facebook</a>
-                                <a href="/Twiter">Twiter</a>
+                                <Link href="/Instagram">Instagram</Link>
+                                <Link href="/Facebook">Facebook</Link>
+                                <Link href="/Twiter">Twiter</Link>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="footercopy">
-                    <p> © Copyright (©) 2023 KOKUA. Todos los derechos reservados.</p>
-                </div>
+                <p> © Copyright (©) 2023 KOKUA. Todos los derechos reservados.</p></div>
             </footer>
+
         </>
     );
 }
