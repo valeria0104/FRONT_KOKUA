@@ -3,6 +3,7 @@ import './styles/header.css'
 import './styles/layout.css'
 import './styles/registrar.css'
 import './styles/PaginaPrincipal.css'
+import './styles/IniciarSesion.css'
 import { AppProps } from 'next/app'
 
 export default function MyApp({Component, pageProps }){

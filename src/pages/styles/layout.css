@@ -156,7 +156,7 @@ footer {
 li{
     list-style: none;
 }
-span{
+.span1{
     background-color: #4DD7FA;
     color: #fff;
     border: none;
@@ -165,3 +165,8 @@ span{
     cursor: pointer;
     text-decoration: none;
 }
+
+.registrar-button .dropdown {
+    z-index: 1; /* Asegura que el menú desplegable de registrarse esté por encima de la imagen */
+  }
+  

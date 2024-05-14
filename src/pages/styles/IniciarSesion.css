@@ -1,0 +1,112 @@
+.formInicioSesion h1 {
+    width: 50%;
+    color: #232323;
+    font-family: "Poppins";
+    font-weight: 10;
+    font-size: 24px;
+    text-align: left;
+
+  }
+  .formInicioSesion{
+    flex: 1;
+    display: flex;
+  flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
+  justify-content: center;
+  align-items: center;
+
+  }
+  .Contenedor {
+    display: flex; /* Establece el contenedor como flexbox */
+    width: 100%; /* Ocupa todo el ancho disponible */
+    
+  }
+
+
+.ImagenInicioSesion {
+  flex: 1; /* Hace que ambas secciones ocupen el mismo espacio */
+}
+.ImagenInicioSesion img {
+    max-width: 100%; /* Asegura que la imagen no se desborde del contenedor */
+    max-height: 100%; 
+    padding:  20px;
+    width: 80%;
+    transform: translateX(10%);
+    height: 90%;
+    
+ 
+  }
+  .email, .password{
+    width: auto;
+    height: 25px;
+    color: #1EC731;
+    font-family: "Poppins";
+    font-weight: bold;
+    font-size: 18px;
+    margin-left: -43%; /* Ajusta el margen izquierdo para mover los elementos más a la izquierda */
+
+   
+  }
+  
+  .formInicioSesion .input-box {
+    margin-bottom: 5%;
+    padding: 2% 2% 6% 2%;
+    transform: translate(-20%);
+    
+   
+  }
+  /* Media query para pantallas pequeñas */
+@media (max-width: 768px) {
+    #formulario1 .input-box {
+      width: 150%; /* Ajustar el ancho al 100% en pantallas pequeñas */
+    }
+  }
+  
+  /* Media query para pantallas más grandes */
+  @media (min-width: 769px) {
+    #formulario1 .input-box {
+      width: 170%; /* Mantener el ancho al 200% en pantallas más grandes */
+    }
+  }
+
+  .formInicioSesion .form-links {
+transform: translate(60%,-55%);
+font-size: 70%;
+  }
+  .login-button{
+    width: 60%;
+    height: 25%;
+    padding: 0px 5px 0px 5px;
+    background: #FF8A84;
+    color: #FFFFFF;
+    border-color: #FFC3AE;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 3px 3px 3px 3px;
+    font-family: "Helvetica";
+    font-size: 21px;
+    transform: translateX(35%);
+    text-align: center;
+    margin-top: 20px; /* Espacio adicional arriba del botón */
+  margin-bottom: 20px; /* Espacio adicional abajo del botón */
+  }
+  @media (max-width: 768px) {
+    .formInicioSesion h1 {
+      width: 100%;
+    }
+  
+    .email, .password {
+      font-size: 16px;
+    }
+  
+    .formInicioSesion .form-links {
+      font-size: 60%;
+    }
+  
+    .login-button {
+      width: 80%;
+      height: 10%;
+      font-size: 18px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }

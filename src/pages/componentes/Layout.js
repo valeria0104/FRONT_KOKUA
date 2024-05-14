@@ -24,7 +24,7 @@ export default function Layout({ children }) {
                         <Link href="/IniciarSesion">Iniciar sesión</Link>
                     </div>
                     <li className="registrar-button" onClick={toggleDropdown}>
-                        <span> Registrarse</span>
+                        <span className="span1"> Registrarse</span>
                         {showDropdown && (
                             <ul className="dropdown">
                                 <li> <Link href="/RegistrarVoluntario">Voluntario</Link></li>

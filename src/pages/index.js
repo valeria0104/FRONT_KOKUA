@@ -3,9 +3,8 @@ import Head from "next/head";
 import Layout from './componentes/Layout.js';
 import { cambiarImagen } from './componentes/funciones.js';
 import { mostrarTestimonios } from './componentes/funciones.js';
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import testimonios from './json/testimonios.json';
-import { useRouter } from "next/router";
 function App() {
   const [currentTestimonioIndex, setCurrentTestimonioIndex] = useState(0);
 
