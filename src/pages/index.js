@@ -15,6 +15,7 @@ function App() {
     return (
       <>
       <Layout>
+        
           <section className="panel">
           <label>Voluntariados por el cambio </label>
                 <br />

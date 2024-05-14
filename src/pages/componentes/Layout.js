@@ -10,7 +10,7 @@ export default function Layout({ children }) {
             </Head>
             <div className="container">
                 <nav id="nav1">
-                    <Link href="/pantalla1">
+                    <Link href="/">
                         <img src="imagenkokua.png" alt="" className="kokua" />
                     </Link>
                     <div className="nav-links">

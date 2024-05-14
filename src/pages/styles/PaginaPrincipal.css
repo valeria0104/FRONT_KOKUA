@@ -1,3 +1,5 @@
+
+@import url('./all.css');
 .panel{
   
     background-image: url("/ImagenesPaginaPrincipal/ImagenPrincipal.jpg");
@@ -24,7 +26,7 @@
 }
 .Parrafo h2{
     color:#00A4D3;
-    font-family: 'Helvetica';
+    font-family: "Helvetica";
     font-weight: bold; 
     font-size: 100%;
     text-align: center;
@@ -40,6 +42,7 @@
     flex: 1; /* Hace que el contenido se expanda para llenar el espacio restante */
     text-align: center;
     width: 100%;
+    
 }
 .Parrafo button {
     width: 50%;
@@ -51,7 +54,7 @@
     border-width: 1px;
     border-style: solid;
     border-radius: 6px 6px 6px 6px;
-    font-family: 'Source Sans Pro';
+    font-family: Source Sans Pro;
     font-weight: bold;
     font-size: 100%;
     letter-spacing: 1px;
