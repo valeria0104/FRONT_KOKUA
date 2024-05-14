@@ -49,7 +49,7 @@ function App() {
             <Link className="secciones1" href="#">¿Quiénes somos y que hacemos?</Link>
         </div>
         <div className="seccion2">
-            <Link className="secciones1" href="#">Voluntarios</Link>
+            <Link className="secciones1" href="#testimonios">Voluntarios</Link>
         </div>
       
     </nav>
@@ -78,7 +78,7 @@ function App() {
         <p>La plataforma es fácil<br /> de utilizar, rápida e <br />intuitiva en su diseño.</p>
     </div>
 </section>
-<section className="testimonios">
+<section className="testimonios" id= "testimonios">
     <h1>Testimonios</h1>
     <div id="contenedor-testimonios" className="opinion">
           <div className="testimonio">
