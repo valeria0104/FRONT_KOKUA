@@ -44,13 +44,14 @@
 }
 
 .registrar-button a {
-    background-color: #4DD7FA;
-    color: #fff;
+    color:black;
     border: none;
     padding: 1vw 2vw;
     border-radius: 0.5vw;
     cursor: pointer;
     text-decoration: none;
+    font-family: Source Sans Pro;
+    font-weight: bold;
 }
 
 footer {
@@ -121,4 +122,46 @@ footer {
 .footerconimagen .kokua2{
     border-bottom: 1px solid black;
     padding-bottom: 10px;
+}
+.registrar-button{
+    position: relative;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-top: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.registrar-button:hover .dropdown {
+    display: block;
+}
+
+.dropdown li {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.dropdown li:hover {
+    background-color: #f0f0f0;
+  
+}
+li{
+    list-style: none;
+}
+span{
+    background-color: #4DD7FA;
+    color: #fff;
+    border: none;
+    padding: 1vw 2vw;
+    border-radius: 0.5vw;
+    cursor: pointer;
+    text-decoration: none;
 }

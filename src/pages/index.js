@@ -31,7 +31,8 @@ function App() {
             en línea.</p>
         <p> <strong>¡Únete hoy y haz del mundo un lugar mejor a<br />
             través del voluntariado! </strong></p>
-        <button> Encuentra tu voluntariado</button>
+            <Link href="/IniciarSesion">
+        <button> Encuentra tu voluntariado</button></Link>
         </div>
         <div className="imagenes">
         <img src="/ImagenesPaginaPrincipal/Verde1.jpg" alt="Gente plantando"/>

@@ -1,8 +1,13 @@
 import Link from "next/link";
 import Head from "next/head";
-import { Children } from "react";
+import { Children, useState } from "react";
 
 export default function Layout({ children }) {
+    const [showDropdown, setShowDropdown] = useState(false);
+
+    const toggleDropdown = () => {
+        setShowDropdown(!showDropdown);
+    };
     return (
         <>
             <Head>
@@ -18,9 +23,15 @@ export default function Layout({ children }) {
                         <div className="Espaciado"></div>
                         <Link href="/IniciarSesion">Iniciar sesión</Link>
                     </div>
-                    <div className="registrar-button">
-                        <Link href="/Registrar">Registrarse</Link>
-                    </div>
+                    <li className="registrar-button" onClick={toggleDropdown}>
+                        <span> Registrarse</span>
+                        {showDropdown && (
+                            <ul className="dropdown">
+                                <li> <Link href="/RegistrarVoluntario">Voluntario</Link></li>
+                                <li><Link href="/RegistrarOrganizacion">Organización</Link></li>
+                            </ul>
+                        )}
+                    </li>
                 </nav>
                 <main>
                     {children}
