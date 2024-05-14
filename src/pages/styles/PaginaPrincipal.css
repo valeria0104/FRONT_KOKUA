@@ -122,9 +122,6 @@
         background-color: #81CFF9;
       }
       
-      .panel2 nav .seccion3 {
-        background-color: #E3B430;
-      }
       
       .panel2 nav .seccion1 .secciones1{
         display: block; /* Asegura que el margen se aplique correctamente */
@@ -134,10 +131,7 @@
         display: block; /* Asegura que el margen se aplique correctamente */
         margin-top: 50px;
     }
-    .panel2 nav .seccion3 .secciones1{
-        display: block; /* Asegura que el margen se aplique correctamente */
-        margin-top: 50px;
-    }
+    
 
     
 .beneficios h1{

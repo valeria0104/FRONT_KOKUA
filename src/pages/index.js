@@ -51,9 +51,7 @@ function App() {
         <div className="seccion2">
             <Link className="secciones1" href="#">Voluntarios</Link>
         </div>
-        <div className="seccion3">
-            <Link className="secciones1" href="#">Organizaciones</Link>
-        </div>
+      
     </nav>
 </section>
 
