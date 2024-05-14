@@ -79,7 +79,7 @@ function App() {
         <p>La plataforma es fácil<br /> de utilizar, rápida e <br />intuitiva en su diseño.</p>
     </div>
 </section>
-<section class="testimonios">
+<section className="testimonios">
     <h1>Testimonios</h1>
     <div id="contenedor-testimonios" className="opinion">
           <div className="testimonio">
