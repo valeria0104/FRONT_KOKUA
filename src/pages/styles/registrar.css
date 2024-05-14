@@ -1,12 +1,12 @@
 /* Estilos.css */
 
-.Registrar {
+.PantallaRegistrar {
     display: flex;
     justify-content: center; /* Centrar horizontalmente */
     align-items: center; /* Centrar verticalmente */
   }
 
-.Registrar .FormularioRegistro {
+.PantallaRegistrar .FormularioRegistro {
     width: 80%; 
   max-width: 400px;
 }

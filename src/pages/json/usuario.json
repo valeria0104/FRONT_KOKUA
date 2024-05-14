@@ -1,0 +1,22 @@
+[
+    {
+      "id": "1",
+      "nombres": "Valeria",
+      "apellidosPaterno": "Vega",
+      "apellidoMaterno" : "Herrera",
+      "correo": "vale@gmail.com",
+      "tipo": 1,
+      "contrasena": "valeria",
+      "confirmarContra": "valeria"
+    },
+    {
+      "id": "2",
+      "nombres": "Abelardo1",
+      "apellidosPaterno": "Delgado",
+        "apellidoMaterno": "Romero",
+      "correo": "abel@gmail.com",
+      "tipo": 2,
+      "contrasena": "abel",
+      "confirmarContra": "abel"
+    }
+  ]

@@ -7,9 +7,8 @@
 
 }
 
-
-.container {
-    border-bottom: 1px solid black;
+.container #nav1{
+    border-bottom: 1px solid black; 
 }
 
 #nav1 {
@@ -39,12 +38,12 @@
     font-weight: bolder;
 }
 
-.Layout-button {
+.registrar-button{
     margin-left: auto;
     padding-right: 10px;
 }
 
-.Layout-button a {
+.registrar-button a {
     background-color: #4DD7FA;
     color: #fff;
     border: none;
@@ -119,7 +118,7 @@ footer {
 
 }
 
-.footerconimagen {
+.footerconimagen .kokua2{
     border-bottom: 1px solid black;
     padding-bottom: 10px;
 }

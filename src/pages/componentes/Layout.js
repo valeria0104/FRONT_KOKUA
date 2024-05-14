@@ -2,7 +2,7 @@ import Link from "next/link";
 import Head from "next/head";
 import { Children } from "react";
 
-export default function Layout ({children}) {
+export default function Layout({ children }) {
     return (
         <>
             <Head>
@@ -18,47 +18,49 @@ export default function Layout ({children}) {
                         <div className="Espaciado"></div>
                         <Link href="/IniciarSesion">Iniciar sesión</Link>
                     </div>
-                    <div className="register-button">
+                    <div className="registrar-button">
                         <Link href="/Registrar">Registrarse</Link>
                     </div>
                 </nav>
                 <main>
-                {children}
+                    {children}
                 </main>
             </div>
             <footer>
                 <div className="Footerfeo">
-                    <div className="footerconimagen">
-                        <img src="imagenkokua.png" alt="" className="kokua2" />
-                        <div className="footer-contenido">
-                            <div className="footer-primeracolumna">
-                                <p>Email: voluntarioskokua@gmail.com</p>
-                                <p>Teléfono: 914-123-456</p>
-                                <p>Facebook: KOKUA PERU</p>
-                                <p>Instagram: KOKUA PERU</p>
+
+                    <div className="footer-contenido">
+
+                        <div className="footer-primeracolumna">
+                            <div className="footerconimagen">
+                                <img src="imagenkokua.png" alt="" className="kokua2" />
                             </div>
-                            <div className="footer-segundacolumna">
-                                <p>Menú principal</p>
-                                <Link href="/Nosotros">Nosotros</Link>
-                                <Link href="/Organizaciones">Organizaciones</Link>
-                            </div>
-                            <div className="footer-segundacolumna">
-                                <p>UWU</p>
-                                <Link href="/Preguntas">Preguntas frecuentas</Link>
-                                <Link href="/Terminos">Terminos y condiciones</Link>
-                                <Link href="/Politicas">Politicas de privacidad</Link>
-                            </div>
-                            <div className="footer-segundacolumna">
-                                <p>ENCUENTRANOS EN </p>
-                                <Link href="/Instagram">Instagram</Link>
-                                <Link href="/Facebook">Facebook</Link>
-                                <Link href="/Twiter">Twiter</Link>
-                            </div>
+                            <p>Email: voluntarioskokua@gmail.com</p>
+                            <p>Teléfono: 914-123-456</p>
+                            <p>Facebook: KOKUA PERU</p>
+                            <p>Instagram: KOKUA PERU</p>
+                        </div>
+                        <div className="footer-segundacolumna">
+                            <p>Menú principal</p>
+                            <Link href="/Nosotros">Nosotros</Link>
+                            <Link href="/Organizaciones">Organizaciones</Link>
+                        </div>
+                        <div className="footer-segundacolumna">
+                            <p>UWU</p>
+                            <Link href="/Preguntas">Preguntas frecuentas</Link>
+                            <Link href="/Terminos">Terminos y condiciones</Link>
+                            <Link href="/Politicas">Politicas de privacidad</Link>
+                        </div>
+                        <div className="footer-segundacolumna">
+                            <p>ENCUENTRANOS EN </p>
+                            <Link href="/Instagram">Instagram</Link>
+                            <Link href="/Facebook">Facebook</Link>
+                            <Link href="/Twiter">Twiter</Link>
                         </div>
                     </div>
                 </div>
                 <div className="footercopy">
-                <p> © Copyright (©) 2023 KOKUA. Todos los derechos reservados.</p></div>
+                    <p> © Copyright (©) 2023 KOKUA. Todos los derechos reservados.</p></div>
             </footer>
 
         </>
