@@ -52,7 +52,7 @@ function App() {
             <h1>¡Queremos saber más de ti!</h1>
             <form htmlFor = "Registro2">
             <div>
-                        <label>Departamento:</label>
+                        <label>Departamento:</label> <br />
                         <select value={selectedDepartamento} onChange={handleDepartamentoChange}>
                             <option value="">Seleccione un Departamento</option>
                             {ubicacionData.length > 0 ? (
@@ -66,7 +66,7 @@ function App() {
                     </div>
 
                     <div>
-                        <label>Provincia:</label>
+                        <label>Provincia:</label> <br />
                         <select value={selectedProvincia} onChange={handleProvinciaChange} disabled={!selectedDepartamento}>
                             <option value="">Seleccione una Provincia</option>
                             {provincias.map(provincia => (
@@ -76,7 +76,7 @@ function App() {
                     </div>
 
                     <div>
-                        <label>Distrito:</label>
+                        <label>Distrito:</label> <br />
                         <select disabled={!selectedProvincia}>
                             <option value="">Seleccione un Distrito</option>
                             {distritos.map(distrito => (
@@ -84,6 +84,11 @@ function App() {
                             ))}
                         </select>
                     </div>
+                    <div>
+                        <label>Temas de interés: </label>
+
+                    </div>
+
            
             </form>
             
