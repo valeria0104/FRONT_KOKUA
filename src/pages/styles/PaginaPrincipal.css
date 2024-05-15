@@ -185,6 +185,13 @@
     width: 20%;
     height: 200px; /*altura fija */
 }
+.opinion {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
 .testimonios p{
     width: 40%;
     transform: translate(100%,-80%);
@@ -193,10 +200,11 @@
     background: #FFD8AD;
     color: #232323;
     border-color: #FFD8AD;
+    position: hidden;
     border-style: solid;
     border-radius: 25px 25px 25px 25px;
     font-family: "Poppins";
-    font-size: 14px;
+    font-size: 80%;
     text-align: center;
 }
 

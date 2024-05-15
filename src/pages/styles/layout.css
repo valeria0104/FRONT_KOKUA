@@ -170,3 +170,7 @@ li{
     z-index: 1; /* Asegura que el menú desplegable de registrarse esté por encima de la imagen */
   }
   
+  .container{
+    width: 100%;
+  }
+

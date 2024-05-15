@@ -2,13 +2,13 @@
     width: 50%;
     color: #232323;
     font-family: "Poppins";
-    font-weight: 10;
-    font-size: 24px;
+    font-weight: 100;
+    font-size: 150%;
     text-align: left;
 
   }
   .formInicioSesion{
-    flex: 1;
+   flex: 1;
     display: flex;
   flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
   justify-content: center;
@@ -61,6 +61,12 @@
     }
   }
   
+  @media (max-width: 368px) {
+    #formulario1 .input-box {
+      width: 120%; /* Ajustar el ancho al 100% en pantallas pequeñas */
+    }
+  }
+
   /* Media query para pantallas más grandes */
   @media (min-width: 769px) {
     #formulario1 .input-box {
@@ -70,6 +76,7 @@
 
   .formInicioSesion .form-links {
 transform: translate(60%,-55%);
+position: absolute;
 font-size: 70%;
   }
   .login-button{
@@ -90,10 +97,7 @@ font-size: 70%;
   margin-bottom: 20px; /* Espacio adicional abajo del botón */
   }
   @media (max-width: 768px) {
-    .formInicioSesion h1 {
-      width: 100%;
-    }
-  
+    
     .email, .password {
       font-size: 16px;
     }
@@ -105,7 +109,7 @@ font-size: 70%;
     .login-button {
       width: 80%;
       height: 10%;
-      font-size: 18px;
+      font-size: 10px;
       margin-top: 10px;
       margin-bottom: 10px;
     }
