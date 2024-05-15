@@ -1,12 +1,22 @@
-import Head from "next/head";
+import React, { useState } from 'react';
 import Layout from './componentes/Layout.js';
 import usuarioData from "./json/usuario.json";
-import React, { useState, useEffect } from 'react';
 import { useRouter } from "next/router";
+import { handler } from './componentes/funciones.js';
 
-function App() {
+const RegisterPage = () => {
   const [aceptarPolitica, setAceptarPolitica] = useState(false);
   const [aceptarTerminos, setAceptarTerminos] = useState(false);
+  const [formData, setFormData] = useState({
+    nombre: "",
+    apellidosPaterno: "",
+    apellidoMaterno: "",
+    correo: "",
+    contrasena: "",
+    repetir: ""
+  });
+
+  const router = useRouter();
 
   const handleAceptacionPolitica = () => {
     setAceptarPolitica(!aceptarPolitica);
@@ -16,21 +26,12 @@ function App() {
     setAceptarTerminos(!aceptarTerminos);
   };
 
-  const [formData, setFormData] = useState({
-    nombres: "",
-    apellidosPaterno: "",
-    apellidoMaterno: "",
-    correo: "",
-    contrasena: "",
-    repetir: ""
-  });
-
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     // Crear un nuevo objeto con los datos del formulario
     const nuevoUsuario = {
-      nombres: formData.nombres,
+      nombre: formData.nombre,
       apellidosPaterno: formData.apellidosPaterno,
       apellidoMaterno: formData.apellidoMaterno,
       correo: formData.correo,
@@ -38,21 +39,28 @@ function App() {
       repetir: formData.repetir,
     };
 
-    fetch('/usuario.json', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(nuevoUsuario),
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Usuario registrado con éxito:', data);
-        // Puedes realizar otras acciones, como redireccionar a una página de éxito, aquí.
-      })
-      .catch(error => {
-        console.error('Error al registrar usuario:', error);
+    try {
+      // Simulación de envío de datos a un archivo JSON
+      const response = await fetch('/api/registrarUsuario', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(nuevoUsuario),
       });
+
+      if (response.ok) {
+        console.log('Usuario registrado con éxito');
+        // Redirigir a una página de éxito
+        router.push('/registro-exitoso');
+      } else {
+        console.error('Error al registrar usuario');
+        alert('Error al registrar usuario. Por favor, inténtalo de nuevo.');
+      }
+    } catch (error) {
+      console.error('Error al registrar usuario:', error);
+      alert('Error al registrar usuario. Por favor, inténtalo de nuevo.');
+    }
   };
 
   return (
@@ -61,7 +69,6 @@ function App() {
         <div className="FormularioRegistro">
           <h1 id="Registrarse">Registrarse</h1>
           <form onSubmit={handleFormSubmit}>
-
             <p>
               <label htmlFor="nombre">Nombre:</label>
               <input type="text" id="nombre" name="nombre"
@@ -106,7 +113,7 @@ function App() {
                 checked={aceptarPolitica}
                 onChange={handleAceptacionPolitica}
               />
-              <label1 htmlFor="aceptarPolitica">Acepto la política de privacidad y tratamiento de datos personales</label1>
+              <label htmlFor="aceptarPolitica">Acepto la política de privacidad y tratamiento de datos personales</label>
             </div>
             <div className="terminos-condiciones">
               <input
@@ -116,30 +123,27 @@ function App() {
                 checked={aceptarTerminos}
                 onChange={handleAceptacionTerminos}
               />
-              <label1 htmlFor="aceptarTerminos">Acepto los términos y condiciones</label1>
+              <label htmlFor="aceptarTerminos">Acepto los términos y condiciones</label>
             </div>
             <button
               className="Botonregistro"
               disabled={!aceptarPolitica || !aceptarTerminos}
-              onClick={handleFormSubmit}
+              type="submit"
             >
               Registrarse
-            </button>          </form>
+            </button>
+          </form>
         </div>
         <div className="Fotoregistrar">
           <img src="fotoregistrar.png" alt="Foto de registro" className="foto" />
         </div>
-
       </div>
       <div className="Dudas">
         <p>Si tienes dudas o consultas, </p>
         <p>escríbenos a infokokua@gmail.com</p>
-
-
-
       </div>
     </Layout>
   );
-}
+};
 
-export default App;
+export default RegisterPage;
