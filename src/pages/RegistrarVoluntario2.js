@@ -8,6 +8,12 @@ function App() {
     const [provincias, setProvincias] = useState([]);
     const [distritos, setDistritos] = useState([]);
     const [ubicacionData, setUbicacionData] = useState([]);
+
+
+    /////////////////
+    const [categorias, setCategorias] = useState([]);
+    const [selectedCategorias, setSelectedCategorias] = useState([]);
+
     useEffect(() => {
         // Fetch data from the API
         fetch('/api/ubicacion')
@@ -17,7 +23,17 @@ function App() {
                 setUbicacionData(data);
             })
             .catch(error => console.error('Error fetching data:', error));
+
+        // Fetch sector from the API
+        fetch('/api/sectorVoluntariado')
+            .then(response => response.json())
+            .then(data => {
+                console.log('Categorias fetched from API:', data);
+                setCategorias(data);
+            })
+            .catch(error => console.error('Error fetching categorias:', error));
     }, []);
+
 
     const handleDepartamentoChange = (event) => {
         const departamento = event.target.value;
@@ -42,6 +58,27 @@ function App() {
             .map(item => item.Distrito);
 
         setDistritos(distritosFiltrados);
+    };
+
+
+    /////////////////////7
+
+    const handleCategoriaChange = (event) => {
+        const categoria = event.target.value;
+        // Verifica si la categoría está actualmente seleccionada
+        const isSelected = selectedCategorias.includes(categoria);
+    
+        if (!isSelected && selectedCategorias.length >= 3) {
+            // Si se está intentando seleccionar una nueva categoría cuando ya hay tres seleccionadas, ignora la acción
+            return;
+        }
+    
+        // Actualiza el estado de las categorías seleccionadas
+        if (event.target.checked) {
+            setSelectedCategorias([...selectedCategorias, categoria]);
+        } else {
+            setSelectedCategorias(selectedCategorias.filter(cat => cat !== categoria));
+        }
     };
 
 
@@ -85,8 +122,19 @@ function App() {
                         </select>
                     </div>
                     <div>
-                        <label>Temas de interés: </label>
-
+                        <label>Temas de interés: (Máximo 3) </label> <br />
+                        {categorias.map(categoria => (
+                            <div key={categoria.id}>
+                                <input
+                                    type="checkbox"
+                                    id={categoria.id}
+                                    value={categoria.categoria}
+                                    checked={selectedCategorias.includes(categoria.categoria)}
+                                    onChange={handleCategoriaChange}
+                                />
+                                <label htmlFor={categoria.id}>{categoria.categoria}</label>
+                            </div>
+                        ))}
                     </div>
 
            

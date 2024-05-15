@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import Layout from './componentes/Layout.js';
-import usuarioData from "./json/usuario.json";
 import { useRouter } from "next/router";
-import { handler } from './componentes/funciones.js';
+
 
 const RegisterPage = () => {
   const [aceptarPolitica, setAceptarPolitica] = useState(false);
