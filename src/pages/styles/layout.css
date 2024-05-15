@@ -167,6 +167,6 @@ li{
 }
 
 .registrar-button .dropdown {
-    z-index: 1; /* Asegura que el menú desplegable de registrarse esté por encima de la imagen */
+    z-index: 1; 
   }
   
