@@ -1,0 +1,170 @@
+.panelnosotros {
+
+    background-image: url("/nosotros/fotonosotros.jpg");
+    height: 60vh;
+    background-size: cover;
+    background-position: center 20%;
+    /* dezplaza la imagen hacia abajo un 20%*/
+}
+
+.Enunciado_nosotros {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+}
+
+
+.Nosotros-primera h2 {
+    color: #1EC731;
+    font-family: "Poppins";
+    font-weight: bold;
+    font-size: 24px;
+    text-align: center;
+
+}
+
+.Nosotros-primera p {
+    font-family: "Poppins";
+    width: 767px;
+    height: 140px;
+    text-align: center;
+    align-items: center;
+    margin: 0 auto 20px auto;
+
+}
+
+.Nosotros-primera .kokua {
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;
+    width: 149px;
+    height: 145px;
+}
+
+.FRANJA {
+    height: 130px;
+
+}
+
+.Nosotros-franja {
+    background-color: #9DE675;
+    height: 98px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Nosotros-franja h2 {
+    color: #FFFFFF;
+    line-height: 1.3;
+    text-align: center;
+    font-weight: 700;
+    font-size: 18px;
+    font-family: "Poppins";
+}
+
+.ojomano_nosotros {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 200px; 
+    margin: 20px 0; 
+}
+
+.ojo_nosotros, .mano_nosotros {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.ojito_nosotros, .manos_nosotros {
+    width: 149px;
+    height: 120px;
+    margin-bottom: 10px; 
+}
+
+.vision_nosotros, .mision_nosotros {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 222px;
+    height: 54px;
+    border-width: 1px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+
+.vision_nosotros {
+    background: #FFA63E;
+}
+
+.mision_nosotros {
+    background: #BB285C;
+}
+
+.vision_nosotros h2, .mision_nosotros h2 {
+    color: #FFFFFF;
+    font-family: "Helvetica";
+    font-size: 24px;
+}
+
+.visiontexto-nosotros, .misiontexto-nosotros {
+    width: 241px;
+    padding: 10px; 
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 15px;
+}
+
+.visiontexto-nosotros {
+    background: #FFD8AD;
+    border-color: #FFD8AD;
+}
+
+.misiontexto-nosotros {
+    background: #FAD2E0;
+    border-color: #FAD2E0;
+}
+
+.visiontexto-nosotros p, .misiontexto-nosotros p {
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 16px;
+    margin: 0; 
+}
+
+
+.resto-nosotros {
+    justify-content: center;
+    align-items: center;
+    width: 439px;
+    margin: 0 auto;
+    
+}
+
+.resto-nosotros p {
+    font-family: "Poppins";
+    font-size: 18px;
+    text-align: center;
+}
+.parrafoboton-nosotros button {
+    width: 258px;
+    height: 42px;
+    padding: 0px 10px 0px 10px;
+    background: #BFA677;
+    color: #FFFFFF;
+    border-color: #BFA677;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 6px 6px 6px 6px;
+    font-family: Source Sans Pro;
+    font-weight: bold;
+    font-size: 100%;
+    letter-spacing: 1px;
+    text-align: center;
+}
+.parrafoboton-nosotros{
+    height: 100px;
+}
