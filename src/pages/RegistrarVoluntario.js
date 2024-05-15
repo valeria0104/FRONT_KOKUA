@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Layout from './componentes/Layout.js';
 import { useRouter } from "next/router";
-
+import Link from "next/link";
 
 const RegisterPage = () => {
   const [aceptarPolitica, setAceptarPolitica] = useState(false);
@@ -16,6 +16,7 @@ const RegisterPage = () => {
   });
 
   const router = useRouter();
+  const [nuevoUsuario, setNuevoUsuario] = useState(null); // Definir nuevoUsuario
 
   const handleAceptacionPolitica = () => {
     setAceptarPolitica(!aceptarPolitica);
@@ -38,28 +39,17 @@ const RegisterPage = () => {
       repetir: formData.repetir,
     };
 
-    try {
-      // Simulación de envío de datos a un archivo JSON
-      const response = await fetch('/api/registrarUsuario', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(nuevoUsuario),
-      });
+    
+    const queryString = Object.keys(nuevoUsuario)
+    .map(key => key + '=' + encodeURIComponent(nuevoUsuario[key]))
+    .join('&');
 
-      if (response.ok) {
-        console.log('Usuario registrado con éxito');
-        // Redirigir a una página de éxito
-        router.push('/registro-exitoso');
-      } else {
-        console.error('Error al registrar usuario');
-        alert('Error al registrar usuario. Por favor, inténtalo de nuevo.');
-      }
-    } catch (error) {
-      console.error('Error al registrar usuario:', error);
-      alert('Error al registrar usuario. Por favor, inténtalo de nuevo.');
-    }
+  router.push({
+    pathname: '/RegistrarVoluntario2',
+    search: `?${queryString}`
+  });
+ 
+    
   };
 
   return (

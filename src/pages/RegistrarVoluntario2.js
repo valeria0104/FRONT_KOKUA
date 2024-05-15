@@ -1,10 +1,12 @@
 import Head from "next/head";
 import Layout from './componentes/Layout.js';
-import React, { useState, useEffect} from 'react';
-
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 function App() {
+    const router = useRouter();
     const [selectedDepartamento, setSelectedDepartamento] = useState('');
     const [selectedProvincia, setSelectedProvincia] = useState('');
+    const [selectedDistrito, setSelectedDistrito] = useState('');
     const [provincias, setProvincias] = useState([]);
     const [distritos, setDistritos] = useState([]);
     const [ubicacionData, setUbicacionData] = useState([]);
@@ -13,7 +15,21 @@ function App() {
     /////////////////
     const [categorias, setCategorias] = useState([]);
     const [selectedCategorias, setSelectedCategorias] = useState([]);
+    const nuevoUsuario = router.query.nuevoUsuario || '';
+    const query = router.asPath ? router.asPath.split('?')[1] || '' : '';
 
+    // Parsear la cadena de consulta en un objeto de JavaScript
+    const queryParams = {};
+    query.split('&').forEach(part => {
+        const item = part.split('=');
+        queryParams[item[0]] = decodeURIComponent(item[1]);
+    });
+
+    // Convertir los datos del formulario a JSON
+    const jsonData = JSON.stringify(queryParams);
+
+    // Ahora jsonData contiene los datos del formulario en formato JSON
+    console.log("Datos del formulario:", jsonData);
     useEffect(() => {
         // Fetch data from the API
         fetch('/api/ubicacion')
@@ -60,6 +76,10 @@ function App() {
         setDistritos(distritosFiltrados);
     };
 
+    const handleDistritoChange = (event) => {
+        const distrito = event.target.value;
+        setSelectedDistrito(distrito);
+    };
 
     /////////////////////7
 
@@ -67,12 +87,12 @@ function App() {
         const categoria = event.target.value;
         // Verifica si la categoría está actualmente seleccionada
         const isSelected = selectedCategorias.includes(categoria);
-    
+
         if (!isSelected && selectedCategorias.length >= 3) {
             // Si se está intentando seleccionar una nueva categoría cuando ya hay tres seleccionadas, ignora la acción
             return;
         }
-    
+
         // Actualiza el estado de las categorías seleccionadas
         if (event.target.checked) {
             setSelectedCategorias([...selectedCategorias, categoria]);
@@ -80,15 +100,58 @@ function App() {
             setSelectedCategorias(selectedCategorias.filter(cat => cat !== categoria));
         }
     };
+    const enviarDatos = async (event) => {
+        event.preventDefault();
+        // Agregar los datos del formulario al JSON
+        const formData = {
+            nombre: queryParams.nombre,
+            apellidosPaterno: queryParams.apellidosPaterno,
+            apellidoMaterno: queryParams.apellidoMaterno,
+            correo: queryParams.correo,
+            contrasena: queryParams.contrasena,
+            repetir: queryParams.repetir,
+            departamento: selectedDepartamento,
+            provincia: selectedProvincia,
+            distrito: selectedDistrito, // Aquí deberías poner el valor seleccionado para distrito
+            categorias: selectedCategorias
+        };
+
+        // Convertir el objeto a JSON
+        const formDataJson = JSON.stringify(formData);
+        try {
+            // Simulación de envío de datos a un archivo JSON
+            const response = await fetch('/api/registrarUsuario', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData), // Aquí se envía el objeto directamente
+            });
+
+            if (response.ok) {
+                console.log('Usuario registrado con éxito');
+                // Redirigir a una página de éxito
+            } else {
+                console.error('Error al registrar usuario');
+                alert('Error al registrar usuario. Por favor, inténtalo de nuevo.');
+            }
+        } catch (error) {
+            console.error('Error al registrar usuario:', error);
+            alert('Error al registrar usuario. Por favor, inténtalo de nuevo.');
+        }
+        // Aquí puedes enviar formDataJson a donde desees
+        console.log("Datos del formulario con datos adicionales:", formData);
+    };
 
 
-    return(
+    return (
 
         <Layout>
-            <section className="ContinuacionRegistro"> 
-            <h1>¡Queremos saber más de ti!</h1>
-            <form htmlFor = "Registro2">
-            <div>
+
+            <section className="ContinuacionRegistro">
+                <h1>¡Queremos saber más de ti!</h1>
+                <form htmlFor="Registro2">
+                    <div>
                         <label>Departamento:</label> <br />
                         <select value={selectedDepartamento} onChange={handleDepartamentoChange}>
                             <option value="">Seleccione un Departamento</option>
@@ -114,7 +177,7 @@ function App() {
 
                     <div>
                         <label>Distrito:</label> <br />
-                        <select disabled={!selectedProvincia}>
+                        <select disabled={!selectedProvincia} onChange={handleDistritoChange}>
                             <option value="">Seleccione un Distrito</option>
                             {distritos.map(distrito => (
                                 <option key={distrito} value={distrito}>{distrito}</option>
@@ -136,12 +199,13 @@ function App() {
                             </div>
                         ))}
                     </div>
+                    <button type="submit" onClick={enviarDatos} >Registrar</button>
 
-           
-            </form>
-            
-            
-            
+
+                </form>
+
+
+
             </section>
             <section className="ImagenesContinuacion">
 

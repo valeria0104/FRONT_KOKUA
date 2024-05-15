@@ -5,7 +5,7 @@ const usuariosFilePath = path.join(process.cwd(), 'src/pages/json/usuario.json')
 
 export default async function handler(req, res) {
     if (req.method === 'POST') {
-        const { nombre, apellidosPaterno, apellidoMaterno, correo, contrasena, repetir } = req.body;
+        const { nombre, apellidosPaterno, apellidoMaterno, correo, contrasena, repetir,departamento, provincia,distrito, categorias } = req.body;
 
         const nuevoUsuario = {
             nombre,
@@ -13,7 +13,11 @@ export default async function handler(req, res) {
             apellidoMaterno,
             correo,
             contrasena,
-            repetir
+            repetir,
+            departamento,
+        provincia,
+        distrito, 
+        categorias
         };
 
         try {
