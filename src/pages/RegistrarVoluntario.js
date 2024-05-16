@@ -78,7 +78,7 @@ const RegisterPage = () => {
             </p>
             <p>
               <label htmlFor="correo">Correo electrónico:</label>
-              <input type="text" id="correo" name="correo"
+              <input type="email" id="correo" name="correo"
                 value={formData.correo}
                 onChange={(e) => setFormData({ ...formData, correo: e.target.value })} />
             </p>
