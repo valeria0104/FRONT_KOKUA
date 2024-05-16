@@ -1,0 +1,7 @@
+.panelregistro-voluntario {
+
+    background-image: url("/registrovoluntariado/fotoregistrovoluntario.png");
+    height: 60vh;
+    background-size: cover;
+    background-position: center 20%;
+}
