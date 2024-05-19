@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Geocodificar y Ordenar Direcciones</title>
+</head>
+<body>
+  <h1>Geocodificar y Ordenar Direcciones</h1>
+  <script>
+    // Obtener la ubicación actual del usuario
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        var userLocation = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+
+        // Lista de direcciones a geocodificar y ordenar
+        var addresses = [
+          'CC Royal Plaza, Av. Carlos Izaguirre 287-289, Independencia 15311, Perú',
+          'Av. Eduardo de Habich 599, San Martín de Porres 15103'
+
+        ];
+
+        // Geocodificar direcciones y calcular distancias
+        geocodeAddresses(addresses, userLocation);
+      }, function () {
+        console.error('Error: No se pudo obtener la ubicación.');
+      });
+    } else {
+      console.error('Error: La geolocalización no está soportada por este navegador.');
+    }
+
+    function geocodeAddresses(addresses, userLocation) {
+      var locations = [];
+      var apiKey = 'YOUR_OPENCAGE_API_KEY'; // Reemplaza con tu clave de API de OpenCage
+
+      addresses.forEach(function (address) {
+        var url = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(address)}&key=ba1f067cdddc4252a54362118fd617b8`;
+
+        fetch(url)
+          .then(response => response.json())
+          .then(data => {
+            if (data.results.length > 0) {
+              var loc = {
+                address: address,
+                lat: parseFloat(data.results[0].geometry.lat),
+                lon: parseFloat(data.results[0].geometry.lng),
+                distance: calculateDistance(userLocation, { lat: data.results[0].geometry.lat, lng: data.results[0].geometry.lng })
+              };
+              locations.push(loc);
+
+              // Cuando todas las direcciones han sido geocodificadas
+              if (locations.length === addresses.length) {
+                locations.sort((a, b) => a.distance - b.distance);
+
+                // Mostrar las direcciones ordenadas por distancia en la consola
+                locations.forEach(loc => {
+                  console.log(`Dirección: ${loc.address}, Distancia: ${loc.distance.toFixed(2)} km`);
+                });
+              }
+            } else {
+              console.error('Geocoding falló para la dirección ' + address);
+            }
+          })
+          .catch(error => console.error('Error: ' + error));
+      });
+    }
+
+    function calculateDistance(location1, location2) {
+      var lat1 = location1.lat;
+      var lng1 = location1.lng;
+      var lat2 = location2.lat;
+      var lng2 = location2.lng;
+
+      var R = 6371; // Radio de la Tierra en km
+      var dLat = (lat2 - lat1) * Math.PI / 180;
+      var dLng = (lng2 - lng1) * Math.PI / 180;
+      var a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+        Math.sin(dLng / 2) * Math.sin(dLng / 2);
+      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      var distance = R * c; // Distancia en km
+      return distance;
+    }
+  </script>
+</body>
+</html>
