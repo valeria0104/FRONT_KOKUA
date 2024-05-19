@@ -18,7 +18,6 @@
         var addresses = [
           'CC Royal Plaza, Av. Carlos Izaguirre 287-289, Independencia 15311, Perú',
           'Av. Eduardo de Habich 599, San Martín de Porres 15103'
-
         ];
 
         // Geocodificar direcciones y calcular distancias
@@ -38,13 +37,18 @@
         var url = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(address)}&key=ba1f067cdddc4252a54362118fd617b8`;
 
         fetch(url)
-          .then(response => response.json())
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('La respuesta de la API no fue exitosa.');
+            }
+            return response.json();
+          })
           .then(data => {
             if (data.results.length > 0) {
               var loc = {
                 address: address,
                 lat: parseFloat(data.results[0].geometry.lat),
-                lon: parseFloat(data.results[0].geometry.lng),
+                lng: parseFloat(data.results[0].geometry.lng),
                 distance: calculateDistance(userLocation, { lat: data.results[0].geometry.lat, lng: data.results[0].geometry.lng })
               };
               locations.push(loc);
@@ -59,10 +63,10 @@
                 });
               }
             } else {
-              console.error('Geocoding falló para la dirección ' + address);
+              console.error('Geocoding falló para la dirección: ' + address);
             }
           })
-          .catch(error => console.error('Error: ' + error));
+          .catch(error => console.error('Error en la solicitud fetch:', error));
       });
     }
 
