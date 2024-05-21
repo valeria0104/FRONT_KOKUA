@@ -54,12 +54,10 @@ function App() {
                     <section className="ImagenInicioSesion">
                         <img src="/InicioSesion/Manos.png" alt="Manos" />
                     </section>
-                    //iniciar sesion 
 
                 </div>
             </Layout>
         </>
-        //hola
     );
 }
 

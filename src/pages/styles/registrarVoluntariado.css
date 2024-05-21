@@ -5,3 +5,72 @@
     background-size: cover;
     background-position: center 20%;
 }
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+.registro-voluntariado {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.registro-voluntariado h1 {
+    font-family: "Poppins";
+    font-weight: bold;
+    font-size: 24px;
+    padding: 20px;
+
+}
+
+.registro-organizacion {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 10px;
+}
+
+.registro-organizacion p {
+    margin-bottom: 20px;
+    font-family: "Poppins";
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.registro-organizacion label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.registro-organizacion input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    /* Adds space between input fields */
+}
+
+button {
+    width: 135px;
+    height: 35px;
+    padding: 0px 10px 0px 10px;
+    background-color: #FF8A84;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+#descripcion_organizacion {
+    height: 90px;
+}
+
+#contacto_organizacion {
+    height: 60px;
+}
