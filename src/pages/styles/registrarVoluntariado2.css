@@ -1,0 +1,81 @@
+.combo-box-4 {
+    width: 70%;
+    height: 28px;
+    padding: 4px 8px 4px 8px;
+    background: #EBEBEB;
+    color: black;
+    border-color: #232323;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 4px 4px 4px 4px;
+    font-family: "Helvetica";
+    font-weight: 400;
+    font-size: 14px;
+    text-align: left;
+  }
+
+  .labelCombo {
+    width: 110px;
+    height: 20px;
+    color: #000000;
+    font-family: "Poppins";
+    font-weight: bold;
+    font-size: 14px;
+    text-align: left;
+  }
+  .checkbox {
+    width: 35px;
+    height: 15px;
+    background: #FFFFFF;
+    color: #232323;
+    border-color: #232323;
+    border-width: 1.5px;
+    border-style: solid;
+    font-family: "Helvetica";
+    font-weight: 400;
+    text-align: left;
+
+  }
+.finRegistro {
+    width: 214px;
+    height: 40px;
+    padding: 0px 10px 0px 10px;
+    background: #FF8A84;
+    color: #FFFFFF;
+    border-color: #FFC3AE;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 3px 3px 3px 3px;
+    font-family: "Helvetica";
+    font-weight: 400;
+    font-size: 21px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+
+  .page-container {
+    display: flex;
+    width: 100%;
+    height: 100vh; /* Asegura que ocupe toda la altura de la pantalla */
+    box-sizing: border-box;
+}
+
+.ContinuacionRegistro {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box; /* Asegura que el padding no aumente el tamaño del flex item */
+}
+
+.ImagenesContinuacion {
+    flex: 1;
+    padding: 20px;
+    background: #f0f0f0; /* Puedes cambiar el fondo según necesites */
+    box-sizing: border-box; /* Asegura que el padding no aumente el tamaño del flex item */
+}
+
+
+.checkbox-label {
+    font-size: 14px; /* Tamaño del texto */
+}

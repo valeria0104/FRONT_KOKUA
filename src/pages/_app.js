@@ -6,6 +6,7 @@ import './styles/PaginaPrincipal.css'
 import './styles/IniciarSesion.css'
 import './styles/nosotros.css'
 import './styles/registrarVoluntariado.css'
+import './styles/registrarVoluntariado2.css'
 import { AppProps } from 'next/app'
 
 export default function MyApp({Component, pageProps }){

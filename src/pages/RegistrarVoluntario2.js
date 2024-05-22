@@ -147,13 +147,13 @@ function App() {
     return (
 
         <Layout>
-
+<div className="page-container">
             <section className="ContinuacionRegistro">
                 <h1>¡Queremos saber más de ti!</h1>
                 <form htmlFor="Registro2">
                     <div>
-                        <label>Departamento:</label> <br />
-                        <select value={selectedDepartamento} onChange={handleDepartamentoChange}>
+                        <label className="labelCombo">Departamento:</label> <br />
+                        <select className="combo-box-4" value={selectedDepartamento} onChange={handleDepartamentoChange}>
                             <option value="">Seleccione un Departamento</option>
                             {ubicacionData.length > 0 ? (
                                 [...new Set(ubicacionData.map(item => item.Departamento))].map(departamento => (
@@ -166,8 +166,8 @@ function App() {
                     </div>
 
                     <div>
-                        <label>Provincia:</label> <br />
-                        <select value={selectedProvincia} onChange={handleProvinciaChange} disabled={!selectedDepartamento}>
+                        <label className="labelCombo">Provincia:</label> <br />
+                        <select className="combo-box-4"  value={selectedProvincia} onChange={handleProvinciaChange} disabled={!selectedDepartamento}>
                             <option value="">Seleccione una Provincia</option>
                             {provincias.map(provincia => (
                                 <option key={provincia} value={provincia}>{provincia}</option>
@@ -176,8 +176,8 @@ function App() {
                     </div>
 
                     <div>
-                        <label>Distrito:</label> <br />
-                        <select disabled={!selectedProvincia} onChange={handleDistritoChange}>
+                        <label className="labelCombo">Distrito:</label> <br />
+                        <select className="combo-box-4"  disabled={!selectedProvincia} onChange={handleDistritoChange}>
                             <option value="">Seleccione un Distrito</option>
                             {distritos.map(distrito => (
                                 <option key={distrito} value={distrito}>{distrito}</option>
@@ -185,21 +185,21 @@ function App() {
                         </select>
                     </div>
                     <div>
-                        <label>Temas de interés: (Máximo 3) </label> <br />
+                        <label className="labelCombo">Temas de interés: (Máximo 3) </label> <br />
                         {categorias.map(categoria => (
-                            <div key={categoria.id}>
-                                <input
+                            <div key={categoria.id} className="checkbox-container">
+                                <input className="checkbox"
                                     type="checkbox"
                                     id={categoria.id}
                                     value={categoria.categoria}
                                     checked={selectedCategorias.includes(categoria.categoria)}
                                     onChange={handleCategoriaChange}
                                 />
-                                <label htmlFor={categoria.id}>{categoria.categoria}</label>
+                                <label className="checkbox-label" htmlFor={categoria.id}>{categoria.categoria}</label>
                             </div>
                         ))}
                     </div>
-                    <button type="submit" onClick={enviarDatos} >Registrar</button>
+                    <button className = "finRegistro"type="submit" onClick={enviarDatos} >Registrar</button>
 
 
                 </form>
@@ -208,13 +208,13 @@ function App() {
 
             </section>
             <section className="ImagenesContinuacion">
-
+<p>piooo</p>
 
 
 
             </section>
 
-
+            </div>
 
         </Layout>
 
