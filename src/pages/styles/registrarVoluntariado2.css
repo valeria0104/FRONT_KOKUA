@@ -23,6 +23,7 @@
     font-size: 14px;
     text-align: left;
   }
+
   .checkbox {
     width: 35px;
     height: 15px;
@@ -66,16 +67,28 @@
     flex: 1;
     padding: 20px;
     box-sizing: border-box; /* Asegura que el padding no aumente el tamaño del flex item */
+   transform: translateX(15%);
 }
 
 .ImagenesContinuacion {
     flex: 1;
     padding: 20px;
     background: #f0f0f0; /* Puedes cambiar el fondo según necesites */
+   
     box-sizing: border-box; /* Asegura que el padding no aumente el tamaño del flex item */
 }
 
 
 .checkbox-label {
     font-size: 14px; /* Tamaño del texto */
+}
+
+
+.finRegistro{
+  transform: translateX(40%);
+  margin-top: 25px;
+}
+
+.tituloRegistro2 {
+  transform: translateX(7%);
 }
