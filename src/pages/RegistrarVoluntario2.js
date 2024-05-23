@@ -2,17 +2,18 @@ import Head from "next/head";
 import Layout from './componentes/Layout.js';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+
 function App() {
     const router = useRouter();
     const [selectedDepartamento, setSelectedDepartamento] = useState('');
     const [selectedProvincia, setSelectedProvincia] = useState('');
     const [selectedDistrito, setSelectedDistrito] = useState('');
+    const [selectedUbigeo, setSelectedUbigeo] = useState('');
     const [provincias, setProvincias] = useState([]);
     const [distritos, setDistritos] = useState([]);
     const [ubicacionData, setUbicacionData] = useState([]);
 
-
-    /////////////////
+    // Categorías
     const [categorias, setCategorias] = useState([]);
     const [selectedCategorias, setSelectedCategorias] = useState([]);
     const nuevoUsuario = router.query.nuevoUsuario || '';
@@ -30,6 +31,7 @@ function App() {
 
     // Ahora jsonData contiene los datos del formulario en formato JSON
     console.log("Datos del formulario:", jsonData);
+
     useEffect(() => {
         // Fetch data from the API
         fetch('/api/ubicacion')
@@ -50,12 +52,12 @@ function App() {
             .catch(error => console.error('Error fetching categorias:', error));
     }, []);
 
-
     const handleDepartamentoChange = (event) => {
         const departamento = event.target.value;
         setSelectedDepartamento(departamento);
         setSelectedProvincia('');
-        setDistritos([]);
+        setSelectedDistrito('');
+        setSelectedUbigeo('');
 
         const provinciasFiltradas = ubicacionData
             .filter(item => item.Departamento === departamento && item.Provincia)
@@ -68,6 +70,8 @@ function App() {
     const handleProvinciaChange = (event) => {
         const provincia = event.target.value;
         setSelectedProvincia(provincia);
+        setSelectedDistrito('');
+        setSelectedUbigeo('');
 
         const distritosFiltrados = ubicacionData
             .filter(item => item.Departamento === selectedDepartamento && item.Provincia === provincia && item.Distrito)
@@ -79,9 +83,18 @@ function App() {
     const handleDistritoChange = (event) => {
         const distrito = event.target.value;
         setSelectedDistrito(distrito);
-    };
 
-    /////////////////////7
+        // Obtener el IdUbigeo correspondiente
+        const selectedUbigeoData = ubicacionData.find(item =>
+            item.Departamento === selectedDepartamento &&
+            item.Provincia === selectedProvincia &&
+            item.Distrito === distrito
+        );
+
+        if (selectedUbigeoData) {
+            setSelectedUbigeo(selectedUbigeoData.IdUbigeo);
+        }
+    };
 
     const handleCategoriaChange = (event) => {
         const categoria = event.target.value;
@@ -100,15 +113,15 @@ function App() {
             setSelectedCategorias(selectedCategorias.filter(cat => cat !== categoria));
         }
     };
+
     const enviarDatos = async (event) => { 
         event.preventDefault();
 
-       // Validar selección de ubicación
-       if (!selectedDepartamento || !selectedProvincia || !selectedDistrito) {
-        alert('Por favor, selecciona un Departamento, Provincia y Distrito antes de continuar.');
-        return;
-    }
-
+        // Validar selección de ubicación
+        if (!selectedDepartamento || !selectedProvincia || !selectedDistrito) {
+            alert('Por favor, selecciona un Departamento, Provincia y Distrito antes de continuar.');
+            return;
+        }
 
         // Agregar los datos del formulario al JSON
         const formData = {
@@ -118,9 +131,7 @@ function App() {
             correo: queryParams.correo,
             contrasena: queryParams.contrasena,
             repetir: queryParams.repetir,
-            departamento: selectedDepartamento,
-            provincia: selectedProvincia,
-            distrito: selectedDistrito, // Aquí deberías poner el valor seleccionado para distrito
+            ubicacion: selectedUbigeo, // Utilizar el IdUbigeo seleccionado
             categorias: selectedCategorias
         };
 
@@ -152,88 +163,71 @@ function App() {
         console.log("Datos del formulario con datos adicionales:", formData);
     };
 
-
     return (
-
         <Layout>
-<div className="page-container">
-            <section className="ContinuacionRegistro">
-                <h1 className = "tituloRegistro2">¡Queremos saber más de ti!</h1>
-                <div  className="Form2">
-              
-                    <div>
-                        <label className="labelCombo">Departamento:</label> <br />
-                        <select className="combo-box-4" value={selectedDepartamento} onChange={handleDepartamentoChange}>
-                            <option value="">Seleccione un Departamento</option>
-                            {ubicacionData.length > 0 ? (
-                                [...new Set(ubicacionData.map(item => item.Departamento))].map(departamento => (
-                                    <option key={departamento} value={departamento}>{departamento}</option>
-                                ))
-                            ) : (
-                                <option value="" disabled>Cargando...</option>
-                            )}
-                        </select>
-                    </div>
+            <div className="page-container">
+                <section className="ContinuacionRegistro">
+                    <h1 className="tituloRegistro2">¡Queremos saber más de ti!</h1>
+                    <div className="Form2">
+                        <div>
+                            <label className="labelCombo">Departamento:</label> <br />
+                            <select className="combo-box-4" value={selectedDepartamento} onChange={handleDepartamentoChange}>
+                                <option value="">Seleccione un Departamento</option>
+                                {ubicacionData.length > 0 ? (
+                                    [...new Set(ubicacionData.map(item => item.Departamento))].map(departamento => (
+                                        <option key={departamento} value={departamento}>{departamento}</option>
+                                    ))
+                                ) : (
+                                    <option value="" disabled>Cargando...</option>
+                                )}
+                            </select>
+                        </div>
 
-                    <div>
-                        <label className="labelCombo">Provincia:</label> <br />
-                        <select className="combo-box-4"  value={selectedProvincia} onChange={handleProvinciaChange} disabled={!selectedDepartamento}>
-                            <option value="">Seleccione una Provincia</option>
-                            {provincias.map(provincia => (
-                                <option key={provincia} value={provincia}>{provincia}</option>
+                        <div>
+                            <label className="labelCombo">Provincia:</label> <br />
+                            <select className="combo-box-4" value={selectedProvincia} onChange={handleProvinciaChange} disabled={!selectedDepartamento}>
+                                <option value="">Seleccione una Provincia</option>
+                                {provincias.map(provincia => (
+                                    <option key={provincia} value={provincia}>{provincia}</option>
+                                ))}
+                            </select>
+                        </div>
+
+                        <div>
+                            <label className="labelCombo">Distrito:</label> <br />
+                            <select className="combo-box-4" value={selectedDistrito} disabled={!selectedProvincia} onChange={handleDistritoChange}>
+                                <option value="">Seleccione un Distrito</option>
+                                {distritos.map(distrito => (
+                                    <option key={distrito} value={distrito}>{distrito}</option>
+                                ))}
+                            </select>
+                        </div>
+
+                        <div>
+                            <label className="labelCombo">Temas de interés: (Máximo 3) </label> <br />
+                            {categorias.map(categoria => (
+                                <div key={categoria.id} className="checkbox-container">
+                                    <input className="checkbox"
+                                        type="checkbox"
+                                        id={categoria.id}
+                                        value={categoria.categoria}
+                                        checked={selectedCategorias.includes(categoria.categoria)}
+                                        onChange={handleCategoriaChange}
+                                    />
+                                    <label className="checkbox-label" htmlFor={categoria.id}>{categoria.categoria}</label>
+                                </div>
                             ))}
-                        </select>
+                        </div>
+                        <button className="finRegistro" type="submit" onClick={enviarDatos}>Registrar</button>
                     </div>
-
-                    <div>
-                        <label className="labelCombo">Distrito:</label> <br />
-                        <select className="combo-box-4" value={selectedDistrito} disabled={!selectedProvincia} onChange={handleDistritoChange}>
-                            <option value="">Seleccione un Distrito</option>
-                            {distritos.map(distrito => (
-                                <option key={distrito} value={distrito}>{distrito}</option>
-                            ))}
-                        </select>
-                    </div>
-                    <div>
-                        <label className="labelCombo">Temas de interés: (Máximo 3) </label> <br />
-                        {categorias.map(categoria => (
-                            <div key={categoria.id} className="checkbox-container">
-                                <input className="checkbox"
-                                    type="checkbox"
-                                    id={categoria.id}
-                                    value={categoria.categoria}
-                                    checked={selectedCategorias.includes(categoria.categoria)}
-                                    onChange={handleCategoriaChange}
-                                />
-                                <label className="checkbox-label" htmlFor={categoria.id}>{categoria.categoria}</label>
-                            </div>
-                        ))}
-                    </div>
-                    <button className = "finRegistro"type="submit" onClick={enviarDatos} >Registrar</button>
-                    </div>
-
-
-            </section>
-            <section className="ImagenesContinuacion">
-
-            <img className="imgrv2" src="/registrovoluntario2/perrito.png" alt="perrito adopcion"/>
-            <img className="imgrv2" src="/registrovoluntario2/perrito2.png" alt="perrito adopcion y humana"/>
-
-
-
-
-            </section>
-
+                </section>
+                <section className="ImagenesContinuacion">
+                    <img className="imgrv2" src="/registrovoluntario2/perrito.png" alt="perrito adopcion" />
+                    <img className="imgrv2" src="/registrovoluntario2/perrito2.png" alt="perrito adopcion y humana" />
+                </section>
             </div>
-
         </Layout>
-
-
-
-
-
     );
-
-
 }
+
 export default App;

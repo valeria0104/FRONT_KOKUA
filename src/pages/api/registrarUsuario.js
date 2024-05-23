@@ -2,23 +2,24 @@ import { promises as fs } from 'fs';
 import path from 'path';
 
 const usuariosFilePath = path.join(process.cwd(), 'src/pages/json/usuario.json');
-
+let proximoId = 1; 
 export default async function handler(req, res) {
     if (req.method === 'POST') {
-        const { nombre, apellidosPaterno, apellidoMaterno, correo, contrasena, repetir,departamento, provincia,distrito, categorias } = req.body;
-
+        const { nombre, apellidosPaterno, apellidoMaterno, correo, contrasena, repetir, ubicacion, categorias } = req.body;
+     
         const nuevoUsuario = {
+            id: proximoId++, 
             nombre,
             apellidosPaterno,
             apellidoMaterno,
             correo,
             contrasena,
             repetir,
-            departamento,
-        provincia,
-        distrito, 
-        categorias
+            ubicacion, // Aquí almacenamos el IdUbigeo
+            categorias
         };
+        
+console.log('Datos recibidos del formulario:', req.body);
 
         try {
             // Leer el archivo de usuarios

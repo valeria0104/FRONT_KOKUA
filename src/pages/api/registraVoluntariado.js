@@ -2,13 +2,14 @@ import { promises as fs } from 'fs';
 import path from 'path';
 
 const usuariosFilePath = path.join(process.cwd(), 'src/pages/json/organizacion.json');
-
+let proximoId = 1; 
 export default async function handler(req, res) {
     if (req.method === 'POST') {
         const {  nombre_organizacion,correo,descripcion_organizacion,
             horario_organizacion,contacto_organizacion,contrasena,repetir_organizacion} = req.body;
 
         const nuevoVoluntariado = {
+            id: proximoId++, 
             nombre_organizacion,correo,descripcion_organizacion,
             horario_organizacion,contacto_organizacion,contrasena,repetir_organizacion
         };

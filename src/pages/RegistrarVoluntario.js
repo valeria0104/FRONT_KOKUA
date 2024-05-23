@@ -37,22 +37,6 @@ const RegisterPage = () => {
     alert('Las contraseñas no coinciden');
     return;
   }
-  try {
-    const response = await fetch('/api/validarCorreo', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ correo: formData.correo })
-    });
-
-    const result = await response.json();
-
-    if (!result.success) {
-      alert(result.mensaje);
-      return;
-    }
-
     // Crear un nuevo objeto con los datos del formulario
     const nuevoUsuario = {
       nombre: formData.nombre,
@@ -63,19 +47,18 @@ const RegisterPage = () => {
       repetir: formData.repetir,
     };
 
+    
     const queryString = Object.keys(nuevoUsuario)
-      .map(key => key + '=' + encodeURIComponent(nuevoUsuario[key]))
-      .join('&');
+    .map(key => key + '=' + encodeURIComponent(nuevoUsuario[key]))
+    .join('&');
 
-    router.push({
-      pathname: '/RegistrarVoluntario2',
-      search: `?${queryString}`
-    });
-  } catch (error) {
-    console.error('Error al validar el correo:', error);
-    alert('Error en el servidor. Inténtalo de nuevo más tarde.');
-  }
-};
+  router.push({
+    pathname: '/RegistrarVoluntario2',
+    search: `?${queryString}`
+  });
+ 
+    
+  };
 
   return (
     <Layout>
