@@ -38,37 +38,52 @@ const RegisterPage = () => {
             alert('Por favor, ingrese un correo electrónico válido');
             return;
         }
-        const nuevoVoluntariado = {
-            nombre_organizacion: formData.nombre_organizacion,
-            correo: formData.correo,
-            descripcion_organizacion: formData.descripcion_organizacion,
-            horario_organizacion: formData.horario_organizacion,
-            contacto_organizacion: formData.contacto_organizacion,
-            contrasena: formData.contrasena,
-            repetir_organizacion: formData.repetir_organizacion,
-        };
-
         try {
-            const response = await fetch('/api/registraVoluntariado', {
+            const response = await fetch('/api/validarCorreo', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ correo: formData.correo })
+            });
+
+            const result = await response.json();
+
+            if (!result.success) {
+                alert(result.mensaje);
+                return;
+            }
+
+            const nuevoVoluntariado = {
+                nombre_organizacion: formData.nombre_organizacion,
+                correo: formData.correo,
+                descripcion_organizacion: formData.descripcion_organizacion,
+                horario_organizacion: formData.horario_organizacion,
+                contacto_organizacion: formData.contacto_organizacion,
+                contrasena: formData.contrasena,
+                repetir_organizacion: formData.repetir_organizacion,
+            };
+
+            const responseRegistro = await fetch('/api/registraVoluntariado', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify(nuevoVoluntariado),
             });
-            if (response.ok) {
-                console.log('organizacion registrado con éxito');
-                alert('organizacion registrada con éxito');
+
+            if (responseRegistro.ok) {
+                console.log('Organización registrada con éxito');
+                alert('Organización registrada con éxito');
             } else {
-                console.error('Error al registrar organizacion');
-                alert('Error al registrar organizacion. Por favor, inténtalo de nuevo.');
+                console.error('Error al registrar organización');
+                alert('Error al registrar organización. Por favor, inténtalo de nuevo.');
             }
         } catch (error) {
-            console.error('Error al registrar organizacion:', error);
-            alert('Error al registrar organizacion. Por favor, inténtalo de nuevo.');
+            console.error('Error al registrar organización:', error);
+            alert('Error al registrar organización. Por favor, inténtalo de nuevo.');
         }
-    }
-
+    };
 
 
     return (

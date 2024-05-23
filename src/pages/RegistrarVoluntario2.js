@@ -159,6 +159,7 @@ function App() {
 <div className="page-container">
             <section className="ContinuacionRegistro">
                 <h1 className = "tituloRegistro2">¡Queremos saber más de ti!</h1>
+                <div  className="Form2">
               
                     <div>
                         <label className="labelCombo">Departamento:</label> <br />
@@ -209,7 +210,7 @@ function App() {
                         ))}
                     </div>
                     <button className = "finRegistro"type="submit" onClick={enviarDatos} >Registrar</button>
-            
+                    </div>
 
 
             </section>

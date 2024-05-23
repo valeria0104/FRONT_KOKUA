@@ -1,0 +1,120 @@
+.page-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  position: relative; /* Ensure container is positioned relatively */
+}
+
+
+.ContinuacionRegistro {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box; /* Incluye el padding en el ancho total */
+ 
+ transform: translateX(15%);
+}
+
+
+.Form2 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative; /* Ensure Form2 is positioned relatively */
+  z-index: 1; /* Ensure it's not overlapping other elements unexpectedly */
+}
+
+
+.ImagenesContinuacion {
+  display: flex;
+  flex-direction: column; /* Coloca las imágenes una encima de la otra */
+  justify-content: center;
+  align-items: center;
+  max-width: 100%; /* Ajusta el ancho máximo según sea necesario */
+  overflow: hidden; /* Evita que las imágenes sobresalgan */
+  margin-top: 20px; /* Ajusta el margen superior según sea necesario */
+  padding: 10px; /* Ajusta el espacio interno según sea necesario */
+}
+
+.imgrv2 {
+  max-width: 90%; /* Ajusta el ancho máximo de las imágenes */
+  height:  50%; /* Mantiene la proporción de aspecto */
+  margin: 10px 0; /* Ajusta los márgenes verticales según sea necesario */
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+}
+
+.labelCombo {
+  margin-bottom: 5px;
+}
+
+.combo-box-4 {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.finRegistro {
+  width: 40%;
+  height: 40px;
+  padding: 0px 10px 0px 10px;
+  background: #FF8A84;
+  color: #FFFFFF;
+  border-color: #FFC3AE;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px 3px 3px 3px;
+  font-family: "Helvetica";
+  font-weight: 400;
+  font-size: 100%;
+  text-align: center;
+  transform: translateX(40%);
+}
+
+.finRegistro:hover {
+  background-color: #FFC3AE;
+}
+
+.tituloRegistro2 {
+  margin-bottom: 20px;
+  transform: translateX(7%);
+}
+
+.combo-box-4 {
+  width: 70%;
+  height: 28px;
+  padding: 4px 8px 4px 8px;
+  background: #EBEBEB;
+  color: #232323;
+  border-color: #232323;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px 4px 4px 4px;
+  font-family: "Helvetica";
+  font-weight: 400;
+  font-size: 14px;
+  text-align: left;
+  transform: translateX(3%);
+}
+
+.labelCombo {
+  width: 110px;
+  height: 20px;
+  color: #000000;
+  font-family: "Poppins";
+  font-weight: bold;
+  font-size: 14px;
+  text-align: left;
+}
+.checkbox {
+  width:5%;
+  height: 15px;
+  background: #FFFFFF;
+  color: #232323;
+  border-color: #232323;
+  border-style: solid;
+  font-family: "Helvetica";
+  text-align: left;
+}
