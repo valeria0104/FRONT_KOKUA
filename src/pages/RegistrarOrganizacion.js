@@ -12,7 +12,8 @@ const RegisterPage = () => {
             horario_organizacion: "",
             contacto_organizacion: "",
             contrasena: "",
-            repetir_organizacion: ""
+            repetir_organizacion: "",
+            imagen_organizacion: ""
         }
     );
     const router = useRouter();
@@ -21,13 +22,14 @@ const RegisterPage = () => {
         e.preventDefault();
         
         // Validación de campos obligatorios
-        for (const key in formData) {
-            if (formData[key].trim() === '') {
-                alert(`El campo ${key.replace('_', ' ')} es obligatorio`);
-                return;
-            }
+    for (const key in formData) {
+        const value = formData[key];
+        if (!value || (typeof value === 'string' && value.trim() === '')) {
+            alert(`El campo ${key.replace('_', ' ')} es obligatorio`);
+            return;
         }
-
+    }
+    
         // Validación de contraseña
         if (formData.contrasena !== formData.repetir_organizacion) {
             alert('Las contraseñas no coinciden');
@@ -62,8 +64,9 @@ const RegisterPage = () => {
                 contacto_organizacion: formData.contacto_organizacion,
                 contrasena: formData.contrasena,
                 repetir_organizacion: formData.repetir_organizacion,
+                imagen_organizacion: formData.imagen_organizacion
             };
-
+          
             const responseRegistro = await fetch('/api/registraVoluntariado', {
                 method: 'POST',
                 headers: {
@@ -71,9 +74,10 @@ const RegisterPage = () => {
                 },
                 body: JSON.stringify(nuevoVoluntariado),
             });
-
+            console.log(nuevoVoluntariado)
             if (responseRegistro.ok) {
                 console.log('Organización registrada con éxito');
+                console.log(nuevoVoluntariado)
                 alert('Organización registrada con éxito');
             } else {
                 console.error('Error al registrar organización');
@@ -133,7 +137,16 @@ const RegisterPage = () => {
                         <input className='input-registrar' type="password" id="confirmarContrasena" name="confirmarContrasena"
                             value={formData.repetir_organizacion}
                             onChange={(e) => setFormData({ ...formData, repetir_organizacion: e.target.value })} />
-                   </p></div>
+                   </p>
+                   <p>
+    <label htmlFor="imagen_organizacion">URL de la imagen de la organización:</label>
+    <input type="text" id="imagen_organizacion" name="imagen_organizacion"
+        placeholder="Ingrese la URL de la imagen"
+        value={formData.imagen_organizacion}
+        onChange={(e) => setFormData({ ...formData, imagen_organizacion: e.target.value })} />
+</p>
+                   
+                   </div>
                     
                 <button onClick={handleFormSubmit}>Registrar</button>
 

@@ -1,1 +1,35 @@
-[{"id":1,"nombre_organizacion":"a","correo":"ayuda@gmail.com","descripcion_organizacion":"a","horario_organizacion":"a","contacto_organizacion":"asd","contrasena":"a","repetir_organizacion":"a"}]
+[
+  {
+    "id": 1,
+    "nombre_organizacion": "ab",
+    "correo": "abcd@gmail.com",
+    "descripcion_organizacion": "ch",
+    "horario_organizacion": "ch",
+    "contacto_organizacion": "ch",
+    "contrasena": "ch",
+    "repetir_organizacion": "ch",
+    "imagen_organizacion": "https://img.freepik.com/vector-gratis/plantilla-pegatina-sola-casa-aislada_1308-64529.jpg"
+  },
+  {
+    "id": 2,
+    "nombre_organizacion": "ab",
+    "correo": "abcde@gmail.com",
+    "descripcion_organizacion": "ch",
+    "horario_organizacion": "ch",
+    "contacto_organizacion": "ch",
+    "contrasena": "ch",
+    "repetir_organizacion": "ch",
+    "imagen_organizacion": "https://img.freepik.com/vector-gratis/plantilla-pegatina-sola-casa-aislada_1308-64529.jpg"
+  },
+  {
+    "id": 3,
+    "nombre_organizacion": "ola",
+    "correo": "ola@gmail.com",
+    "descripcion_organizacion": "chi",
+    "horario_organizacion": "chi",
+    "contacto_organizacion": "chi",
+    "contrasena": "chi",
+    "repetir_organizacion": "chi",
+    "imagen_organizacion": "chi"
+  }
+]

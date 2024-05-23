@@ -1,1 +1,16 @@
-[{"id":1,"nombre":"a","apellidosPaterno":"a","apellidoMaterno":"a","correo":"astrid@gmail.com","contrasena":"a","repetir":"a","ubicacion":"021203","categorias":["Protección animal","Educación","Salud Física"]},{"id":2,"nombre":"a","apellidosPaterno":"a","apellidoMaterno":"a","correo":"sasdasd@gmail.com","contrasena":"a","repetir":"a","ubicacion":"060503","categorias":["Medio ambiente","Salud Física","Educación"]}]
+[
+  {
+    "id": 1,
+    "nombre": "as",
+    "apellidosPaterno": "as",
+    "apellidoMaterno": "as",
+    "correo": "sasdasd@gmail.com",
+    "contrasena": "as",
+    "repetir": "as",
+    "ubicacion": "050113",
+    "categorias": [
+      "Protección animal",
+      "Educación"
+    ]
+  }
+]
