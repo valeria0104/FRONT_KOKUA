@@ -28,6 +28,30 @@ const RegisterPage = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    
+
+  
+ 
+  
+  if (formData.contrasena !== formData.repetir) {
+    alert('Las contraseñas no coinciden');
+    return;
+  }
+  try {
+    const response = await fetch('/api/validarCorreo', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ correo: formData.correo })
+    });
+
+    const result = await response.json();
+
+    if (!result.success) {
+      alert(result.mensaje);
+      return;
+    }
 
     // Crear un nuevo objeto con los datos del formulario
     const nuevoUsuario = {
@@ -39,18 +63,19 @@ const RegisterPage = () => {
       repetir: formData.repetir,
     };
 
-    
     const queryString = Object.keys(nuevoUsuario)
-    .map(key => key + '=' + encodeURIComponent(nuevoUsuario[key]))
-    .join('&');
+      .map(key => key + '=' + encodeURIComponent(nuevoUsuario[key]))
+      .join('&');
 
-  router.push({
-    pathname: '/RegistrarVoluntario2',
-    search: `?${queryString}`
-  });
- 
-    
-  };
+    router.push({
+      pathname: '/RegistrarVoluntario2',
+      search: `?${queryString}`
+    });
+  } catch (error) {
+    console.error('Error al validar el correo:', error);
+    alert('Error en el servidor. Inténtalo de nuevo más tarde.');
+  }
+};
 
   return (
     <Layout>
@@ -62,37 +87,37 @@ const RegisterPage = () => {
               <label htmlFor="nombre">Nombre:</label>
               <input type="text" id="nombre" name="nombre"
                 value={formData.nombre}
-                onChange={(e) => setFormData({ ...formData, nombre: e.target.value })} />
+                onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}required/>
             </p>
             <p>
               <label htmlFor="apellidoPaterno">Apellido Paterno:</label>
               <input type="text" id="apellidoPaterno" name="apellidoPaterno"
                 value={formData.apellidosPaterno}
-                onChange={(e) => setFormData({ ...formData, apellidosPaterno: e.target.value })} />
+                onChange={(e) => setFormData({ ...formData, apellidosPaterno: e.target.value })} required/>
             </p>
             <p>
               <label htmlFor="apellidoMaterno">Apellido Materno:</label>
               <input type="text" id="apellidoMaterno" name="apellidoMaterno"
                 value={formData.apellidoMaterno}
-                onChange={(e) => setFormData({ ...formData, apellidoMaterno: e.target.value })} />
+                onChange={(e) => setFormData({ ...formData, apellidoMaterno: e.target.value })} required/>
             </p>
             <p>
               <label htmlFor="correo">Correo electrónico:</label>
               <input type="email" id="correo" name="correo"
                 value={formData.correo}
-                onChange={(e) => setFormData({ ...formData, correo: e.target.value })} />
+                onChange={(e) => setFormData({ ...formData, correo: e.target.value })} required />
             </p>
             <p>
               <label htmlFor="contrasena">Contraseña:</label>
               <input type="password" id="contrasena" name="contrasena"
                 value={formData.contrasena}
-                onChange={(e) => setFormData({ ...formData, contrasena: e.target.value })} />
+                onChange={(e) => setFormData({ ...formData, contrasena: e.target.value })} required/>
             </p>
             <p>
               <label htmlFor="confirmarContrasena">Confirmar contraseña:</label>
               <input type="password" id="confirmarContrasena" name="confirmarContrasena"
                 value={formData.repetir}
-                onChange={(e) => setFormData({ ...formData, repetir: e.target.value })} />
+                onChange={(e) => setFormData({ ...formData, repetir: e.target.value })} required/>
             </p>
             <div className="politica-privacidad">
               <input
@@ -101,7 +126,7 @@ const RegisterPage = () => {
                 name="aceptarPolitica"
                 checked={aceptarPolitica}
                 onChange={handleAceptacionPolitica}
-              />
+                required/>
               <label htmlFor="aceptarPolitica">Acepto la política de privacidad y tratamiento de datos personales</label>
             </div>
             <div className="terminos-condiciones">
@@ -111,7 +136,7 @@ const RegisterPage = () => {
                 name="aceptarTerminos"
                 checked={aceptarTerminos}
                 onChange={handleAceptacionTerminos}
-              />
+             requerid/>
               <label htmlFor="aceptarTerminos">Acepto los términos y condiciones</label>
             </div>
             <button

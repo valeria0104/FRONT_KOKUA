@@ -100,8 +100,16 @@ function App() {
             setSelectedCategorias(selectedCategorias.filter(cat => cat !== categoria));
         }
     };
-    const enviarDatos = async (event) => {
+    const enviarDatos = async (event) => { 
         event.preventDefault();
+
+       // Validar selección de ubicación
+       if (!selectedDepartamento || !selectedProvincia || !selectedDistrito) {
+        alert('Por favor, selecciona un Departamento, Provincia y Distrito antes de continuar.');
+        return;
+    }
+
+
         // Agregar los datos del formulario al JSON
         const formData = {
             nombre: queryParams.nombre,
@@ -130,6 +138,7 @@ function App() {
 
             if (response.ok) {
                 console.log('Usuario registrado con éxito');
+                alert('Usuario registrado con éxito');
                 // Redirigir a una página de éxito
             } else {
                 console.error('Error al registrar usuario');
@@ -150,7 +159,7 @@ function App() {
 <div className="page-container">
             <section className="ContinuacionRegistro">
                 <h1 className = "tituloRegistro2">¡Queremos saber más de ti!</h1>
-                <form htmlFor="Registro2">
+              
                     <div>
                         <label className="labelCombo">Departamento:</label> <br />
                         <select className="combo-box-4" value={selectedDepartamento} onChange={handleDepartamentoChange}>
@@ -177,7 +186,7 @@ function App() {
 
                     <div>
                         <label className="labelCombo">Distrito:</label> <br />
-                        <select className="combo-box-4"  disabled={!selectedProvincia} onChange={handleDistritoChange}>
+                        <select className="combo-box-4" value={selectedDistrito} disabled={!selectedProvincia} onChange={handleDistritoChange}>
                             <option value="">Seleccione un Distrito</option>
                             {distritos.map(distrito => (
                                 <option key={distrito} value={distrito}>{distrito}</option>
@@ -199,14 +208,16 @@ function App() {
                             </div>
                         ))}
                     </div>
-                    <button className = "finRegistro" type="submit" onClick={enviarDatos} >Registrar</button>
-                </form>
-
+                    <button className = "finRegistro"type="submit" onClick={enviarDatos} >Registrar</button>
+            
 
 
             </section>
             <section className="ImagenesContinuacion">
-<p>piooo</p>
+
+            <img className="imgrv2" src="/registrovoluntario2/perrito.png" alt="perrito adopcion"/>
+            <img className="imgrv2" src="/registrovoluntario2/perrito2.png" alt="perrito adopcion y humana"/>
+
 
 
 

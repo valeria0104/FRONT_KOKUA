@@ -2,7 +2,6 @@ import Link from "next/link";
 import Head from "next/head";
 import Layout from './componentes/Layout.js';
 import React, { useState } from 'react';
-import usuarioData from "./json/usuario.json";
 
 function App() {
     const [correo, setCorreo] = useState("");
@@ -21,17 +20,22 @@ function App() {
                 body: JSON.stringify({ correo, contrasena }),
             });
 
+            const result = await response.json();
+
             if (response.ok) {
-                console.log('Usuario registrado con éxito');
+                console.log('Usuario logueado con éxito:', result.mensaje);
+                alert('Usuario logueado con éxito');
             } else {
-                console.error('Error al registrar usuario');
-                alert('Error al registrar usuario. Por favor, inténtalo de nuevo.');
+                console.error('Error al ingresar:', result.mensaje);
+                setError(`Error al ingresar: ${result.mensaje}`);
             }
         } catch (error) {
-            console.error('Error al registrar usuario:', error);
-            alert('Error al registrar usuario. Por favor, inténtalo de nuevo.');
+            console.error('Error al ingresar usuario:', error);
+            setError('Error al ingresar usuario. Por favor, inténtalo de nuevo.');
         }
     };
+
+    
 
     return (
         <>

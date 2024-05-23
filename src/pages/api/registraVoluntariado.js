@@ -5,12 +5,12 @@ const usuariosFilePath = path.join(process.cwd(), 'src/pages/json/organizacion.j
 
 export default async function handler(req, res) {
     if (req.method === 'POST') {
-        const {  nombre_organizacion,correo_organizacion,descripcion_organizacion,
-            horario_organizacion,contacto_organizacion,contrasena_organizaciob,repetir_organizacion} = req.body;
+        const {  nombre_organizacion,correo,descripcion_organizacion,
+            horario_organizacion,contacto_organizacion,contrasena,repetir_organizacion} = req.body;
 
         const nuevoVoluntariado = {
-            nombre_organizacion,correo_organizacion,descripcion_organizacion,
-            horario_organizacion,contacto_organizacion,contrasena_organizaciob,repetir_organizacion
+            nombre_organizacion,correo,descripcion_organizacion,
+            horario_organizacion,contacto_organizacion,contrasena,repetir_organizacion
         };
 
         try {
