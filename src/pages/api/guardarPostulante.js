@@ -3,7 +3,7 @@ import path from 'path';
 
 export default function handler(req, res) {
     if (req.method === 'POST') {
-        const filePath = path.resolve('./public', 'postulantes.json');
+        const filePath = path.join(process.cwd(), 'src/pages/json/postulantes.json');
         const postulantes = JSON.parse(fs.readFileSync(filePath, 'utf8'));
 
         postulantes.push(req.body);
