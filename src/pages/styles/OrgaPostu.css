@@ -6,3 +6,71 @@
     width: 288px;
   height: 192px;
 }
+.LineaSepararion{
+    border-bottom: 1px solid black;
+}
+.EncabezadoOrganizacion {
+    display: flex;
+    flex-direction: column; 
+  }
+  
+  .ImagenDescripcionContainer {
+    display: flex;
+    align-items: center;
+    margin-top: 10px; 
+    padding-left: 5%;
+
+  }
+  
+  .imagenvoluntariados {
+    margin-right: 20px; 
+  }
+  
+  .ImagenDescripcionContainer p {
+    flex: 1; 
+    padding-left: 5%;
+  }
+  .todo-cadavolun h1{
+    text-align: center;
+    font-family: "Poppins";
+  font-weight: bold;
+  }
+  
+  .cuerpo_cadavolun {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .primera-cadavolun{
+  
+    margin-right: 10px;
+    margin-left: 15%;
+    margin-bottom: 10px;
+    max-width: 45%;
+  }
+  .segunda-cadavolun {
+    flex: 1;
+    margin-right: 15%; 
+    margin-left: 10px; 
+    margin-bottom: 10px;
+    max-width: 45%;
+  }
+    
+  
+.segunda-cadavolun h2{
+    text-align: center;
+}
+.requisitos-list {
+    list-style-type: decimal;
+    padding-left: 20px; /* Ajusta el espacio entre el número y el texto */
+}
+.mootivadora{
+    color: #FF8A84;
+}
+.direccion-volun{
+  max-width: 300px; /* Ajusta el valor según tus necesidades */
+
+
+}
+  
