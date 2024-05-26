@@ -61,5 +61,14 @@
     "documento": "72915768",
     "telefono": "993293292",
     "correo": "vega@gmail.com"
+  },
+  {
+    "nombre": "Valeria",
+    "apellidoPaterno": "Vega",
+    "apellidoMaterno": "Herrera",
+    "tipoDocumento": "Pasaporte",
+    "documento": "729157681234",
+    "telefono": "9328323248234",
+    "correo": "sasdasd@gmail.com"
   }
 ]
