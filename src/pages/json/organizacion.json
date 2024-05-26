@@ -32,7 +32,7 @@
     "contacto_organizacion": "chi",
     "contrasena": "chi",
     "repetir_organizacion": "chi",
-    "imagen_organizacion": "chi",
+    "imagen_organizacion": "https://img.freepik.com/vector-gratis/plantilla-logotipo-amigos_23-2149505594.jpg?size=338&ext=jpg&ga=GA1.1.44546679.1716422400&semt=ais_user",
     "tipo_usuario": 2
   },
   {
@@ -44,7 +44,7 @@
     "contacto_organizacion": "x",
     "contrasena": "z",
     "repetir_organizacion": "z",
-    "imagen_organizacion": "z",
+    "imagen_organizacion": "https://es.freelogodesign.org/assets/img/categories/10/logo-img-01.svg",
     "tipo_usuario": 2
   }
 ]
