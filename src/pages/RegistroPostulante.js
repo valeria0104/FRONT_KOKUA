@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Layout2 from './componentes/Layout2';  // Importamos el componente de layout corregido
 import { useRouter } from 'next/router';
-
+import { useAuth} from './contexto/AuthContext'; 
 // Componente principal de RegistroPostulante
+
 const RegistroPostulante = () => {
+  const { user } = useAuth();
   // Estado para almacenar los datos del formulario
   const [formData, setFormData] = useState({
     nombre: "",
@@ -46,9 +48,9 @@ const RegistroPostulante = () => {
 
     // Creamos el objeto con los datos del nuevo postulante
     const nuevoPostulante = {
-      nombre: formData.nombre,
-      apellidoPaterno: formData.apellidoPaterno,
-      apellidoMaterno: formData.apellidoMaterno,
+      nombre: user.nombre,
+      apellidoPaterno: user.apellidosPaterno,
+      apellidoMaterno: user.apellidoMaterno,
       tipoDocumento: formData.tipoDocumento,
       documento: formData.documento,
       telefono: formData.telefono,
@@ -68,13 +70,13 @@ const RegistroPostulante = () => {
         setMensajeExito("Postulante registrado con éxito"); // Mostramos mensaje de éxito
         // Limpiamos el formulario
         setFormData({
-          nombre: "",
-          apellidoPaterno: "",
-          apellidoMaterno: "",
+          nombre: user.nombre,
+          apellidoPaterno: user.apellidosPaterno,
+          apellidoMaterno: user.apellidoMaterno,
           tipoDocumento: "",
           documento: "",
           telefono: "",
-          correo: ""
+          correo: user ? user.correo || "" : ""
         });
       } else {
         console.error('Error al registrar postulante');
@@ -85,7 +87,9 @@ const RegistroPostulante = () => {
       alert('Error al registrar postulante. Por favor, inténtalo de nuevo.');
     }
   };
-
+  const handleCorreoChange = (e) => {
+    setFormData({ ...formData, correo: e.target.value });
+  };
   return (
     <Layout2>
       <section className="panelregistro-postulante"></section>
@@ -96,19 +100,19 @@ const RegistroPostulante = () => {
           <p>
             <label htmlFor="nombre">Nombres:</label>
             <input type="text" id="nombre" name="nombre"
-              value={formData.nombre}
+              value={user.nombre}  readOnly
               onChange={(e) => setFormData({ ...formData, nombre: e.target.value })} />
           </p>
           <p>
             <label htmlFor="apellidoPaterno">Apellido Paterno:</label>
             <input type="text" id="apellidoPaterno" name="apellidoPaterno"
-              value={formData.apellidoPaterno}
+              value={user.apellidosPaterno} readOnly
               onChange={(e) => setFormData({ ...formData, apellidoPaterno: e.target.value })} />
           </p>
           <p>
             <label htmlFor="apellidoMaterno">Apellido Materno:</label>
             <input type="text" id="apellidoMaterno" name="apellidoMaterno"
-              value={formData.apellidoMaterno}
+              value={user.apellidoMaterno} readOnly
               onChange={(e) => setFormData({ ...formData, apellidoMaterno: e.target.value })} />
           </p>
           <p>
@@ -142,7 +146,8 @@ const RegistroPostulante = () => {
             <label htmlFor="correo">Correo electrónico:</label>
             <input type="email" id="correo" name="correo"
               value={formData.correo}
-              onChange={(e) => setFormData({ ...formData, correo: e.target.value })} />
+              onChange={handleCorreoChange} />
+              
           </p>
           <button type="submit">Enviar</button>
         </form>

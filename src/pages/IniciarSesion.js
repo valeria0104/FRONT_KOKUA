@@ -3,12 +3,14 @@ import Head from "next/head";
 import Layout from './componentes/Layout.js';
 import React, { useState } from 'react';
 import { useRouter } from 'next/router'; 
+import { useAuth} from './contexto/AuthContext'; 
 function App() {
     const [correo, setCorreo] = useState("");
     const [contrasena, setContrasena] = useState("");
     const [error, setError] = useState("");
     const [mensaje, setMensaje] = useState('');
     const router = useRouter(); // Obtiene el enrutador
+    const { login, user } = useAuth(); 
     const handleLogin = async (e) => {
         e.preventDefault();
 
@@ -23,6 +25,7 @@ function App() {
 
                 if (usuarioRegistrado) {
                     if (usuarioRegistrado.contrasena === contrasena) {
+                        login(usuarioRegistrado);
                         if (usuarioRegistrado.tipo_usuario === 1) {
                             router.push('/PruebaUserNormal');
                         } else if (usuarioRegistrado.tipo_usuario === 2) {

@@ -9,9 +9,13 @@ import './styles/registrarVoluntario.css'
 import './styles/registrarVoluntario2.css'
 import './styles/registroPostulante.css'
 import './styles/Voluntariadocercano.css';
-
+import { AuthProvider } from './contexto/AuthContext'; 
 import { AppProps } from 'next/app'
 
 export default function MyApp({Component, pageProps }){
-    return <Component {...pageProps} />
+    return (
+        <AuthProvider>
+            <Component {...pageProps} />
+        </AuthProvider>
+    );
 }/// esto es para hacer el estilo global 

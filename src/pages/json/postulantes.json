@@ -25,5 +25,41 @@
     "documento": "123456789011",
     "telefono": "98817439",
     "correo": "erikama145@gmail.com"
+  },
+  {
+    "nombre": "",
+    "apellidoPaterno": "",
+    "apellidoMaterno": "Herrer",
+    "tipoDocumento": "DNI",
+    "documento": "72915768",
+    "telefono": "991992993",
+    "correo": "vale@gmail.com"
+  },
+  {
+    "nombre": "",
+    "apellidoPaterno": "",
+    "apellidoMaterno": "",
+    "tipoDocumento": "DNI",
+    "documento": "72915768",
+    "telefono": "923847383",
+    "correo": "vega@gmail.com"
+  },
+  {
+    "nombre": "Valeria",
+    "apellidoPaterno": "Vega",
+    "apellidoMaterno": "Herrera",
+    "tipoDocumento": "",
+    "documento": "",
+    "telefono": "",
+    "correo": "vega@gmail.com"
+  },
+  {
+    "nombre": "Valeria",
+    "apellidoPaterno": "Vega",
+    "apellidoMaterno": "Herrera",
+    "tipoDocumento": "DNI",
+    "documento": "72915768",
+    "telefono": "993293292",
+    "correo": "vega@gmail.com"
   }
 ]

@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import Layout from './componentes/Layout.js';
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useAuth} from './contexto/AuthContext'; 
 
 const RegisterPage = () => {
+  const { user } = useAuth();
   const [aceptarPolitica, setAceptarPolitica] = useState(false);
   const [aceptarTerminos, setAceptarTerminos] = useState(false);
   const [formData, setFormData] = useState({
@@ -64,6 +66,7 @@ const RegisterPage = () => {
 
   return (
     <Layout>
+  <p>{user.correo}</p>
       <div className="PantallaRegistrar">
         <div className="FormularioRegistro">
           <h1 id="Registrarse">Registrarse</h1>
