@@ -78,6 +78,7 @@ function App() {
             .map(item => item.Distrito);
 
         setDistritos(distritosFiltrados);
+        
     };
 
     const handleDistritoChange = (event) => {
