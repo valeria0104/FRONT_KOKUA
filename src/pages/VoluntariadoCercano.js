@@ -38,9 +38,8 @@ const BusquedaVoluntarios = () => {
   };
 
   return (
-      <Layout>
-        <section className="panelproyecto">  </section>
-
+    <Layout>
+      <section className="panelproyecto"></section>
       <div>
         <div className="search-container">
           <label htmlFor="search-input">
@@ -55,13 +54,14 @@ const BusquedaVoluntarios = () => {
             className="search-input"
           />
         </div>
-        <ul>
-          {resultadosFiltrados.map((voluntario, index) => (
-            <li key={index}>
-              {voluntario.imagen_organizacion} 
-            </li>
-          ))}
-        </ul>
+        <div className="scrollable-container">
+          <ul>
+            {resultadosFiltrados.map((voluntario, index) => (
+              <li key={index}>
+                <img className='imagen_volunariadocerca' src={voluntario.imagen_organizacion} alt={`Imagen de ${voluntario.nombre_organizacion}`} />
+              </li>
+            ))}
+          </ul></div>
       </div>
     </Layout>
   );
