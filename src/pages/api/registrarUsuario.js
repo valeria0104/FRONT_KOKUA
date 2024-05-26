@@ -35,7 +35,7 @@ export default async function handler(req, res) {
                 repetir,
                 ubicacion,
                 categorias,
-                tipo_usuario
+                tipo_usuario: Number(tipo_usuario) 
             };
 
             // Agregar el nuevo usuario

@@ -27,7 +27,7 @@ function App() {
 
                 if (usuarioRegistrado) {
                     if (usuarioRegistrado.contrasena === contrasena) {
-                        if (usuarioRegistrado.tipo_usuario === '1') {
+                        if (usuarioRegistrado.tipo_usuario === 1) {
                             router.push('/PruebaUserNormal');
                         } else if (usuarioRegistrado.tipo_usuario === 2) {
                             router.push('/PruebaUserOrg');
