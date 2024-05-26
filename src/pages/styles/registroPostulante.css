@@ -1,0 +1,75 @@
+/* archivo styles/registroPostulante.css */
+.PantallaPostulante {
+    text-align: center;
+    padding: 20px; 
+}
+
+.panelregistro-postulante {
+    background-image: url("/paginapostulante/postulante.png");
+    height: 60vh;
+    background-size: cover;
+    background-position: center 20%;
+}
+
+.registro-postulante {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.registro-postulante h1 {
+    color: #4DD7FA;
+    font-family: "Poppins";
+}
+
+.registro-postulante p {
+    font-family: "Poppins";
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.registro-postulante label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.registro-postulante input[type="text"],
+.registro-postulante input[type="email"],
+.registro-postulante select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.registro-postulante .error {
+    color: red;
+    font-size: 14px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.registro-postulante .mensaje-exito {
+    color: green;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.registro-postulante button {
+    background-color: #ff7f7f;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.registro-postulante button:hover {
+    background-color: #ff4c4c;
+}

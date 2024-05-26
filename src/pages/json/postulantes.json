@@ -1,0 +1,29 @@
+[
+  {
+    "nombre": "Erika",
+    "apellidoPaterno": "ee",
+    "apellidoMaterno": "Rodriguez",
+    "tipoDocumento": "DNI",
+    "documento": "72881902",
+    "telefono": "98817439",
+    "correo": "erika@gmail.com"
+  },
+  {
+    "nombre": "ee",
+    "apellidoPaterno": "eeeee",
+    "apellidoMaterno": "eeeee",
+    "tipoDocumento": "Pasaporte",
+    "documento": "123456789012",
+    "telefono": "98817439",
+    "correo": "erikama145@gmail.com"
+  },
+  {
+    "nombre": "ss",
+    "apellidoPaterno": "sss",
+    "apellidoMaterno": "sss",
+    "tipoDocumento": "Carnet de Extranjería",
+    "documento": "123456789011",
+    "telefono": "98817439",
+    "correo": "erikama145@gmail.com"
+  }
+]

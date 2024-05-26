@@ -12,11 +12,6 @@ function App() {
     const handleLogin = async (e) => {
         e.preventDefault();
 
-        if (!correo || !contrasena) {
-            setMensaje('Correo y contraseña son requeridos');
-            return;
-        }
-
         try {
             const response = await fetch('/api/verificarUsuario');
             const data = await response.json();
