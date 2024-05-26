@@ -40,11 +40,16 @@ const Organizacion = () => {
               <img src={organizacion.imagen_organizacion} alt={`Imagen de ${organizacion.nombre_organizacion}`} />
               </section>
               <p>{organizacion.descripcion_organizacion}</p>   </section>
+              <section className='LineaSepararion' ></section>
           </div>
         </>
       ) : (
         <p>Cargando...</p>
       )}
+      <div className='Seccion2Orga'>
+    <p>holiii</p>
+
+      </div>
     </Layout>
   );
 };
