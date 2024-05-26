@@ -47,8 +47,8 @@ const Organizacion = () => {
         <p>Cargando...</p>
       )}
       <div className='Seccion2Orga'>
-    <p>holiii</p>
-
+        <h1>Voluntariados</h1>
+   
       </div>
     </Layout>
   );

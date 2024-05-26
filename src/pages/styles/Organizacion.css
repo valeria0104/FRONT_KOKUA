@@ -30,6 +30,7 @@
   
   .DescripcionOrganizacion p {
     flex: 1; /* El párrafo ocupará el espacio restante */
+    font-size: 90%;
   
     text-align: justify; /* Justifica el texto */
   }
@@ -43,4 +44,10 @@
   .DescripcionOrganizacion .ImagenOrga{
     
     height: 90%;
+  }
+  .Seccion2Orga h1{
+    font-size: 150%;
+    text-align: center;
+    color: #000000;
+    font-family: "Poppins";
   }
