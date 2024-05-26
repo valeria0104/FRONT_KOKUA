@@ -20,6 +20,7 @@ const BusquedaVoluntarios = () => {
         console.error('Error al obtener datos de voluntarios:', error);
       }
     };
+    
 
     fetchData();
   }, []);
