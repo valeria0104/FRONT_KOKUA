@@ -188,7 +188,9 @@ const BusquedaVoluntarios = () => {
           <ul>
             {resultadosFiltrados.map((voluntariado, index) => (
               <li key={index}>
+                <Link href={`/voluntariado/${voluntariado.id}`} passHref>
                 <p>{voluntariado.nombre}</p>
+              </Link>
                 <Link href={`/organizacion/${voluntariado.idOrganizacion}`} passHref>
                   <img className='imagen_organizacion' src={voluntariado.imagenOrganizacion} alt={`Imagen de ${voluntariado.nombreOrganizacion}`} />
                 </Link>
