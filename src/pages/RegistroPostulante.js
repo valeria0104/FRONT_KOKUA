@@ -141,6 +141,7 @@ const RegistroPostulante = () => {
             <input type="text" id="telefono" name="telefono"
               value={formData.telefono}
               onChange={(e) => setFormData({ ...formData, telefono: e.target.value })} />
+              
           </p>
           <p>
             <label htmlFor="correo">Correo electrónico:</label>
