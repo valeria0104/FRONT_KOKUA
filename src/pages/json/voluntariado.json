@@ -6,6 +6,6 @@
     {"id":2, "nombre": "COMIDA PARA TODOS", "descripcion": "La Fundación Peruana Hijos del Sol cuenta con un equipo interdisciplinario de profesionales con un alto sentido humano y social. También hacen parte de nuestra familia voluntarios que buscan contribuir con sus conocimientos y habilidades en las acciones que desarrollamos a diario."
     ,"requisitos": "1. Disponibilidad de tiempo para dedicarlo a las labores del voluntariado. 2.Compromiso hacia el programa. 3.Tener tacto, respeto y consideración para poder entablar una relación con los beneficiarios del programa. 4.Saber trabajar en equipo. 5.compromiso con la causa. 6.Ser mayor de 18 años" , 
     "fraseMotivadora": "Transforma tu restaurante en un faro de esperanza. Al unirte a la Fundación Peruana Hijos del Sol, no solo alimentas a tus clientes, sino que también nutres el futuro de nuestros niños y niñas. Únete a esta misión y descubre la magia de servir con un corazón generoso.",
-    "imagen": "https://portal.andina.pe/EDPfotografia3/Thumbnail/2017/09/26/000452485W.jpg"	, "fechaLimite": "12/05/2024", "fechaInicio": "14/05/2024", "fechaFinal": "15/05/2024",	"idUbigeo(fk)": 1,	"idSector (fk)": 2, "idOrganizacion":1, "direccion":" Av. Elmer Faucett 3443"}
+    "imagen": "https://portal.andina.pe/EDPfotografia3/Thumbnail/2017/09/26/000452485W.jpg"	, "fechaLimite": "12/05/2024", "fechaInicio": "14/05/2024", "fechaFinal": "15/05/2024",	"idUbigeo(fk)": 1,	"idSector (fk)": 2, "idOrganizacion":1, "direccion":" CC Royal Plaza, Av. Carlos Izaguirre 287-289, Independencia 15311, Perú"}
  
 ]
