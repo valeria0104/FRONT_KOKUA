@@ -17,6 +17,7 @@ const RegistroPostulante = () => {
     correo: ""
   });
 
+  
   // Estado para manejar mensajes de error y éxito
   const [errorDocumento, setErrorDocumento] = useState("");
   const [mensajeExito, setMensajeExito] = useState("");
