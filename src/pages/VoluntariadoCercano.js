@@ -5,7 +5,9 @@ import Link from 'next/link';
 const BusquedaVoluntarios = () => {
   const [voluntariados, setVoluntariados] = useState([]);
   const [organizaciones, setOrganizaciones] = useState([]);
-  const [filtro, setFiltro] = useState('');
+  const [sectores, setSectores] = useState([]);
+  const [filtroNombre, setFiltroNombre] = useState('');
+  const [sectoresSeleccionados, setSectoresSeleccionados] = useState([]);
   const [resultadosFiltrados, setResultadosFiltrados] = useState([]);
   const [userLocation, setUserLocation] = useState(null);
 
@@ -15,7 +17,6 @@ const BusquedaVoluntarios = () => {
         const voluntariadosResponse = await fetch('/api/voluntariado');
         if (voluntariadosResponse.ok) {
           const voluntariadosData = await voluntariadosResponse.json();
-          console.log('Datos de voluntariados obtenidos:', voluntariadosData);
           setVoluntariados(voluntariadosData);
         } else {
           console.error('Error al obtener datos de voluntariados:', await voluntariadosResponse.text());
@@ -24,10 +25,17 @@ const BusquedaVoluntarios = () => {
         const organizacionesResponse = await fetch('/api/organizacion');
         if (organizacionesResponse.ok) {
           const organizacionesData = await organizacionesResponse.json();
-          console.log('Datos de organizaciones obtenidos:', organizacionesData);
           setOrganizaciones(organizacionesData);
         } else {
           console.error('Error al obtener datos de organizaciones:', await organizacionesResponse.text());
+        }
+
+        const sectoresResponse = await fetch('/api/sectorVoluntariado');
+        if (sectoresResponse.ok) {
+          const sectoresData = await sectoresResponse.json();
+          setSectores(sectoresData);
+        } else {
+          console.error('Error al obtener datos de sectores:', await sectoresResponse.text());
         }
       } catch (error) {
         console.error('Error al obtener datos:', error);
@@ -45,7 +53,6 @@ const BusquedaVoluntarios = () => {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           });
-          console.log('User location:', position.coords);
         },
         (error) => {
           console.error('Error al obtener la ubicación:', error);
@@ -67,7 +74,6 @@ const BusquedaVoluntarios = () => {
           lat: data.results[0].geometry.lat,
           lng: data.results[0].geometry.lng,
         };
-        console.log('Geocoded location:', address, location);
         return location;
       }
       throw new Error('Geocodificación falló');
@@ -87,15 +93,22 @@ const BusquedaVoluntarios = () => {
         Math.sin(dLng / 2) * Math.sin(dLng / 2);
       const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
       const distance = R * c; // Distancia en km
-      console.log(`Calculated distance: ${distance} km between`, location1, location2);
       return distance;
+    };
+
+    const obtenerDatosOrganizacion = (voluntariado) => {
+      const organizacion = organizaciones.find(org => org.id === voluntariado.idOrganizacion);
+      return {
+        ...voluntariado,
+        nombreOrganizacion: organizacion ? organizacion.nombre_organizacion : '',
+        imagenOrganizacion: organizacion ? organizacion.imagen_organizacion : '',
+      };
     };
 
     const filtrarVoluntariados = async () => {
       if (!userLocation) return;
 
       const resultados = await Promise.all(voluntariados.map(async (voluntariado) => {
-        const organizacion = organizaciones.find(org => org.id === voluntariado.idOrganizacion);
         let distance = 0;
         try {
           const coordinates = await geocodeAddress(voluntariado.direccion);
@@ -104,27 +117,41 @@ const BusquedaVoluntarios = () => {
           console.error('Error al geocodificar dirección:', voluntariado.direccion, error);
         }
         return {
+          ...obtenerDatosOrganizacion(voluntariado),
           ...voluntariado,
-          nombreOrganizacion: organizacion ? organizacion.nombre_organizacion : '',
-          imagenOrganizacion: organizacion ? organizacion.imagen_organizacion : '',
           distance,
         };
       }));
 
       resultados.sort((a, b) => a.distance - b.distance);
 
-      setResultadosFiltrados(
-        resultados.filter(voluntariado =>
-          voluntariado.nombre.toLowerCase().includes(filtro.toLowerCase())
-        )
+      let resultadosFiltradosTemp = resultados.filter(voluntariado =>
+        voluntariado.nombre.toLowerCase().includes(filtroNombre.toLowerCase())
       );
+
+      if (resultadosFiltradosTemp.length === 0 && filtroNombre.trim() !== '') {
+        resultadosFiltradosTemp = resultados;
+      }
+
+      const resultadosFiltradosPorSector = resultadosFiltradosTemp.filter(voluntariado => 
+        sectoresSeleccionados.length === 0 || sectoresSeleccionados.includes(voluntariado.idSector)
+      );
+
+      setResultadosFiltrados(resultadosFiltradosPorSector);
     };
 
     filtrarVoluntariados();
-  }, [filtro, voluntariados, organizaciones, userLocation]);
+  }, [filtroNombre, voluntariados, organizaciones, userLocation, sectoresSeleccionados]);
 
   const handleInputChange = (e) => {
-    setFiltro(e.target.value);
+    setFiltroNombre(e.target.value);
+  };
+
+  const handleCheckboxChange = (e) => {
+    const sectorId = parseInt(e.target.value);
+    setSectoresSeleccionados(prevState =>
+      e.target.checked ? [...prevState, sectorId] : prevState.filter(id => id !== sectorId)
+    );
   };
 
   return (
@@ -139,10 +166,23 @@ const BusquedaVoluntarios = () => {
             id="search-input"
             type="text"
             placeholder="Buscar por nombre"
-            value={filtro}
+            value={filtroNombre}
             onChange={handleInputChange}
             className="search-input"
           />
+        </div>
+        <div className="checkbox-container">
+          {sectores.map(sector => (
+            <div key={sector.id}>
+              <input
+                type="checkbox"
+                id={`sector-${sector.id}`}
+                value={sector.id}
+                onChange={handleCheckboxChange}
+              />
+              <label htmlFor={`sector-${sector.id}`}>{sector.categoria}</label>
+            </div>
+          ))}
         </div>
         <div className="scrollable-container">
           <ul>
@@ -152,7 +192,7 @@ const BusquedaVoluntarios = () => {
                 <Link href={`/organizacion/${voluntariado.idOrganizacion}`} passHref>
                   <img className='imagen_organizacion' src={voluntariado.imagenOrganizacion} alt={`Imagen de ${voluntariado.nombreOrganizacion}`} />
                 </Link>
-                <p>Distancia: {voluntariado.distance.toFixed(2)} km</p>
+                {voluntariado.distance && <p>Distancia: {voluntariado.distance.toFixed(2)} km</p>}
               </li>
             ))}
           </ul>
