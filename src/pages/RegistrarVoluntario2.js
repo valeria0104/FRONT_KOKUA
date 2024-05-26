@@ -79,6 +79,7 @@ function App() {
 
         setDistritos(distritosFiltrados);
         
+
     };
 
     const handleDistritoChange = (event) => {
