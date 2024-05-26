@@ -2,36 +2,59 @@ import React, { useState, useEffect } from 'react';
 import Layout from './componentes/Layout2.js';
 
 const BusquedaVoluntarios = () => {
-  const [voluntarios, setVoluntarios] = useState([]);
+  const [voluntariados, setVoluntariados] = useState([]);
+  const [organizaciones, setOrganizaciones] = useState([]);
   const [filtro, setFiltro] = useState('');
   const [resultadosFiltrados, setResultadosFiltrados] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/voluntariadojson');
-        if (response.ok) {
-          const data = await response.json();
-          setVoluntarios(data);
+        const voluntariadosResponse = await fetch('/api/voluntariado');
+        if (voluntariadosResponse.ok) {
+          const voluntariadosData = await voluntariadosResponse.json();
+          console.log('Datos de voluntariados obtenidos:', voluntariadosData);
+          setVoluntariados(voluntariadosData);
         } else {
-          console.error('Error al obtener datos de voluntarios:', await response.text());
+          console.error('Error al obtener datos de voluntariados:', await voluntariadosResponse.text());
+        }
+
+        const organizacionesResponse = await fetch('/api/organizacion');
+        if (organizacionesResponse.ok) {
+          const organizacionesData = await organizacionesResponse.json();
+          console.log('Datos de organizaciones obtenidos:', organizacionesData);
+          setOrganizaciones(organizacionesData);
+        } else {
+          console.error('Error al obtener datos de organizaciones:', await organizacionesResponse.text());
         }
       } catch (error) {
-        console.error('Error al obtener datos de voluntarios:', error);
+        console.error('Error al obtener datos:', error);
       }
     };
-    
 
     fetchData();
   }, []);
 
   useEffect(() => {
-    setResultadosFiltrados(
-      voluntarios.filter(voluntario =>
-        voluntario.nombre_organizacion.toLowerCase().includes(filtro.toLowerCase())
-      )
-    );
-  }, [filtro, voluntarios]);
+    const filtrarVoluntariados = () => {
+      const resultados = voluntariados.map(voluntariado => {
+        const organizacion = organizaciones.find(org => org.id === voluntariado.idOrganizacion);
+        return {
+          ...voluntariado,
+          nombreOrganizacion: organizacion ? organizacion.nombre_organizacion : '',
+          imagenOrganizacion: organizacion ? organizacion.imagen_organizacion : ''
+        };
+      });
+
+      setResultadosFiltrados(
+        resultados.filter(voluntariado =>
+          voluntariado.nombre.toLowerCase().includes(filtro.toLowerCase())
+        )
+      );
+    };
+
+    filtrarVoluntariados();
+  }, [filtro, voluntariados, organizaciones]);
 
   const handleInputChange = (e) => {
     setFiltro(e.target.value);
@@ -56,12 +79,14 @@ const BusquedaVoluntarios = () => {
         </div>
         <div className="scrollable-container">
           <ul>
-            {resultadosFiltrados.map((voluntario, index) => (
+            {resultadosFiltrados.map((voluntariado, index) => (
               <li key={index}>
-                <img className='imagen_volunariadocerca' src={voluntario.imagen_organizacion} alt={`Imagen de ${voluntario.nombre_organizacion}`} />
+                <p>{voluntariado.nombre}</p>
+                <img className='imagen_organizacion' src={voluntariado.imagenOrganizacion} alt={`Imagen de ${voluntariado.nombreOrganizacion}`} />
               </li>
             ))}
-          </ul></div>
+          </ul>
+        </div>
       </div>
     </Layout>
   );

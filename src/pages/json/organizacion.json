@@ -46,5 +46,17 @@
     "repetir_organizacion": "z",
     "imagen_organizacion": "https://es.freelogodesign.org/assets/img/categories/10/logo-img-01.svg",
     "tipo_usuario": 2
+  },
+  {
+    "id": 5,
+    "nombre_organizacion": "LOGO NAME",
+    "correo": "logo@gmail.com",
+    "descripcion_organizacion": "x",
+    "horario_organizacion": "xxx",
+    "contacto_organizacion": "x",
+    "contrasena": "z",
+    "repetir_organizacion": "z",
+    "imagen_organizacion": "https://es.freelogodesign.org/assets/img/categories/10/logo-img-01.svg",
+    "tipo_usuario": 2
   }
 ]
