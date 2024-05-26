@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import Layout from '../componentes/Layout2.js';
 import sectorData from '../json/SectorVoluntariado.json'; // Importar datos del archivo sector.json
+import Link from 'next/link';
 
 const VoluntariadoDetalle = () => {
     const router = useRouter();
@@ -75,12 +76,13 @@ const VoluntariadoDetalle = () => {
                             <p className='mootivadora' ><strong>""</strong> {voluntariado.fraseMotivadora} <strong>""</strong></p>
                             <p><strong>Fecha Límite de postulación:</strong> {voluntariado.fechaLimite}</p>
                         </div>
-
                     </div>
                 </div>
+                
             ) : (
                 <p>Cargando...</p>
             )}
+            
         </Layout>
     );
 };

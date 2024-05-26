@@ -133,7 +133,7 @@ const BusquedaVoluntarios = () => {
         resultadosFiltradosTemp = resultados;
       }
 
-      const resultadosFiltradosPorSector = resultadosFiltradosTemp.filter(voluntariado => 
+      const resultadosFiltradosPorSector = resultadosFiltradosTemp.filter(voluntariado =>
         sectoresSeleccionados.length === 0 || sectoresSeleccionados.includes(voluntariado.idSector)
       );
 
@@ -157,51 +157,78 @@ const BusquedaVoluntarios = () => {
   return (
     <Layout>
       <section className="panelproyecto"></section>
-      <div>
-        <div className="search-container">
-          <label htmlFor="search-input">
-            <img src="/voluntariadoCercano/busqueda.png" alt="Buscar" className="search-icon" />
-          </label>
-          <input
-            id="search-input"
-            type="text"
-            placeholder="Buscar por nombre"
-            value={filtroNombre}
-            onChange={handleInputChange}
-            className="search-input"
-          />
-        </div>
-        <div className="checkbox-container">
-          {sectores.map(sector => (
-            <div key={sector.id}>
-              <input
-                type="checkbox"
-                id={`sector-${sector.id}`}
-                value={sector.id}
-                onChange={handleCheckboxChange}
-              />
-              <label htmlFor={`sector-${sector.id}`}>{sector.categoria}</label>
+      <div className="container2">
+        <div className="left-column">
+          <h3>¡SECTOR!</h3>
+          <div className="checkbox-container">
+            <div className="column">
+              {sectores.slice(0, Math.ceil(sectores.length / 2)).map(sector => (
+                <div key={sector.id}>
+                  <input
+                    type="checkbox"
+                    id={`sector-${sector.id}`}
+                    value={sector.id}
+                    onChange={handleCheckboxChange}
+                  />
+                  <label htmlFor={`sector-${sector.id}`}>{sector.categoria}</label>
+                </div>
+              ))}
             </div>
-          ))}
+            <div className="column">
+              {sectores.slice(Math.ceil(sectores.length / 2)).map(sector => (
+                <div key={sector.id}>
+                  <input
+                    type="checkbox"
+                    id={`sector-${sector.id}`}
+                    value={sector.id}
+                    onChange={handleCheckboxChange}
+                  />
+                  <label htmlFor={`sector-${sector.id}`}>{sector.categoria}</label>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-        <div className="scrollable-container">
-          <ul>
-            {resultadosFiltrados.map((voluntariado, index) => (
-              <li key={index}>
-                <Link href={`/voluntariado/${voluntariado.id}`} passHref>
-                <p>{voluntariado.nombre}</p>
-              </Link>
-                <Link href={`/organizacion/${voluntariado.idOrganizacion}`} passHref>
-                  <img className='imagen_organizacion' src={voluntariado.imagenOrganizacion} alt={`Imagen de ${voluntariado.nombreOrganizacion}`} />
-                </Link>
-                {voluntariado.distance && <p>Distancia: {voluntariado.distance.toFixed(2)} km</p>}
-              </li>
-            ))}
-          </ul>
+        <div className="right-column">
+          <div className="search-container">
+            <label htmlFor="search-input">
+              <img src="/voluntariadoCercano/busqueda.png" alt="Buscar" className="search-icon" />
+            </label>
+            <input
+              id="search-input"
+              type="text"
+              placeholder="Buscar por nombre"
+              value={filtroNombre}
+              onChange={handleInputChange}
+              className="search-input"
+            />
+          </div>
+          <div className="scrollable-container">
+            <ul>
+              {resultadosFiltrados.map((voluntariado, index) => (
+                <li key={index} className="voluntariado-item">
+                  <Link href={`/organizacion/${voluntariado.idOrganizacion}`} passHref>
+                    <img className='imagen_organizacion' src={voluntariado.imagenOrganizacion} alt={`Imagen de ${voluntariado.nombreOrganizacion}`} />
+                  </Link>
+                  <div className="voluntariado-info">
+                  <Link href={`/voluntariado/${voluntariado.id}`} passHref>
+  <h3 className='nombre-cadavolun'>
+    <a>{voluntariado.nombre}</a>
+  </h3>
+</Link>
+                    <p>{voluntariado.descripcion}</p>
+                    {voluntariado.distance && <p>Distancia: {voluntariado.distance.toFixed(2)} km</p>}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </Layout>
   );
+  
+
 };
 
 export default BusquedaVoluntarios;
