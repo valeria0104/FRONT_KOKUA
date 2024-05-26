@@ -18,6 +18,9 @@ export default function Layout({ children }) {
                     <Link href="/">
                         <img src="/imagenkokua.png" alt="" className="kokua" />
                     </Link>
+                    <div className="nav-links">
+                        <Link href="/VoluntariadoCercano" >Postular</Link>
+                    </div>
                     <li className="registrar-button" onClick={toggleDropdown}>
                     <Link className="span1" href="/" >Cerrar sesion</Link>                    </li>
                 </nav>
