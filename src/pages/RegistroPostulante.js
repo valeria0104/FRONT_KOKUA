@@ -57,6 +57,7 @@ const RegistroPostulante = () => {
       correo: formData.correo
     };
 
+    
     try {
       // Enviamos los datos a la API
       const response = await fetch('/api/guardarPostulante', {
@@ -76,7 +77,7 @@ const RegistroPostulante = () => {
           tipoDocumento: "",
           documento: "",
           telefono: "",
-          correo: user ? user.correo || "" : ""
+          correo: ""
         });
       } else {
         console.error('Error al registrar postulante');
@@ -87,9 +88,7 @@ const RegistroPostulante = () => {
       alert('Error al registrar postulante. Por favor, inténtalo de nuevo.');
     }
   };
-  const handleCorreoChange = (e) => {
-    setFormData({ ...formData, correo: e.target.value });
-  };
+ 
   return (
     <Layout2>
       <section className="panelregistro-postulante"></section>
@@ -146,7 +145,7 @@ const RegistroPostulante = () => {
             <label htmlFor="correo">Correo electrónico:</label>
             <input type="email" id="correo" name="correo"
               value={formData.correo}
-              onChange={handleCorreoChange} />
+              onChange={(e) => setFormData({ ...formData, correo: e.target.value })} />
               
           </p>
           <button type="submit">Enviar</button>
