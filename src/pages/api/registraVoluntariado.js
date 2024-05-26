@@ -13,7 +13,8 @@ export default async function handler(req, res) {
             contacto_organizacion,
             contrasena,
             repetir_organizacion,
-            imagen_organizacion
+            imagen_organizacion,
+            tipo_usuario
         } = req.body;
 
         try {
@@ -33,7 +34,8 @@ export default async function handler(req, res) {
                 contacto_organizacion,
                 contrasena,
                 repetir_organizacion,
-                imagen_organizacion
+                imagen_organizacion,
+                tipo_usuario
             };
 
             // Agregar el nuevo usuario

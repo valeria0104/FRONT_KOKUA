@@ -132,7 +132,8 @@ function App() {
             contrasena: queryParams.contrasena,
             repetir: queryParams.repetir,
             ubicacion: selectedUbigeo, // Utilizar el IdUbigeo seleccionado
-            categorias: selectedCategorias
+            categorias: selectedCategorias,
+            tipo_usuario: queryParams.tipo_usuario
         };
 
         // Convertir el objeto a JSON

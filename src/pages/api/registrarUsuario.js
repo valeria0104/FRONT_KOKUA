@@ -13,7 +13,8 @@ export default async function handler(req, res) {
             contrasena,
             repetir,
             ubicacion,
-            categorias
+            categorias,
+            tipo_usuario
         } = req.body;
      
         try {
@@ -33,7 +34,8 @@ export default async function handler(req, res) {
                 contrasena,
                 repetir,
                 ubicacion,
-                categorias
+                categorias,
+                tipo_usuario
             };
 
             // Agregar el nuevo usuario

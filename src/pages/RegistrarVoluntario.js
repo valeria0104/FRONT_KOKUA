@@ -12,7 +12,8 @@ const RegisterPage = () => {
     apellidoMaterno: "",
     correo: "",
     contrasena: "",
-    repetir: ""
+    repetir: "",
+    tipo_usuario: 1
   });
 
   const router = useRouter();
@@ -45,6 +46,7 @@ const RegisterPage = () => {
       correo: formData.correo,
       contrasena: formData.contrasena,
       repetir: formData.repetir,
+      tipo_usuario : 1
     };
 
     

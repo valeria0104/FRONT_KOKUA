@@ -2,39 +2,50 @@ import Link from "next/link";
 import Head from "next/head";
 import Layout from './componentes/Layout.js';
 import React, { useState } from 'react';
-
+import { useRouter } from 'next/router'; 
 function App() {
     const [correo, setCorreo] = useState("");
     const [contrasena, setContrasena] = useState("");
     const [error, setError] = useState("");
-
+    const [mensaje, setMensaje] = useState('');
+    const router = useRouter(); // Obtiene el enrutador
     const handleLogin = async (e) => {
         e.preventDefault();
 
+        if (!correo || !contrasena) {
+            setMensaje('Correo y contraseña son requeridos');
+            return;
+        }
+
         try {
-            const response = await fetch('/api/verificarUsuario', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ correo, contrasena }),
-            });
+            const response = await fetch('/api/verificarUsuario');
+            const data = await response.json();
 
-            const result = await response.json();
+            if (response.ok && data.success) {
+                const combinedData = data.data;
+                const usuarioRegistrado = combinedData.find(usuario => usuario.correo === correo);
 
-            if (response.ok) {
-                console.log('Usuario logueado con éxito:', result.mensaje);
-                alert('Usuario logueado con éxito');
+                if (usuarioRegistrado) {
+                    if (usuarioRegistrado.contrasena === contrasena) {
+                        if (usuarioRegistrado.tipo_usuario === '1') {
+                            router.push('/PruebaUserNormal');
+                        } else if (usuarioRegistrado.tipo_usuario === 2) {
+                            router.push('/PruebaUserOrg');
+                        }
+                    } else {
+                        alert('Contraseña incorrecta');
+                    }
+                } else {
+                    alert('Correo electrónico no registrado');
+                }
             } else {
-                console.error('Error al ingresar:', result.mensaje);
-                setError(`Error al ingresar: ${result.mensaje}`);
+                alert('Error al obtener los datos');
             }
         } catch (error) {
-            console.error('Error al ingresar usuario:', error);
-            setError('Error al ingresar usuario. Por favor, inténtalo de nuevo.');
+            console.error('Error al iniciar sesión:', error);
+            alert('Error al iniciar sesión');
         }
     };
-
     
 
     return (

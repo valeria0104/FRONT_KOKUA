@@ -8,8 +8,9 @@
     "contacto_organizacion": "ch",
     "contrasena": "ch",
     "repetir_organizacion": "ch",
-    "imagen_organizacion": "https://img.freepik.com/vector-gratis/plantilla-pegatina-sola-casa-aislada_1308-64529.jpg"
-  },
+    "imagen_organizacion": "https://img.freepik.com/vector-gratis/plantilla-pegatina-sola-casa-aislada_1308-64529.jpg",
+    "tipo_usuario" : 2
+},
   {
     "id": 2,
     "nombre_organizacion": "ab",
@@ -19,8 +20,9 @@
     "contacto_organizacion": "ch",
     "contrasena": "ch",
     "repetir_organizacion": "ch",
-    "imagen_organizacion": "https://img.freepik.com/vector-gratis/plantilla-pegatina-sola-casa-aislada_1308-64529.jpg"
-  },
+    "imagen_organizacion": "https://img.freepik.com/vector-gratis/plantilla-pegatina-sola-casa-aislada_1308-64529.jpg",
+    "tipo_usuario" : 2  
+},
   {
     "id": 3,
     "nombre_organizacion": "ola",
@@ -30,6 +32,7 @@
     "contacto_organizacion": "chi",
     "contrasena": "chi",
     "repetir_organizacion": "chi",
-    "imagen_organizacion": "chi"
+    "imagen_organizacion": "chi",
+    "tipo_usuario" : 2
   }
 ]

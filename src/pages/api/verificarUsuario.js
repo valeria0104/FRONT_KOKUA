@@ -17,13 +17,7 @@ const readJsonFile = async (filePath) => {
 };
 
 export default async function handler(req, res) {
-    if (req.method === 'POST') {
-        const { correo, contrasena } = req.body;
-
-        if (!correo || !contrasena) {
-            return res.status(400).json({ success: false, mensaje: 'Correo y contraseña son requeridos' });
-        }
-
+    if (req.method === 'GET') {
         try {
             // Lee los datos de ambos archivos JSON
             const usuarioData = await readJsonFile(getFilePath('usuario1'));
@@ -32,19 +26,7 @@ export default async function handler(req, res) {
             // Combina los datos de ambos archivos en un solo array
             const combinedData = [...usuarioData, ...organizacionData];
 
-            // Busca el usuario por correo
-            const usuarioRegistrado = combinedData.find(usuario => usuario.correo === correo);
-
-            if (usuarioRegistrado) {
-                // Verifica la contraseña
-                if (usuarioRegistrado.contrasena === contrasena) {
-                    res.status(200).json({ success: true, mensaje: 'Inicio de sesión exitoso' });
-                } else {
-                    res.status(401).json({ success: false, mensaje: 'Contraseña incorrecta' });
-                }
-            } else {
-                res.status(404).json({ success: false, mensaje: 'Correo electrónico no registrado' });
-            }
+            res.status(200).json({ success: true, data: combinedData });
         } catch (error) {
             console.error('Error al leer el archivo:', error);
             res.status(500).json({ success: false, mensaje: 'Error al leer el archivo' });

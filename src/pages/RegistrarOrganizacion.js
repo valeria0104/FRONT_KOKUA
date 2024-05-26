@@ -13,7 +13,8 @@ const RegisterPage = () => {
             contacto_organizacion: "",
             contrasena: "",
             repetir_organizacion: "",
-            imagen_organizacion: ""
+            imagen_organizacion: "",
+            tipo_usuario: 2
         }
     );
     const router = useRouter();
@@ -64,7 +65,8 @@ const RegisterPage = () => {
                 contacto_organizacion: formData.contacto_organizacion,
                 contrasena: formData.contrasena,
                 repetir_organizacion: formData.repetir_organizacion,
-                imagen_organizacion: formData.imagen_organizacion
+                imagen_organizacion: formData.imagen_organizacion,
+                tipo_usuario: 2
             };
           
             const responseRegistro = await fetch('/api/registraVoluntariado', {
