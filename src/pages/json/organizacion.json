@@ -1,9 +1,9 @@
 [
   {
     "id": 1,
-    "nombre_organizacion": "ab",
+    "nombre_organizacion": "Rayito de Sol",
     "correo": "abcd@gmail.com",
-    "descripcion_organizacion": "ch",
+    "descripcion_organizacion": "Somos una organización comprometida con la transformación educativa. Nuestra misión es garantizar que todos los niños tengan acceso a una educación de calidad y equitativa. Nos dedicamos a [descripción de los programas educativos, por ejemplo: fortalecer la infraestructura escolar, proporcionar materiales educativos, capacitar a maestros, promover la educación inclusiva, etc.]. Trabajamos en estrecha colaboración con escuelas, comunidades y autoridades educativas para mejorar los estándares educativos y crear oportunidades de aprendizaje sostenibles. Creemos que la educación es la clave para romper el ciclo de la pobreza y empoderar a las generaciones futuras. Únete a nosotros en nuestro compromiso de construir un futuro donde todos los niños puedan alcanzar su máximo potencial a través de una educación de calidad.",
     "horario_organizacion": "ch",
     "contacto_organizacion": "ch",
     "contrasena": "ch",
@@ -13,7 +13,7 @@
   },
   {
     "id": 2,
-    "nombre_organizacion": "ab",
+    "nombre_organizacion": "Ayuda por un mundo mejor",
     "correo": "abcde@gmail.com",
     "descripcion_organizacion": "ch",
     "horario_organizacion": "ch",
@@ -25,7 +25,7 @@
   },
   {
     "id": 3,
-    "nombre_organizacion": "ola",
+    "nombre_organizacion": "Perro amigos",
     "correo": "ola@gmail.com",
     "descripcion_organizacion": "chi",
     "horario_organizacion": "chi",
@@ -37,7 +37,7 @@
   },
   {
     "id": 4,
-    "nombre_organizacion": "o",
+    "nombre_organizacion": "Bondad en el corazón",
     "correo": "c@gmail.com",
     "descripcion_organizacion": "x",
     "horario_organizacion": "xxx",
@@ -49,7 +49,7 @@
   },
   {
     "id": 5,
-    "nombre_organizacion": "LOGO NAME",
+    "nombre_organizacion": "Abre tu mente",
     "correo": "logo@gmail.com",
     "descripcion_organizacion": "x",
     "horario_organizacion": "xxx",

@@ -1,4 +1,5 @@
 import './styles/all.css'
+import './styles/Organizacion.css'
 import './styles/header.css'
 import './styles/layout.css'
 import './styles/registrar.css'

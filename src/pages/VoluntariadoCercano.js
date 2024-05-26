@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Layout from './componentes/Layout2.js';
+import Link from 'next/link';
 
 const BusquedaVoluntarios = () => {
   const [voluntariados, setVoluntariados] = useState([]);
@@ -148,7 +149,9 @@ const BusquedaVoluntarios = () => {
             {resultadosFiltrados.map((voluntariado, index) => (
               <li key={index}>
                 <p>{voluntariado.nombre}</p>
-                <img className='imagen_organizacion' src={voluntariado.imagenOrganizacion} alt={`Imagen de ${voluntariado.nombreOrganizacion}`} />
+                <Link href={`/organizacion/${voluntariado.idOrganizacion}`} passHref>
+                  <img className='imagen_organizacion' src={voluntariado.imagenOrganizacion} alt={`Imagen de ${voluntariado.nombreOrganizacion}`} />
+                </Link>
                 <p>Distancia: {voluntariado.distance.toFixed(2)} km</p>
               </li>
             ))}

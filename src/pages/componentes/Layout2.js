@@ -16,7 +16,7 @@ export default function Layout({ children }) {
             <div className="container">
                 <nav id="nav1">
                     <Link href="/">
-                        <img src="imagenkokua.png" alt="" className="kokua" />
+                        <img src="/imagenkokua.png" alt="" className="kokua" />
                     </Link>
                     <li className="registrar-button" onClick={toggleDropdown}>
                     <Link className="span1" href="/" >Cerrar sesion</Link>                    </li>
@@ -32,7 +32,7 @@ export default function Layout({ children }) {
 
                         <div className="footer-primeracolumna">
                             <div className="footerconimagen">
-                                <img src="imagenkokua.png" alt="" className="kokua2" />
+                                <img src="/imagenkokua.png" alt="" className="kokua2" />
                             </div>
                             <p>Email: voluntarioskokua@gmail.com</p>
                             <p>Teléfono: 914-123-456</p>
