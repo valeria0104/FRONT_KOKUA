@@ -1,16 +1,30 @@
 [
   {
     "id": 1,
-    "nombre": "as",
-    "apellidosPaterno": "as",
-    "apellidoMaterno": "as",
-    "correo": "sasdasd@gmail.com",
-    "contrasena": "as",
-    "repetir": "as",
-    "ubicacion": "050113",
+    "nombre": "Valeria",
+    "apellidosPaterno": "Vega",
+    "apellidoMaterno": "Herrera",
+    "correo": "vega@gmail.com",
+    "contrasena": "cc",
+    "repetir": "cc",
+    "ubicacion": "021503",
     "categorias": [
-      "Protección animal",
-      "Educación"
-    ]
+      "Salud Física"
+    ],
+    "tipo_usuario": "1"
+  },
+  {
+    "id": 2,
+    "nombre": "Valeria",
+    "apellidosPaterno": "Vega",
+    "apellidoMaterno": "Herrera",
+    "correo": "vega@gmail.com",
+    "contrasena": "cc",
+    "repetir": "cc",
+    "ubicacion": "021503",
+    "categorias": [
+      "Salud Física"
+    ],
+    "tipo_usuario": "1"
   }
 ]
