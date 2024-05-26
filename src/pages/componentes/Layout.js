@@ -16,7 +16,7 @@ export default function Layout({ children }) {
             <div className="container">
                 <nav id="nav1">
                     <Link href="/">
-                        <img src="imagenkokua.png" alt="" className="kokua" />
+                        <img src="/imagenkokua.png" alt="" className="kokua" />
                     </Link>
                     <div className="nav-links">
                         <Link href="/Nosotros" >Nosotros</Link>
