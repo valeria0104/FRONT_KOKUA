@@ -63,10 +63,9 @@ const RegisterPage = () => {
  
     
   };
-
+  
   return (
     <Layout>
-  <p>{user.correo}</p>
       <div className="PantallaRegistrar">
         <div className="FormularioRegistro">
           <h1 id="Registrarse">Registrarse</h1>
