@@ -12,7 +12,7 @@ import './styles/registroPostulante.css'
 import './styles/Voluntariadocercano.css';
 import './styles/OrgaPostu.css'
 
-
+import './styles/OrganizacionId.css'
 import './styles/VoluntariadoOrg.css'
 
 

@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import Layout from '../componentes/Layout2.js';
 
 const Organizacion = () => {
@@ -7,6 +8,8 @@ const Organizacion = () => {
   const { idOrganizacion } = router.query;
   const [organizacion, setOrganizacion] = useState(null);
   const [voluntariados, setVoluntariados] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const voluntariadosPerPage = 6;
 
   useEffect(() => {
     const fetchOrganizacion = async () => {
@@ -36,6 +39,21 @@ const Organizacion = () => {
     return ubicacion ? ubicacion.Distrito : 'Desconocido';
   };
 
+  // Calcular los índices de los voluntariados para la paginación
+  const indexOfLastVoluntariado = currentPage * voluntariadosPerPage;
+  const indexOfFirstVoluntariado = indexOfLastVoluntariado - voluntariadosPerPage;
+  const currentVoluntariados = voluntariados.slice(indexOfFirstVoluntariado, indexOfLastVoluntariado);
+
+  const totalPages = Math.ceil(voluntariados.length / voluntariadosPerPage);
+
+  const handlePrevious = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  };
+
+  const handleNext = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  };
+
   return (
     <Layout>
       {organizacion ? (
@@ -54,18 +72,21 @@ const Organizacion = () => {
           </div>
           <div className='Seccion2Orga'>
             <h1>Voluntariados</h1>
-            <ul>
-              {voluntariados.length > 0 ? (
-                voluntariados.map((voluntariado) => (
-                  <li key={voluntariado.id}>
+            <ul className='VoluntariadosGrid'>
+              {currentVoluntariados.length > 0 ? (
+                currentVoluntariados.map((voluntariado) => (
+                  <li key={voluntariado.id} className='VoluntariadoItem'>
                     <img
-                  className='imagen_Voluntariadoorg'
-                  src={voluntariado.imagen}
-                  alt={`Imagen de ${voluntariado.nombre}`}
-                />
+                      className='imagen_Voluntariadoorg'
+                      src={voluntariado.imagen}
+                      alt={`Imagen de ${voluntariado.nombre}`}
+                    />
                     <p>Nombre del voluntariado: {voluntariado.nombre}</p>
                     <p>Fecha de inicio: {voluntariado.fechaInicio}</p>
                     <p>Distrito: {getDistritoByIdUbigeo(voluntariado.idUbigeo)}</p>
+                    <Link href={`/voluntariado/${voluntariado.id}`} passHref>
+                      <button className='btnUnirse'>Unirse</button>
+                    </Link>
                     {/* Aquí puedes mostrar más detalles del voluntariado si lo necesitas */}
                   </li>
                 ))
@@ -73,6 +94,14 @@ const Organizacion = () => {
                 <p>No hay voluntariados disponibles para esta organización.</p>
               )}
             </ul>
+            <div className='Paginacion'>
+              <button onClick={handlePrevious} disabled={currentPage === 1}>
+                Anterior
+              </button>
+              <button onClick={handleNext} disabled={currentPage === totalPages}>
+                Siguiente
+              </button>
+            </div>
           </div>
         </>
       ) : (

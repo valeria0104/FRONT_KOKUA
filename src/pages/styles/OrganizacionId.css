@@ -1,0 +1,31 @@
+.VoluntariadosGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  
+  .VoluntariadoItem {
+    list-style: none;
+  }
+  
+  .Paginacion {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .Paginacion button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .Paginacion button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
