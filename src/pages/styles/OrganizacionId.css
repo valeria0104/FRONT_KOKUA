@@ -49,3 +49,18 @@
   .btnUnirse{
     transform: translateX(25%);
   }
+
+  .corazon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+  
+  .corazon::before {
+    content: '♡'; /* Corazón sin llenar */
+    color: red; /* Color del corazón */
+  }
+  
+  .corazon.favorito::before {
+    content: '♥'; /* Corazón lleno cuando está marcado como favorito */
+  }
