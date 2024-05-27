@@ -1,0 +1,49 @@
+.panelproyecto {
+    background-image: url("/voluntariadocercano/panelproyecto.png");
+    height: 60vh;
+    background-size: cover;
+    background-position: center 20%;
+  }
+ .imagen_Voluntariadoorg{
+  width: 225px;
+  height: 139px;
+  }
+  .todo_volorg h1{
+    text-align: center;
+  }
+  .volutnariadoorg{
+
+  }
+  .voluntariados-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas iguales */
+    gap: 20px; /* Espacio entre las tarjetas de voluntariado */
+    padding: 20px; /* Espacio alrededor de la cuadrícula */
+  }
+  
+  .voluntariado-card {
+    display: flex;
+    flex-direction: row; /* Alinea los elementos en fila */
+    padding: 20px; /* Espacio interno dentro de cada tarjeta */
+    border-radius: 10px; /* Bordes redondeados */
+    align-items: center; /* Centra verticalmente los elementos */
+  }
+  
+  .imagen_Voluntariadoorg {
+    width: 250px; /* Ajusta el ancho de la imagen */
+    height: auto;
+    margin-right: 20px; /* Espacio a la derecha de la imagen */
+  }
+  
+  .voluntariado-info {
+    flex: 1;
+  }
+  
+  .editar-link {
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: black;
+    cursor: pointer; /* Cambia el cursor cuando pases sobre el enlace */
+  }
+  
