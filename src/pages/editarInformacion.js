@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import Layout from './componentes/Layout3.js';
 
 const EditaInform = () => {
   const router = useRouter();
@@ -48,6 +49,8 @@ const EditaInform = () => {
   };
 
   return (
+    <>
+      <Layout>
     <div>
       <h1>¡Edita tu información!</h1>
       <form onSubmit={handleSubmit}>
@@ -106,7 +109,9 @@ const EditaInform = () => {
         <button type="submit">Guardar</button>
       </form>
     </div>
+    </Layout>
+    </>
   );
-};
+}
 
 export default EditaInform;

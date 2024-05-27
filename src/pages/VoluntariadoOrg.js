@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Head from "next/head";
-import Layout from './componentes/Layout.js';
+import Layout from './componentes/Layout3.js';
 import React, { useState, useEffect } from 'react';
 import { useAuth } from './contexto/AuthContext';
 
@@ -44,7 +44,7 @@ function App() {
                   <p><strong>Día:</strong> {voluntariado.fechaInicio}</p>
                   <p><strong>Departamento:</strong> {voluntariado.departamento}</p>
                   <p><strong>Distrito:</strong> {voluntariado.distrito}</p>
-                  <Link href="/editarperfil">
+                  <Link href="/editarInformacion">
                     <p className="editar-link">Editar</p>
                   </Link>
                 </div>
