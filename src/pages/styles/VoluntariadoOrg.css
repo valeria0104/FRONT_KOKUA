@@ -11,9 +11,7 @@
   .todo_volorg h1{
     text-align: center;
   }
-  .volutnariadoorg{
 
-  }
   .voluntariados-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* Dos columnas iguales */
