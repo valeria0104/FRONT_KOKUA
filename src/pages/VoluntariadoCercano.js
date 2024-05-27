@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Layout from './componentes/Layout2.js';
 import Link from 'next/link';
+import { geocodeAddress, calculateDistance } from '../utils/googleMaps'; // Importamos la función calculateDistance
 
-const BusquedaVoluntarios = () => {
+const VoluntariadoCercano = () => {
   const [voluntariados, setVoluntariados] = useState([]);
   const [organizaciones, setOrganizaciones] = useState([]);
   const [sectores, setSectores] = useState([]);
@@ -53,6 +54,7 @@ const BusquedaVoluntarios = () => {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           });
+          console.log('Ubicación detectada del usuario:', position.coords.latitude, position.coords.longitude);
         },
         (error) => {
           console.error('Error al obtener la ubicación:', error);
@@ -63,65 +65,40 @@ const BusquedaVoluntarios = () => {
     }
   }, []);
 
-  useEffect(() => {
-    const geocodeAddress = async (address) => {
-      const apiKey = 'ba1f067cdddc4252a54362118fd617b8'; // Reemplaza con tu clave de API de OpenCage
-      const url = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(address)}&key=${apiKey}`;
-      const response = await fetch(url);
-      const data = await response.json();
-      if (data.results.length > 0) {
-        const location = {
-          lat: data.results[0].geometry.lat,
-          lng: data.results[0].geometry.lng,
-        };
-        return location;
-      }
-      throw new Error('Geocodificación falló');
+  const obtenerDatosOrganizacion = (voluntariado) => {
+    const organizacion = organizaciones.find(org => org.id === voluntariado.idOrganizacion);
+    return {
+      ...voluntariado,
+      nombreOrganizacion: organizacion ? organizacion.nombre_organizacion : '',
+      imagenOrganizacion: organizacion ? organizacion.imagen_organizacion : '',
     };
+  };
 
-    const calculateDistance = (location1, location2) => {
-      const lat1 = location1.lat;
-      const lng1 = location1.lng;
-      const lat2 = location2.lat;
-      const lng2 = location2.lng;
-      const R = 6371; // Radio de la Tierra en km
-      const dLat = (lat2 - lat1) * Math.PI / 180;
-      const dLng = (lng2 - lng1) * Math.PI / 180;
-      const a =
-        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-        Math.sin(dLng / 2) * Math.sin(dLng / 2);
-      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-      const distance = R * c; // Distancia en km
-      return distance;
-    };
+  const filtrarVoluntariados = async () => {
+    if (!userLocation) return;
 
-    const obtenerDatosOrganizacion = (voluntariado) => {
-      const organizacion = organizaciones.find(org => org.id === voluntariado.idOrganizacion);
-      return {
-        ...voluntariado,
-        nombreOrganizacion: organizacion ? organizacion.nombre_organizacion : '',
-        imagenOrganizacion: organizacion ? organizacion.imagen_organizacion : '',
-      };
-    };
+    const resultadosPromesas = voluntariados.map(async (voluntariado) => {
+      let distance = 0;
+      try {
+        const coordinates = await geocodeAddress(voluntariado.direccion);
+        console.log('Ubicación geocodificada de', voluntariado.nombre, ':', coordinates);
 
-    const filtrarVoluntariados = async () => {
-      if (!userLocation) return;
-
-      const resultados = await Promise.all(voluntariados.map(async (voluntariado) => {
-        let distance = 0;
-        try {
-          const coordinates = await geocodeAddress(voluntariado.direccion);
-          distance = calculateDistance(userLocation, coordinates);
-        } catch (error) {
-          console.error('Error al geocodificar dirección:', voluntariado.direccion, error);
+        if (coordinates) {
+          distance = await calculateDistance(userLocation, coordinates);
+          console.log('Distancia entre usuario y', voluntariado.nombre, ':', distance);
         }
-        return {
-          ...obtenerDatosOrganizacion(voluntariado),
-          ...voluntariado,
-          distance,
-        };
-      }));
+      } catch (error) {
+        console.error('Error al geocodificar dirección:', voluntariado.direccion, error);
+      }
+      return {
+        ...obtenerDatosOrganizacion(voluntariado),
+        ...voluntariado,
+        distance,
+      };
+    });
+
+    try {
+      const resultados = await Promise.all(resultadosPromesas);
 
       resultados.sort((a, b) => a.distance - b.distance);
 
@@ -138,8 +115,12 @@ const BusquedaVoluntarios = () => {
       );
 
       setResultadosFiltrados(resultadosFiltradosPorSector);
-    };
+    } catch (error) {
+      console.error('Error al filtrar voluntariados:', error);
+    }
+  };
 
+  useEffect(() => {
     filtrarVoluntariados();
   }, [filtroNombre, voluntariados, organizaciones, userLocation, sectoresSeleccionados]);
 
@@ -211,13 +192,15 @@ const BusquedaVoluntarios = () => {
                     <img className='imagen_organizacion' src={voluntariado.imagenOrganizacion} alt={`Imagen de ${voluntariado.nombreOrganizacion}`} />
                   </Link>
                   <div className="voluntariado-info">
-                  <Link href={`/voluntariado/${voluntariado.id}`} passHref>
-  <h3 className='nombre-cadavolun'>
-    <a>{voluntariado.nombre}</a>
-  </h3>
-</Link>
+                    <Link href={`/voluntariado/${voluntariado.id}`} passHref>
+                      <h3 className='nombre-cadavolun'>
+                        <p>{voluntariado.nombre}</p>
+                      </h3>
+                    </Link>
                     <p>{voluntariado.descripcion}</p>
-                    {voluntariado.distance && <p>Distancia: {voluntariado.distance.toFixed(2)} km</p>}
+                    {typeof voluntariado.distance === 'number' && // Verifica si distance es un número
+                      <p>Distancia: {voluntariado.distance.toFixed(2)} km</p>
+                    }
                   </div>
                 </li>
               ))}
@@ -227,8 +210,6 @@ const BusquedaVoluntarios = () => {
       </div>
     </Layout>
   );
-  
-
 };
 
-export default BusquedaVoluntarios;
+export default VoluntariadoCercano;
