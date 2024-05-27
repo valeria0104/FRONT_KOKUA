@@ -17,7 +17,6 @@ const VoluntariadoCercano = () => {
       try {
         const voluntariadosResponse = await fetch('/api/voluntariado');
         if (voluntariadosResponse.ok) {
-          console.log(voluntariadosResponse);
           const voluntariadosData = await voluntariadosResponse.json();
           setVoluntariados(voluntariadosData);
         } else {
