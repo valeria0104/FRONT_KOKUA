@@ -63,7 +63,7 @@ const RegisterPage = () => {
  
     
   };
-
+  
   return (
     <Layout>
       <div className="PantallaRegistrar">
