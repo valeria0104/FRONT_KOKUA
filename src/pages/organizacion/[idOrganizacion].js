@@ -126,8 +126,8 @@ const Organizacion = () => {
               />
             </div>
             <ul className='VoluntariadosGrid'>
-              {voluntariadosFiltrados.length > 0 ? (
-                voluntariadosFiltrados.map((voluntariado) => (
+              {currentVoluntariados.length > 0 ? (
+                currentVoluntariados.map((voluntariado) => (
                   <li key={voluntariado.id} className='VoluntariadoItem'>
                     <img
                       className='imagen_Voluntariadoorg'
@@ -161,7 +161,6 @@ const Organizacion = () => {
           </div>
         </>
       ) : (
-        
         <p>Cargando...</p>
       )}
     </Layout>
