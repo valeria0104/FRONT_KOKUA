@@ -83,13 +83,14 @@ const Organizacion = () => {
           <div className='Seccion2Orga'>
             <h1>Voluntariados</h1>
             <div className='BuscarVoluntariado'>
-              <label htmlFor='nombreVoluntariado'>Buscar por nombre:</label>
+            
               <input
                 id='nombreVoluntariado'
                 type='text'
                 value={filtroNombre}
                 onChange={handleNombreChange}
                 placeholder='Ingrese el nombre del voluntariado...'
+                className="search-input1"
               />
             </div>
             <ul className='VoluntariadosGrid'>

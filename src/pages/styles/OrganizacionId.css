@@ -1,31 +1,51 @@
 .VoluntariadosGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-  
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  transform: translateX(5%);
+  min-height: 800px; /* Altura mínima para asegurar espacio para 6 voluntariados */
+}
   .VoluntariadoItem {
     list-style: none;
   }
-  
   .Paginacion {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    width: 100%;
   }
   
   .Paginacion button {
     margin: 0 5px;
     padding: 5px 10px;
     cursor: pointer;
-    background-color: #0070f3;
+    background-color: aliceblue;
     color: white;
     border: none;
     border-radius: 5px;
+    margin-bottom: 10px;
   }
   
   .Paginacion button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
   }
-  
+  .search-input1{
+    padding-left: 35px;
+    width:40%;
+    height: 35px;
+    border: none;
+    border-radius: 4px;
+    transform: translateX(65%);
+  }
+  .Seccion2Orga {
+    margin-top: 20px; /* Ajusta el margen superior según sea necesario */
+    padding-bottom: 50px; /* Espacio para asegurar que la paginación no esté demasiado pegada a los voluntariados */
+    position: relative; /* Añade posición relativa para contener elementos posicionados de manera absoluta dentro de ella */
+  }
+  .btnUnirse{
+    transform: translateX(25%);
+  }
