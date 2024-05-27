@@ -1,74 +1,35 @@
 [
   {
-    "nombre": "Erika",
-    "apellidoPaterno": "ee",
-    "apellidoMaterno": "Rodriguez",
-    "tipoDocumento": "DNI",
-    "documento": "72881902",
-    "telefono": "98817439",
-    "correo": "erika@gmail.com"
-  },
-  {
-    "nombre": "ee",
-    "apellidoPaterno": "eeeee",
-    "apellidoMaterno": "eeeee",
-    "tipoDocumento": "Pasaporte",
-    "documento": "123456789012",
-    "telefono": "98817439",
-    "correo": "erikama145@gmail.com"
-  },
-  {
-    "nombre": "ss",
-    "apellidoPaterno": "sss",
-    "apellidoMaterno": "sss",
-    "tipoDocumento": "Carnet de Extranjería",
-    "documento": "123456789011",
-    "telefono": "98817439",
-    "correo": "erikama145@gmail.com"
-  },
-  {
-    "nombre": "",
-    "apellidoPaterno": "",
-    "apellidoMaterno": "Herrer",
-    "tipoDocumento": "DNI",
-    "documento": "72915768",
-    "telefono": "991992993",
-    "correo": "vale@gmail.com"
-  },
-  {
-    "nombre": "",
-    "apellidoPaterno": "",
-    "apellidoMaterno": "",
-    "tipoDocumento": "DNI",
-    "documento": "72915768",
-    "telefono": "923847383",
-    "correo": "vega@gmail.com"
-  },
-  {
     "nombre": "Valeria",
     "apellidoPaterno": "Vega",
     "apellidoMaterno": "Herrera",
-    "tipoDocumento": "",
-    "documento": "",
-    "telefono": "",
-    "correo": "vega@gmail.com"
+    "tipoDocumento": "DNI",
+    "documento": "75235347",
+    "telefono": "996068387",
+    "correo": "fdfdffh@gmail.com",
+    "idVoluntariado": "2",
+    "idOrganizacion": "3"
   },
   {
     "nombre": "Valeria",
     "apellidoPaterno": "Vega",
     "apellidoMaterno": "Herrera",
     "tipoDocumento": "DNI",
-    "documento": "72915768",
-    "telefono": "993293292",
-    "correo": "vega@gmail.com"
+    "documento": "75235347",
+    "telefono": "996068375",
+    "correo": "fdfdffh@gmail.com",
+    "idVoluntariado": "2",
+    "idOrganizacion": "3"
   },
   {
     "nombre": "Valeria",
     "apellidoPaterno": "Vega",
     "apellidoMaterno": "Herrera",
-    "tipoDocumento": "Pasaporte",
-    "documento": "729157681234",
-    "telefono": "9328323248234",
-    "correo": "sasdasd@gmail.com"
+    "tipoDocumento": "DNI",
+    "documento": "75235345",
+    "telefono": "996068385",
+    "correo": "astrid@gmail.com",
+    "idVoluntariado": "5",
+    "idOrganizacion": "3"
   }
 ]
