@@ -1,5 +1,5 @@
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Layout from '../componentes/Layout2.js';
 
@@ -9,6 +9,7 @@ const Organizacion = () => {
   const [organizacion, setOrganizacion] = useState(null);
   const [voluntariados, setVoluntariados] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [filtroNombre, setFiltroNombre] = useState('');
   const voluntariadosPerPage = 6;
 
   useEffect(() => {
@@ -54,6 +55,15 @@ const Organizacion = () => {
     setCurrentPage((prev) => Math.min(prev + 1, totalPages));
   };
 
+  const handleNombreChange = (e) => {
+    setFiltroNombre(e.target.value);
+  };
+
+  // Filtrar voluntariados por nombre
+  const voluntariadosFiltrados = currentVoluntariados.filter(voluntariado =>
+    voluntariado.nombre.toLowerCase().includes(filtroNombre.toLowerCase())
+  );
+
   return (
     <Layout>
       {organizacion ? (
@@ -72,9 +82,19 @@ const Organizacion = () => {
           </div>
           <div className='Seccion2Orga'>
             <h1>Voluntariados</h1>
+            <div className='BuscarVoluntariado'>
+              <label htmlFor='nombreVoluntariado'>Buscar por nombre:</label>
+              <input
+                id='nombreVoluntariado'
+                type='text'
+                value={filtroNombre}
+                onChange={handleNombreChange}
+                placeholder='Ingrese el nombre del voluntariado...'
+              />
+            </div>
             <ul className='VoluntariadosGrid'>
-              {currentVoluntariados.length > 0 ? (
-                currentVoluntariados.map((voluntariado) => (
+              {voluntariadosFiltrados.length > 0 ? (
+                voluntariadosFiltrados.map((voluntariado) => (
                   <li key={voluntariado.id} className='VoluntariadoItem'>
                     <img
                       className='imagen_Voluntariadoorg'
