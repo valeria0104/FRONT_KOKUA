@@ -11,7 +11,10 @@ import './styles/registrarVoluntario2.css'
 import './styles/registroPostulante.css'
 import './styles/Voluntariadocercano.css';
 import './styles/OrgaPostu.css'
-import Head from 'next/head';
+
+
+import './styles/VoluntariadoOrg.css'
+
 
 import { AuthProvider } from './contexto/AuthContext'; 
 import { AppProps } from 'next/app'
