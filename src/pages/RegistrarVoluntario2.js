@@ -3,6 +3,7 @@ import Layout from './componentes/Layout.js';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
+
 function App() {
     const router = useRouter();
     const [selectedDepartamento, setSelectedDepartamento] = useState('');
