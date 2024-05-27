@@ -38,51 +38,53 @@ const VoluntariadoDetalle = () => {
         }
     }, [voluntariado]);
 
+    if (!voluntariado || !sector) {
+        return <Layout><p>Cargando...</p></Layout>;
+    }
+
     return (
         <Layout>
-            {voluntariado && sector ? (
-                <div className='todo-cadavolun'>
-                    {voluntariado.organizacion && (
-                        <div className='EncabezadoOrganizacion'>
-                            <section className='Rectangulo'>
-                                <h1>{voluntariado.organizacion.nombre_organizacion.toUpperCase()}</h1>
-                            </section>
-                            <div className="ImagenDescripcionContainer">
-                                <img className='imagenvoluntariados' src={voluntariado.organizacion.imagen_organizacion} alt={`Imagen de ${voluntariado.organizacion.nombre_organizacion}`} />
-                                <p>{voluntariado.organizacion.descripcion_organizacion}</p>
-                            </div>
-                        </div>
-                    )}
-                    <section className='LineaSepararion' ></section>
-                    <h1>{voluntariado.nombre}</h1>
-
-                    <div className='cuerpo_cadavolun'>
-                        <div className='primera-cadavolun'>
-                            <img className='cadavoluntariado' src={voluntariado.imagen} alt={`Imagen de ${voluntariado.nombre}`} />
-                            <p><strong>Fecha Final:</strong> {voluntariado.fechaFinal}</p>
-                            <p><strong>Fecha de Inicio:</strong> {voluntariado.fechaInicio}</p>
-                            <p className='direccion-volun'><strong>Dirección:</strong> {voluntariado.direccion}</p>
-                            <p><strong>Horario de atención: </strong>{voluntariado.organizacion.horario_organizacion}</p>
-                            <p><strong>Sector:</strong> {sector.categoria}</p> </div>
-                        <div className='segunda-cadavolun'>
-                            <h2>¿En qué consiste el proyecto?</h2>
-                            <p>{voluntariado.descripcion}</p>
-                            <p><strong>Requisitos:</strong></p>
-                            <ul className='requisitos-list'>
-                                {voluntariado.requisitos.split('. ').map((requisito, index) => (
-                                    requisito.trim() && <li key={index}>{requisito.trim()}</li>
-                                ))}
-                            </ul>
-                            <p className='mootivadora' ><strong>""</strong> {voluntariado.fraseMotivadora} <strong>""</strong></p>
-                            <p><strong>Fecha Límite de postulación:</strong> {voluntariado.fechaLimite}</p>
+            <div className='todo-cadavolun'>
+                {voluntariado.organizacion && (
+                    <div className='EncabezadoOrganizacion'>
+                        <section className='Rectangulo'>
+                            <h1>{voluntariado.organizacion.nombre_organizacion.toUpperCase()}</h1>
+                        </section>
+                        <div className="ImagenDescripcionContainer">
+                            <img className='imagenvoluntariados' src={voluntariado.organizacion.imagen_organizacion} alt={`Imagen de ${voluntariado.organizacion.nombre_organizacion}`} />
+                            <p>{voluntariado.organizacion.descripcion_organizacion}</p>
                         </div>
                     </div>
+                )}
+                <section className='LineaSepararion' ></section>
+                <h1>{voluntariado.nombre}</h1>
+
+                <div className='cuerpo_cadavolun'>
+                    <div className='primera-cadavolun'>
+                        <img className='cadavoluntariado' src={voluntariado.imagen} alt={`Imagen de ${voluntariado.nombre}`} />
+                        <p><strong>Fecha Final:</strong> {voluntariado.fechaFinal}</p>
+                        <p><strong>Fecha de Inicio:</strong> {voluntariado.fechaInicio}</p>
+                        <p className='direccion-volun'><strong>Dirección:</strong> {voluntariado.direccion}</p>
+                        <p><strong>Horario de atención: </strong>{voluntariado.organizacion.horario_organizacion}</p>
+                        <p><strong>Sector:</strong> {sector.categoria}</p>
+                    </div>
+                    <div className='segunda-cadavolun'>
+                        <h2>¿En qué consiste el proyecto?</h2>
+                        <p>{voluntariado.descripcion}</p>
+                        <p><strong>Requisitos:</strong></p>
+                        <ul className='requisitos-list'>
+                            {voluntariado.requisitos.split('. ').map((requisito, index) => (
+                                requisito.trim() && <li key={index}>{requisito.trim()}</li>
+                            ))}
+                        </ul>
+                        <p className='mootivadora'><strong>""</strong> {voluntariado.fraseMotivadora} <strong>""</strong></p>
+                        <p><strong>Fecha Límite de postulación:</strong> {voluntariado.fechaLimite}</p>
+                        <Link href={`/RegistroPostulante?idVoluntariado=${idVoluntariado}&idOrganizacion=${voluntariado.idOrganizacion}`}>
+                            <p>Postular</p>
+                        </Link>
+                    </div>
                 </div>
-                
-            ) : (
-                <p>Cargando...</p>
-            )}
-            
+            </div>
         </Layout>
     );
 };

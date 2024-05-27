@@ -6,27 +6,23 @@ import { useAuth} from './contexto/AuthContext';
 
 const RegistroPostulante = () => {
   const { user } = useAuth();
-  // Estado para almacenar los datos del formulario
+  const router = useRouter();
+  const { idVoluntariado, idOrganizacion } = router.query;
   const [formData, setFormData] = useState({
-    nombre: "",
-    apellidoPaterno: "",
-    apellidoMaterno: "",
+    nombre: user ? user.nombre : "",
+    apellidoPaterno:  user ? user.apellidosPaterno : "",
+    apellidoMaterno: user ? user.apellidoMaterno : "",
     tipoDocumento: "",
     documento: "",
     telefono: "",
-    correo: ""
+    correo: user ? user.email: ""
   });
 
   
-  // Estado para manejar mensajes de error y éxito
   const [errorDocumento, setErrorDocumento] = useState("");
   const [mensajeExito, setMensajeExito] = useState("");
 
-  // Hook de router para redirecciones
-  const router = useRouter();
-
-  // Función para validar el campo de documento
-  const validateDocumento = () => {
+    const validateDocumento = () => {
     const { tipoDocumento, documento } = formData;
     if (tipoDocumento === "DNI" && documento.length !== 8) {
       return "El DNI debe tener 8 dígitos.";
@@ -49,13 +45,15 @@ const RegistroPostulante = () => {
 
     // Creamos el objeto con los datos del nuevo postulante
     const nuevoPostulante = {
-      nombre: user.nombre,
-      apellidoPaterno: user.apellidosPaterno,
-      apellidoMaterno: user.apellidoMaterno,
+      nombre: formData.nombre,
+      apellidoPaterno: formData.apellidoPaterno,
+      apellidoMaterno: formData.apellidoMaterno,
       tipoDocumento: formData.tipoDocumento,
       documento: formData.documento,
       telefono: formData.telefono,
-      correo: formData.correo
+      correo: formData.correo,
+      idVoluntariado: idVoluntariado,
+      idOrganizacion: idOrganizacion
     };
 
     
@@ -72,13 +70,13 @@ const RegistroPostulante = () => {
         setMensajeExito("Postulante registrado con éxito"); // Mostramos mensaje de éxito
         // Limpiamos el formulario
         setFormData({
-          nombre: user.nombre,
-          apellidoPaterno: user.apellidosPaterno,
-          apellidoMaterno: user.apellidoMaterno,
+          nombre: user ? user.nombre : "",
+          apellidoPaterno: user ? user.apellidosPaterno : "",
+          apellidoMaterno: user ? user.apellidoMaterno : "",
           tipoDocumento: "",
           documento: "",
           telefono: "",
-          correo: ""
+          correo: user ? user.email : ""
         });
       } else {
         console.error('Error al registrar postulante');
@@ -100,20 +98,20 @@ const RegistroPostulante = () => {
           <p>
             <label htmlFor="nombre">Nombres:</label>
             <input type="text" id="nombre" name="nombre"
-              value={user.nombre}  readOnly
-              onChange={(e) => setFormData({ ...formData, nombre: e.target.value })} />
+              value={formData.nombre}  readOnly
+              />
           </p>
           <p>
             <label htmlFor="apellidoPaterno">Apellido Paterno:</label>
             <input type="text" id="apellidoPaterno" name="apellidoPaterno"
-              value={user.apellidosPaterno} readOnly
-              onChange={(e) => setFormData({ ...formData, apellidoPaterno: e.target.value })} />
+              value={formData.apellidoPaterno} readOnly
+              />
           </p>
           <p>
             <label htmlFor="apellidoMaterno">Apellido Materno:</label>
             <input type="text" id="apellidoMaterno" name="apellidoMaterno"
-              value={user.apellidoMaterno} readOnly
-              onChange={(e) => setFormData({ ...formData, apellidoMaterno: e.target.value })} />
+              value={formData.apellidoMaterno} readOnly
+              />
           </p>
           <p>
             <label htmlFor="tipoDocumento">Tipo de documento:</label>
