@@ -34,6 +34,7 @@ export default async function handler(req, res) {
       // Si hay un error, imprime el error en la consola y envía una respuesta de error.
       console.error('Error al guardar postulante:', error);
       res.status(500).json({ error: 'Error al guardar postulante' });
+      
     }
   } else {
     // Si el método no es POST, envía una respuesta de error.
