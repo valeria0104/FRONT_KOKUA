@@ -39,6 +39,7 @@ const Organizacion = () => {
           });
 
           setVoluntariados(sortedVoluntariados);
+          console.log(sortedVoluntariados);
         } else {
           console.error('Error al obtener datos de la organización:', await response.text());
         }
