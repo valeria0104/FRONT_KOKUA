@@ -151,7 +151,7 @@ const VoluntariadoCercano = () => {
                     value={sector.id}
                     onChange={handleCheckboxChange}
                   />
-                  <label htmlFor={`sector-${sector.id}`}>{sector.categoria}</label>
+                  <label htmlFor={`sector-${sector.id}`}>{sector.nombre}</label>
                 </div>
               ))}
             </div>
@@ -164,7 +164,7 @@ const VoluntariadoCercano = () => {
                     value={sector.id}
                     onChange={handleCheckboxChange}
                   />
-                  <label htmlFor={`sector-${sector.id}`}>{sector.categoria}</label>
+                  <label htmlFor={`sector-${sector.id}`}>{sector.nombre}</label>
                 </div>
               ))}
             </div>
