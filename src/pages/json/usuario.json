@@ -40,5 +40,51 @@
       "Derechos Humanos"
     ],
     "tipo_usuario": 1
+  },
+  {
+    "id": 4,
+    "nombre": "oli",
+    "apellidosPaterno": "oliii",
+    "apellidoMaterno": "oliii",
+    "correo": "ak@gmail.com",
+    "contrasena": "chi",
+    "repetir": "chi",
+    "ubicacion": "030211",
+    "categorias": [
+      "Protección animal",
+      "Salud Física",
+      "Alimentación"
+    ],
+    "tipo_usuario": 1
+  },
+  {
+    "id": 5,
+    "nombre": "aaa",
+    "apellidosPaterno": "a",
+    "apellidoMaterno": "a",
+    "correo": "ak@gmail.com",
+    "contrasena": "aa",
+    "repetir": "aa",
+    "ubicacion": "040508",
+    "categorias": [
+      "Educación",
+      "Salud Física",
+      "Derechos Humanos"
+    ],
+    "tipo_usuario": 1
+  },
+  {
+    "id": 6,
+    "nombre": "kiara",
+    "apellidosPaterno": "vega",
+    "apellidoMaterno": "vega",
+    "correo": "vega@gmail.com",
+    "contrasena": "chic",
+    "repetir": "chic",
+    "ubicacion": "030216",
+    "categorias": [
+      "Salud Física"
+    ],
+    "tipo_usuario": 1
   }
 ]

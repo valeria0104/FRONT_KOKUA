@@ -1,12 +1,16 @@
 import Link from "next/link";
 import Head from "next/head";
 import { Children, useState } from "react";
-
+import { useAuth } from "../contexto/AuthContext"; // Importa el contexto de autenticación
 export default function Layout({ children }) {
     const [showDropdown, setShowDropdown] = useState(false);
-
-    const toggleDropdown = () => {
-        setShowDropdown(!showDropdown);
+    const { logout } = useAuth(); 
+    const handleLogout = async () => {
+        try {
+            await logout();
+        } catch (error) {
+            console.error("Error al cerrar sesión:", error);
+        }
     };
     return (
         <>
@@ -21,8 +25,9 @@ export default function Layout({ children }) {
                     <div className="nav-links">
                         <Link href="/VoluntariadoCercano" >Postular</Link>
                     </div>
-                    <li className="registrar-button" onClick={toggleDropdown}>
-                    <Link className="span1" href="/" >Cerrar sesion</Link>                    </li>
+                    <li className="registrar-button" >
+                        <span className="span1" onClick={handleLogout}>Cerrar sesión</span>
+                    </li>
                 </nav>
                 <main>
                     {children}

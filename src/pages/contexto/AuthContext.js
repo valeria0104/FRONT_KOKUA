@@ -15,7 +15,9 @@ export function AuthProvider({ children }) {
     };
 
     const logout = () => {
+        console.log("sesión cerrada");
         setUser(null);
+        
         router.push('/'); // Redirigir al usuario a la página de inicio de sesión u otra página al cerrar sesión
     };
 

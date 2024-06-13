@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Layout from './componentes/Layout.js';
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { useAuth} from './contexto/AuthContext'; 
+
 
 const RegisterPage = () => {
   const { user } = useAuth();

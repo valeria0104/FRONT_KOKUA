@@ -58,5 +58,17 @@
     "repetir_organizacion": "z",
     "imagen_organizacion": "https://es.freelogodesign.org/assets/img/categories/10/logo-img-01.svg",
     "tipo_usuario": 2
+  },
+  {
+    "id": 6,
+    "nombre_organizacion": "a",
+    "correo": "voluntariado@gmail.com",
+    "descripcion_organizacion": "a",
+    "horario_organizacion": "a",
+    "contacto_organizacion": "s",
+    "contrasena": "aa",
+    "repetir_organizacion": "aa",
+    "imagen_organizacion": "aa",
+    "tipo_usuario": 2
   }
 ]

@@ -1,12 +1,19 @@
 import Link from "next/link";
 import Head from "next/head";
-import { Children, useState } from "react";
+import { useState } from "react";
+import { useAuth } from "../contexto/AuthContext"; // Importa el contexto de autenticación
 
 export default function Layout({ children }) {
+    const { logout } = useAuth(); // Obtén la función de logout desde el contexto de autenticación
     const [showDropdown, setShowDropdown] = useState(false);
 
-    const toggleDropdown = () => {
-        setShowDropdown(!showDropdown);
+
+    const handleLogout = async () => {
+        try {
+            await logout();
+        } catch (error) {
+            console.error("Error al cerrar sesión:", error);
+        }
     };
     return (
         <>
@@ -19,10 +26,11 @@ export default function Layout({ children }) {
                         <img src="/imagenkokua.png" alt="" className="kokua" />
                     </Link>
                     <div className="nav-links">
-                        <Link href="/VoluntariadoOrg" >Mis Voluntariados</Link>
+                        <Link href="/VoluntariadoOrg">Mis Voluntariados</Link>
                     </div>
-                    <li className="registrar-button" onClick={toggleDropdown}>
-                    <Link className="span1" href="/" >Cerrar sesion</Link>                    </li>
+                    <li className="registrar-button" >
+                        <span className="span1" onClick={handleLogout}>Cerrar sesión</span>
+                    </li>
                 </nav>
                 <main>
                     {children}
@@ -30,9 +38,7 @@ export default function Layout({ children }) {
             </div>
             <footer>
                 <div className="Footerfeo">
-
                     <div className="footer-contenido">
-
                         <div className="footer-primeracolumna">
                             <div className="footerconimagen">
                                 <img src="/imagenkokua.png" alt="" className="kokua2" />
@@ -49,22 +55,22 @@ export default function Layout({ children }) {
                         </div>
                         <div className="footer-segundacolumna">
                             <p>UWU</p>
-                            <Link href="/Preguntas">Preguntas frecuentas</Link>
-                            <Link href="/Terminos">Terminos y condiciones</Link>
-                            <Link href="/Politicas">Politicas de privacidad</Link>
+                            <Link href="/Preguntas">Preguntas frecuentes</Link>
+                            <Link href="/Terminos">Términos y condiciones</Link>
+                            <Link href="/Politicas">Políticas de privacidad</Link>
                         </div>
                         <div className="footer-segundacolumna">
                             <p>ENCUENTRANOS EN </p>
                             <Link href="/Instagram">Instagram</Link>
                             <Link href="/Facebook">Facebook</Link>
-                            <Link href="/Twiter">Twiter</Link>
+                            <Link href="/Twiter">Twitter</Link>
                         </div>
                     </div>
                 </div>
                 <div className="footercopy">
-                    <p> © Copyright (©) 2023 KOKUA. Todos los derechos reservados.</p></div>
+                    <p>© Copyright (©) 2023 KOKUA. Todos los derechos reservados.</p>
+                </div>
             </footer>
-
         </>
     );
 }
