@@ -1,0 +1,22 @@
+[
+  {
+    "idUsuario": 1,
+    "idVoluntariado": 5
+  },
+  {
+    "idUsuario": 2,
+    "idVoluntariado": 5
+  },
+  {
+    "idUsuario": 1,
+    "idVoluntariado": 7
+  },
+  {
+    "idUsuario": 1,
+    "idVoluntariado": 2
+  },
+  {
+    "idUsuario": 1,
+    "idVoluntariado": 1
+  }
+]

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Layout from '../componentes/Layout2.js';
-
+import { useAuth} from '../contexto/AuthContext'; 
 const Organizacion = () => {
   const router = useRouter();
   const { idOrganizacion } = router.query;
@@ -11,6 +11,7 @@ const Organizacion = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [filtroNombre, setFiltroNombre] = useState('');
   const [favoritos, setFavoritos] = useState([]);
+  const { user } = useAuth(); // Asumiendo que tienes un AuthContext para manejar la autenticación
 
   const voluntariadosPerPage = 6;
 
@@ -39,7 +40,6 @@ const Organizacion = () => {
           });
 
           setVoluntariados(sortedVoluntariados);
-          console.log(sortedVoluntariados);
         } else {
           console.error('Error al obtener datos de la organización:', await response.text());
         }
@@ -50,6 +50,55 @@ const Organizacion = () => {
 
     fetchOrganizacion();
   }, [idOrganizacion]);
+
+  useEffect(() => {
+    const fetchFavoritos = async () => {
+      if (!user) return;
+
+      try {
+        const response = await fetch(`/api/favoritos?idUsuario=${user.id}`);
+        if (response.ok) {
+          const data = await response.json();
+          const userFavorites = data.filter(fav => fav.idUsuario === user.id).map(fav => fav.idVoluntariado);
+          setFavoritos(userFavorites);
+
+          // Ordenar los voluntariados colocando los favoritos primero
+          const sortedVoluntariados = voluntariados.sort((a, b) => {
+            const isAFavorito = userFavorites.includes(a.id);
+            const isBFavorito = userFavorites.includes(b.id);
+
+            if (isAFavorito && !isBFavorito) {
+              return -1;
+            }
+            if (!isAFavorito && isBFavorito) {
+              return 1;
+            }
+            // Ordenar por fecha de inicio más cercana a la actual y luego por nombre
+            const dateA = new Date(formatDate(a.fechaInicio));
+            const dateB = new Date(formatDate(b.fechaInicio));
+
+            if (Math.abs(dateA - new Date()) < Math.abs(dateB - new Date())) {
+              return 1;
+            }
+            if (Math.abs(dateA - new Date()) > Math.abs(dateB - new Date())) {
+              return -1;
+            }
+            return a.nombre.localeCompare(b.nombre);
+          });
+
+          setVoluntariados(sortedVoluntariados);
+        } else {
+          console.error('Error al obtener favoritos:', await response.text());
+        }
+      } catch (error) {
+        console.error('Error al obtener favoritos:', error);
+      }
+    };
+
+    if (user && voluntariados.length > 0) {
+      fetchFavoritos();
+    }
+  }, [user, voluntariados]);
 
   // Función para formatear la fecha al formato "yyyy/mm/dd" para compatibilidad con Date
   const formatDate = (fecha) => {
@@ -65,13 +114,60 @@ const Organizacion = () => {
   };
 
   // Función para manejar la marcación de favoritos
-  const toggleFavorito = (idVoluntariado) => {
-    if (favoritos.includes(idVoluntariado)) {
-      setFavoritos(favoritos.filter((fav) => fav !== idVoluntariado));
-    } else {
-      setFavoritos([...favoritos, idVoluntariado]);
+  const toggleFavorito = async (idVoluntariado) => {
+    if (!user) {
+      alert('Debe iniciar sesión para marcar como favorito');
+      return;
+    }
+  
+    const method = favoritos.includes(idVoluntariado) ? 'DELETE' : 'POST';
+    const updatedFavoritos = favoritos.includes(idVoluntariado)
+      ? favoritos.filter((fav) => fav !== idVoluntariado)
+      : [...favoritos, idVoluntariado];
+  
+    try {
+      const response = await fetch('/api/favoritos', {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ idUsuario: user.id, idVoluntariado }),
+      });
+  
+      if (response.ok) {
+        setFavoritos(updatedFavoritos);
+  
+        // Reordenar los voluntariados después de marcar/desmarcar como favorito
+        const sortedVoluntariados = voluntariados.sort((a, b) => {
+          const isAFavorito = updatedFavoritos.includes(a.id);
+          const isBFavorito = updatedFavoritos.includes(b.id);
+  
+          if (isAFavorito && !isBFavorito) {
+            return -1;
+          }
+          if (!isAFavorito && isBFavorito) {
+            return 1;
+          }
+          // Ordenar por fecha de inicio más cercana a la actual y luego por nombre
+          const dateA = new Date(formatDate(a.fechaInicio));
+          const dateB = new Date(formatDate(b.fechaInicio));
+  
+          if (Math.abs(dateA - new Date()) < Math.abs(dateB - new Date())) {
+            return 1;
+          }
+          if (Math.abs(dateA - new Date()) > Math.abs(dateB - new Date())) {
+            return -1;
+          }
+          return a.nombre.localeCompare(b.nombre);
+        });
+  
+        setVoluntariados([...sortedVoluntariados]);
+      } else {
+        console.error('Error al actualizar favorito:', await response.text());
+      }
+    } catch (error) {
+      console.error('Error al actualizar favorito:', error);
     }
   };
+  
 
   // Manejar cambios en el input de filtro por nombre
   const handleNombreChange = (e) => {
