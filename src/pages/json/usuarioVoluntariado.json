@@ -13,10 +13,14 @@
   },
   {
     "idUsuario": 1,
-    "idVoluntariado": 2
+    "idVoluntariado": 1
   },
   {
     "idUsuario": 1,
-    "idVoluntariado": 1
+    "idVoluntariado": 3
+  },
+  {
+    "idUsuario": 1,
+    "idVoluntariado": 2
   }
 ]

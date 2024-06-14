@@ -5,7 +5,7 @@ import Link from "next/link";
 
 
 const RegisterPage = () => {
-  const { user } = useAuth();
+
   const [aceptarPolitica, setAceptarPolitica] = useState(false);
   const [aceptarTerminos, setAceptarTerminos] = useState(false);
   const [formData, setFormData] = useState({

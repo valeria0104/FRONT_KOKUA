@@ -86,5 +86,21 @@
       "Salud Física"
     ],
     "tipo_usuario": 1
+  },
+  {
+    "id": 7,
+    "nombre": "Maria",
+    "apellidosPaterno": "Mercedes",
+    "apellidoMaterno": "Patiño",
+    "correo": "maria@gmail.com",
+    "contrasena": "maria",
+    "repetir": "maria",
+    "ubicacion": "021402",
+    "categorias": [
+      "Protección animal",
+      "Educación",
+      "Salud Física"
+    ],
+    "tipo_usuario": 1
   }
 ]
