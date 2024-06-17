@@ -114,24 +114,34 @@ const Organizacion = () => {
   };
 
   // Función para manejar la marcación de favoritos
-  const toggleFavorito = async (idVoluntariado) => {
-    if (!user) {
-      alert('Debe iniciar sesión para marcar como favorito');
-      return;
-    }
-  
+  const handletoggleFavorito = async (idVoluntariado) =>{
     const method = favoritos.includes(idVoluntariado) ? 'DELETE' : 'POST';
     const updatedFavoritos = favoritos.includes(idVoluntariado)
       ? favoritos.filter((fav) => fav !== idVoluntariado)
       : [...favoritos, idVoluntariado];
   
     try {
+      // Crear el contenido del cuerpo de la solicitud
+      const bodyContent = {
+        idUsuario: user.id,
+        idVoluntariado
+      };
+  
+      // Solo agregar tipo_relacion cuando el método es POST
+      if (method === 'POST') {
+        bodyContent.doc_identidad = null;
+        bodyContent.telefono = null;
+        bodyContent.tipo_relacion = 2;
+
+      }
+  
+      // Enviar la solicitud al servidor
       const response = await fetch('/api/favoritos', {
         method,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ idUsuario: user.id, idVoluntariado }),
+        body: JSON.stringify(bodyContent),
       });
-  
+      console.log(bodyContent);
       if (response.ok) {
         setFavoritos(updatedFavoritos);
   
@@ -146,15 +156,16 @@ const Organizacion = () => {
           if (!isAFavorito && isBFavorito) {
             return 1;
           }
+  
           // Ordenar por fecha de inicio más cercana a la actual y luego por nombre
-          const dateA = new Date(formatDate(a.fechaInicio));
-          const dateB = new Date(formatDate(b.fechaInicio));
+          const dateA = new Date(a.fechaInicio);
+          const dateB = new Date(b.fechaInicio);
   
           if (Math.abs(dateA - new Date()) < Math.abs(dateB - new Date())) {
-            return 1;
+            return -1;
           }
           if (Math.abs(dateA - new Date()) > Math.abs(dateB - new Date())) {
-            return -1;
+            return 1;
           }
           return a.nombre.localeCompare(b.nombre);
         });
@@ -167,7 +178,6 @@ const Organizacion = () => {
       console.error('Error al actualizar favorito:', error);
     }
   };
-  
 
   // Manejar cambios en el input de filtro por nombre
   const handleNombreChange = (e) => {
@@ -236,7 +246,7 @@ const Organizacion = () => {
                     <p>Distrito: {getDistritoByIdUbigeo(voluntariado.idUbigeo)}</p>
                     <span
                       className={`corazon ${favoritos.includes(voluntariado.id) ? 'favorito' : ''}`}
-                      onClick={() => toggleFavorito(voluntariado.id)}
+                      onClick={() => handletoggleFavorito (voluntariado.id)}
                     ></span>
                     <Link href={`/voluntariado/${voluntariado.id}`} passHref>
                       <button className='btnUnirse'>Unirse</button>

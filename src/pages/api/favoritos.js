@@ -18,11 +18,11 @@ export default function handler(req, res) {
     const favoritos = getFavoritos();
     res.status(200).json(favoritos);
   } else if (req.method === 'POST') {
-    const { idUsuario, idVoluntariado } = req.body;
+    const { idUsuario, idVoluntariado, doc_identidad, telefono, tipo_relacion } = req.body;
     const favoritos = getFavoritos();
 
     if (!favoritos.find(fav => fav.idUsuario === idUsuario && fav.idVoluntariado === idVoluntariado)) {
-      favoritos.push({ idUsuario, idVoluntariado });
+      favoritos.push({ idUsuario, idVoluntariado, doc_identidad, telefono,  tipo_relacion });
       saveFavoritos(favoritos);
       res.status(201).json({ message: 'Favorito añadido' });
     } else {

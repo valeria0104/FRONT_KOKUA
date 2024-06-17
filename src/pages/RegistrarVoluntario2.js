@@ -117,6 +117,11 @@ function App() {
         }
     };
 
+    const findCategoryIdByName = (categorias, categoryName) => {
+        const category = categorias.find(categoria => categoria.categoria === categoryName);
+        return category? category.id : null;
+      };
+
     const enviarDatos = async (event) => { 
         event.preventDefault();
 
@@ -135,9 +140,10 @@ function App() {
             contrasena: queryParams.contrasena,
             repetir: queryParams.repetir,
             ubicacion: selectedUbigeo, // Utilizar el IdUbigeo seleccionado
-            categorias: selectedCategorias,
+            categorias: selectedCategorias.map(categoriaName => findCategoryIdByName(categorias, categoriaName)),
             tipo_usuario: queryParams.tipo_usuario
         };
+        console.log(formData);
 
         // Convertir el objeto a JSON
         const formDataJson = JSON.stringify(formData);
@@ -218,7 +224,7 @@ function App() {
                                         checked={selectedCategorias.includes(categoria.categoria)}
                                         onChange={handleCategoriaChange}
                                     />
-                                    <label className="checkbox-label" htmlFor={categoria.id}>{categoria.categoria}</label>
+                                    <label className="checkbox-label" >{categoria.categoria}</label>
                                 </div>
                             ))}
                         </div>

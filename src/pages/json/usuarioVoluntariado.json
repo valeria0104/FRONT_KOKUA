@@ -1,26 +1,33 @@
 [
   {
-    "idUsuario": 1,
-    "idVoluntariado": 5
-  },
-  {
     "idUsuario": 2,
     "idVoluntariado": 5
   },
   {
     "idUsuario": 1,
-    "idVoluntariado": 7
+    "idVoluntariado": 5
   },
   {
     "idUsuario": 1,
-    "idVoluntariado": 1
+    "idVoluntariado": 2,
+    "tipo_relacion": 2
   },
   {
     "idUsuario": 1,
-    "idVoluntariado": 3
+    "idVoluntariado": 3,
+    "tipo_relacion": 2
   },
   {
     "idUsuario": 1,
-    "idVoluntariado": 2
+    "idVoluntariado": 1,
+    "tipo_relacion": 2
+  },
+  {
+    "idUsuario": 1,
+    "idVoluntariado": 7,
+    "doc_identidad": null,
+    "telefono": null,
+    "tipo_relacion": 2
   }
+  
 ]

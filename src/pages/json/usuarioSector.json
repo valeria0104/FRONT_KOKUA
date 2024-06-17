@@ -1,7 +1,122 @@
 [
-{
-    "idUsuario" : 1,
+  {
+    "idUsuario": 33,
+    "idSector": "Protección animal"
+  },
+  {
+    "idUsuario": 33,
+    "idSector": "Salud Física"
+  },
+  {
+    "idUsuario": 33,
+    "idSector": "Educación"
+  },
+  {
+    "idUsuario": 34,
+    "idSector": "Salud Física"
+  },
+  {
+    "idUsuario": 34,
+    "idSector": "Protección animal"
+  },
+  {
+    "idUsuario": 34,
+    "idSector": "Educación"
+  },
+  {
+    "idUsuario": 34,
+    "idSector": "Salud Física"
+  },
+  {
+    "idUsuario": 35,
+    "idSector": "Salud Física"
+  },
+  {
+    "idUsuario": 35,
+    "idSector": "Protección animal"
+  },
+  {
+    "idUsuario": 35,
+    "idSector": "Educación"
+  },
+  {
+    "idUsuario": 35,
+    "idSector": "Salud Física"
+  },
+  {
+    "idUsuario": 37,
+    "idSector": {
+      "id": "Protección animal"
+    }
+  },
+  {
+    "idUsuario": 37,
+    "idSector": {
+      "id": "Educación"
+    }
+  },
+  {
+    "idUsuario": 37,
+    "idSector": {
+      "id": "Salud Física"
+    }
+  },
+  {
+    "idUsuario": 38,
+    "idSector": "Protección animal"
+  },
+  {
+    "idUsuario": 38,
+    "idSector": "Educación"
+  },
+  {
+    "idUsuario": 38,
+    "idSector": "Salud Física"
+  },
+  {
+    "idUsuario": 39,
+    "idSector": "Protección animal"
+  },
+  {
+    "idUsuario": 39,
+    "idSector": "Educación"
+  },
+  {
+    "idUsuario": 39,
+    "idSector": "Salud Física"
+  },
+  {
+    "idUsuario": 40,
+    "idSector": "Protección animal"
+  },
+  {
+    "idUsuario": 40,
+    "idSector": "Educación"
+  },
+  {
+    "idUsuario": 40,
+    "idSector": "Salud Física"
+  },
+  {
+    "idUsuario": 41
+  },
+  {
+    "idUsuario": 41
+  },
+  {
+    "idUsuario": 41
+  },
+  {
+    "idUsuario": 42,
+    "idSector": 1
+  },
+  {
+    "idUsuario": 42,
     "idSector": 2
-}
-
+  },
+  {
+     
+    "idUsuario": 43,
+    "idSector": 6
+  }
 ]

@@ -2,6 +2,7 @@ import { promises as fs } from 'fs';
 import path from 'path';
 
 const usuariosFilePath = path.join(process.cwd(), 'src/pages/json/usuario.json');
+const usuariosSectorFilePath = path.join(process.cwd(), 'src/pages/json/usuarioSector.json');
 
 export default async function handler(req, res) {
     if (req.method === 'POST') {
@@ -22,6 +23,10 @@ export default async function handler(req, res) {
             let usuariosData = await fs.readFile(usuariosFilePath, 'utf-8');
             let usuarios = JSON.parse(usuariosData);
 
+            // Leer el archivo de usuarios-sector
+            let usuariosSectorData = await fs.readFile(usuariosSectorFilePath, 'utf-8');
+            let usuariosSector = JSON.parse(usuariosSectorData);
+
             // Obtener el último ID registrado
             let ultimoId = usuarios.length > 0 ? usuarios[usuarios.length - 1].id : 0;
 
@@ -34,7 +39,6 @@ export default async function handler(req, res) {
                 contrasena,
                 repetir,
                 ubicacion,
-                categorias,
                 tipo_usuario: Number(tipo_usuario) 
             };
 
@@ -43,6 +47,17 @@ export default async function handler(req, res) {
 
             // Escribir en el archivo de usuarios
             await fs.writeFile(usuariosFilePath, JSON.stringify(usuarios, null, 2));
+
+            // Agregar las categorías del usuario a usuariosSector
+            const nuevasCategorias = categorias.map(categoria => ({
+                idUsuario: nuevoUsuario.id,
+                idSector: categoria
+            }));
+            
+            usuariosSector.push(...nuevasCategorias);
+
+            // Escribir en el archivo de usuarios-sector
+            await fs.writeFile(usuariosSectorFilePath, JSON.stringify(usuariosSector, null, 2));
 
             res.status(201).json({ success: true, usuario: nuevoUsuario });
         } catch (error) {
