@@ -118,7 +118,7 @@ function App() {
     };
 
     const findCategoryIdByName = (categorias, categoryName) => {
-        const category = categorias.find(categoria => categoria.categoria === categoryName);
+        const category = categorias.find(categoria => categoria.nombre=== categoryName);
         return category? category.id : null;
       };
 
@@ -138,15 +138,12 @@ function App() {
             apellidoMaterno: queryParams.apellidoMaterno,
             correo: queryParams.correo,
             contrasena: queryParams.contrasena,
-            repetir: queryParams.repetir,
             ubicacion: selectedUbigeo, // Utilizar el IdUbigeo seleccionado
             categorias: selectedCategorias.map(categoriaName => findCategoryIdByName(categorias, categoriaName)),
             tipo_usuario: queryParams.tipo_usuario
         };
         console.log(formData);
 
-        // Convertir el objeto a JSON
-        const formDataJson = JSON.stringify(formData);
         try {
             // Simulación de envío de datos a un archivo JSON
             const response = await fetch('/api/registrarUsuario', {
@@ -220,11 +217,11 @@ function App() {
                                     <input className="checkbox"
                                         type="checkbox"
                                         id={categoria.id}
-                                        value={categoria.categoria}
-                                        checked={selectedCategorias.includes(categoria.categoria)}
+                                        value={categoria.nombre}
+                                        checked={selectedCategorias.includes(categoria.nombre)}
                                         onChange={handleCategoriaChange}
                                     />
-                                    <label className="checkbox-label" >{categoria.categoria}</label>
+                                    <label className="checkbox-label" >{categoria.nombre}</label>
                                 </div>
                             ))}
                         </div>

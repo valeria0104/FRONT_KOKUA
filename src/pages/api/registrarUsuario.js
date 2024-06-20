@@ -12,7 +12,6 @@ export default async function handler(req, res) {
             apellidoMaterno,
             correo,
             contrasena,
-            repetir,
             ubicacion,
             categorias,
             tipo_usuario
@@ -37,9 +36,8 @@ export default async function handler(req, res) {
                 apellidoMaterno,
                 correo,
                 contrasena,
-                repetir,
-                ubicacion,
-                tipo_usuario: Number(tipo_usuario) 
+                tipo_usuario: Number(tipo_usuario),
+                ubicacion
             };
 
             // Agregar el nuevo usuario

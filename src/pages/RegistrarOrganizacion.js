@@ -64,12 +64,11 @@ const RegisterPage = () => {
                 horario_organizacion: formData.horario_organizacion,
                 contacto_organizacion: formData.contacto_organizacion,
                 contrasena: formData.contrasena,
-                repetir_organizacion: formData.repetir_organizacion,
                 imagen_organizacion: formData.imagen_organizacion,
                 tipo_usuario: 2
             };
           
-            const responseRegistro = await fetch('/api/registraVoluntariado', {
+            const responseRegistro = await fetch('/api/registrarOrganizacion', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

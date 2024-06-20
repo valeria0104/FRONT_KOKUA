@@ -12,7 +12,6 @@ export default async function handler(req, res) {
             horario_organizacion,
             contacto_organizacion,
             contrasena,
-            repetir_organizacion,
             imagen_organizacion,
             tipo_usuario
         } = req.body;
@@ -30,12 +29,11 @@ export default async function handler(req, res) {
                 nombre_organizacion,
                 correo,
                 descripcion_organizacion,
+                imagen_organizacion,
                 horario_organizacion,
                 contacto_organizacion,
-                contrasena,
-                repetir_organizacion,
-                imagen_organizacion,
-                tipo_usuario: Number(tipo_usuario) 
+                tipo_usuario: Number(tipo_usuario),
+                contrasena
             };
 
             // Agregar el nuevo usuario
