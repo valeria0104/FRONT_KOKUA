@@ -176,9 +176,10 @@ const AñadeTuVolu = () => {
 
 export default AñadeTuVolu;*/
 
+// SelectLocation.js
 import React, { useState, useEffect } from 'react';
-import Layout from './componentes/Layout2';
-import departamentosData from './json/UbicacionRegistrar.json';
+import departamentosData from './json/UbicacionRegistrar.json'; // Asegúrate de que la ruta sea correcta
+import sectoresData from './json/SectorVoluntariado.json'; // Asegúrate de que la ruta sea correcta
 
 const AñadeTuVolu = () => {
   const [formData, setFormData] = useState({
@@ -198,7 +199,6 @@ const AñadeTuVolu = () => {
 
   const [provincias, setProvincias] = useState([]);
   const [distritos, setDistritos] = useState([]);
-  const [categorias, setCategorias] = useState([]);
 
   useEffect(() => {
     if (formData.departamento) {
@@ -262,16 +262,6 @@ const AñadeTuVolu = () => {
     // Manejar la sumisión del formulario aquí, por ejemplo, enviar los datos a una API backend
     console.log(formData);
   };
-
-  useEffect(() => {
-    fetch('/api/sectorVoluntariado')
-      .then(response => response.json())
-      .then(data => {
-        console.log('Categorias fetched from API:', data);
-        setCategorias(data);
-      })
-      .catch(error => console.error('Error fetching categorias:', error));
-  }, []);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -385,8 +375,8 @@ const AñadeTuVolu = () => {
           onChange={handleChange}
         >
           <option value="">Selecciona sector</option>
-          {categorias.map((cat) => (
-            <option key={cat.id} value={cat.categoria}>{cat.categoria}</option>
+          {sectoresData.map((sector) => (
+            <option key={sector.id} value={sector.nombre}>{sector.nombre}</option>
           ))}
         </select>
       </div>
