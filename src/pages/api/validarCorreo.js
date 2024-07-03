@@ -26,9 +26,11 @@ export default async function handler(req, res) {
 
         try {
             // Lee los datos de ambos archivos JSON
-            const usuarioData = await readJsonFile(getFilePath('usuario1'));
-            const organizacionData = await readJsonFile(getFilePath('usuario2'));
-
+            const usuarioResponse = await fetch('http://localhost:3001/api/v1/usuarios');
+            const organizacionResponse = await fetch('http://localhost:3001/api/v1/organizacions');
+            
+            const usuarioData = await usuarioResponse.json();
+            const organizacionData = await organizacionResponse.json();
             // Combina los datos de ambos archivos en un solo array
             const combinedData = [...usuarioData, ...organizacionData];
 

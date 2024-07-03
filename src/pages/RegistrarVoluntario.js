@@ -10,8 +10,8 @@ const RegisterPage = () => {
   const [aceptarTerminos, setAceptarTerminos] = useState(false);
   const [formData, setFormData] = useState({
     nombre: "",
-    apellidosPaterno: "",
-    apellidoMaterno: "",
+    apellido_paterno: "",
+    apellido_materno: "",
     correo: "",
     contrasena: "",
     repetir: "",
@@ -43,8 +43,8 @@ const RegisterPage = () => {
     // Crear un nuevo objeto con los datos del formulario
     const nuevoUsuario = {
       nombre: formData.nombre,
-      apellidosPaterno: formData.apellidosPaterno,
-      apellidoMaterno: formData.apellidoMaterno,
+      apellido_paterno: formData.apellido_paterno,
+      apellido_materno: formData.apellido_materno,
       correo: formData.correo,
       contrasena: formData.contrasena,
       repetir: formData.repetir,
@@ -79,14 +79,14 @@ const RegisterPage = () => {
             <p>
               <label htmlFor="apellidoPaterno">Apellido Paterno:</label>
               <input type="text" id="apellidoPaterno" name="apellidoPaterno"
-                value={formData.apellidosPaterno}
-                onChange={(e) => setFormData({ ...formData, apellidosPaterno: e.target.value })} required/>
+                value={formData.apellido_paterno}
+                onChange={(e) => setFormData({ ...formData, apellido_paterno: e.target.value })} required/>
             </p>
             <p>
-              <label htmlFor="apellidoMaterno">Apellido Materno:</label>
-              <input type="text" id="apellidoMaterno" name="apellidoMaterno"
-                value={formData.apellidoMaterno}
-                onChange={(e) => setFormData({ ...formData, apellidoMaterno: e.target.value })} required/>
+              <label htmlFor="apellido_materno">Apellido Materno:</label>
+              <input type="text" id="apellido_materno" name="apellido_materno"
+                value={formData.apellido_materno}
+                onChange={(e) => setFormData({ ...formData, apellido_materno: e.target.value })} required/>
             </p>
             <p>
               <label htmlFor="correo">Correo electrónico:</label>

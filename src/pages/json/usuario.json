@@ -2,10 +2,10 @@
   {
     "id": 1,
     "nombre": "Valeria",
-    "apellidosPaterno": "a",
-    "apellidoMaterno": "a",
-    "correo": "ak@gmail.com",
-    "contrasena": "a",
+    "apellidosPaterno": "Vega",
+    "apellidoMaterno": "Herrera",
+    "correo": "vale@gmail.com",
+    "contrasena": "vale",
     "tipo_usuario": 1,
     "ubicacion": 454
   },
@@ -48,5 +48,25 @@
     "contrasena": "AS",
     "tipo_usuario": 1,
     "ubicacion": 387
+  },
+  {
+    "id": 6,
+    "nombre": "Vale",
+    "apellidosPaterno": "Vega",
+    "apellidoMaterno": "Herrera",
+    "correo": "val@gmail.com",
+    "contrasena": "val",
+    "tipo_usuario": 1,
+    "ubicacion": 294
+  },
+  {
+    "id": 7,
+    "nombre": "Valeria",
+    "apellidosPaterno": "a",
+    "apellidoMaterno": "Salvador",
+    "correo": "sasdasd@gmail.com",
+    "contrasena": "a",
+    "tipo_usuario": 1,
+    "ubicacion": 298
   }
 ]

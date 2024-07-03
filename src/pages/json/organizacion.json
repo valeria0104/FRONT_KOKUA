@@ -86,5 +86,27 @@
     "contacto_organizacion": "aa",
     "tipo_usuario": 2,
     "contrasena": "a"
+  },
+  {
+    "id": 9,
+    "nombre_organizacion": "Ayudaaa",
+    "correo": "ayuda@gmail.com",
+    "descripcion_organizacion": "HOLA QUE TAL",
+    "imagen_organizacion": "https://img.freepik.com/vector-gratis/plantilla-pegatina-sola-casa-aislada_1308-64529.jpg",
+    "horario_organizacion": "9:00 A 10:00 PM",
+    "contacto_organizacion": "SASADAS",
+    "tipo_usuario": 2,
+    "contrasena": "A"
+  },
+  {
+    "id": 10,
+    "nombre_organizacion": "Ayudaaa",
+    "correo": "ayuda16666@gmail.com",
+    "descripcion_organizacion": "HOLA QUE TAL",
+    "imagen_organizacion": "https://img.freepik.com/vector-gratis/plantilla-pegatina-sola-casa-aislada_1308-64529.jpg",
+    "horario_organizacion": "9:00 A 10:00 PM",
+    "contacto_organizacion": "SASADAS",
+    "tipo_usuario": 2,
+    "contrasena": "A"
   }
 ]

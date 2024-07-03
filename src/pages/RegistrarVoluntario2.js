@@ -40,6 +40,7 @@ function App() {
             .then(data => {
                 console.log('Data fetched from API:', data);
                 setUbicacionData(data);
+                
             })
             .catch(error => console.error('Error fetching data:', error));
 
@@ -59,14 +60,16 @@ function App() {
         setSelectedProvincia('');
         setSelectedDistrito('');
         setSelectedUbigeo('');
-
+      
         const provinciasFiltradas = ubicacionData
-            .filter(item => item.Departamento === departamento && item.Provincia)
-            .map(item => item.Provincia)
-            .filter((value, index, self) => self.indexOf(value) === index);
-
+          .filter(item => item.departamento === departamento && item.provincia)
+          .map(item => item.provincia)
+          .filter((value, index, self) => self.indexOf(value) === index);
+      
+        console.log('Provincias filtradas:', provinciasFiltradas); // Agrega este console.log
+      
         setProvincias(provinciasFiltradas);
-    };
+      };
 
     const handleProvinciaChange = (event) => {
         const provincia = event.target.value;
@@ -75,8 +78,8 @@ function App() {
         setSelectedUbigeo('');
 
         const distritosFiltrados = ubicacionData
-            .filter(item => item.Departamento === selectedDepartamento && item.Provincia === provincia && item.Distrito)
-            .map(item => item.Distrito);
+            .filter(item => item.departamento === selectedDepartamento && item.provincia === provincia && item.distrito)
+            .map(item => item.distrito);
 
         setDistritos(distritosFiltrados);
         
@@ -89,13 +92,13 @@ function App() {
 
         // Obtener el IdUbigeo correspondiente
         const selectedUbigeoData = ubicacionData.find(item =>
-            item.Departamento === selectedDepartamento &&
-            item.Provincia === selectedProvincia &&
-            item.Distrito === distrito
+            item.departamento === selectedDepartamento &&
+            item.provincia === selectedProvincia &&
+            item.distrito === distrito
         );
 
         if (selectedUbigeoData) {
-            setSelectedUbigeo(selectedUbigeoData.IdUbigeo);
+            setSelectedUbigeo(selectedUbigeoData.idUbigeo);
         }
     };
 
@@ -119,7 +122,7 @@ function App() {
 
     const findCategoryIdByName = (categorias, categoryName) => {
         const category = categorias.find(categoria => categoria.nombre=== categoryName);
-        return category? category.id : null;
+        return category? category.idSector : null;
       };
 
     const enviarDatos = async (event) => { 
@@ -134,12 +137,12 @@ function App() {
         // Agregar los datos del formulario al JSON
         const formData = {
             nombre: queryParams.nombre,
-            apellidosPaterno: queryParams.apellidosPaterno,
-            apellidoMaterno: queryParams.apellidoMaterno,
+            apellido_paterno: queryParams.apellido_paterno,
+            apellido_materno: queryParams.apellido_materno,
             correo: queryParams.correo,
             contrasena: queryParams.contrasena,
-            ubicacion: selectedUbigeo, // Utilizar el IdUbigeo seleccionado
-            categorias: selectedCategorias.map(categoriaName => findCategoryIdByName(categorias, categoriaName)),
+            idUbigeo: selectedUbigeo, // Utilizar el IdUbigeo seleccionado
+            sectors: selectedCategorias.map(categoriaName => findCategoryIdByName(categorias, categoriaName)),
             tipo_usuario: queryParams.tipo_usuario
         };
         console.log(formData);
@@ -181,7 +184,7 @@ function App() {
                             <select className="combo-box-4" value={selectedDepartamento} onChange={handleDepartamentoChange}>
                                 <option value="">Seleccione un Departamento</option>
                                 {ubicacionData.length > 0 ? (
-                                    [...new Set(ubicacionData.map(item => item.Departamento))].map(departamento => (
+                                    [...new Set(ubicacionData.map(item => item.departamento))].map(departamento => (
                                         <option key={departamento} value={departamento}>{departamento}</option>
                                     ))
                                 ) : (

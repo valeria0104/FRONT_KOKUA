@@ -19,6 +19,7 @@ const VoluntariadoCercano = () => {
         if (voluntariadosResponse.ok) {
           const voluntariadosData = await voluntariadosResponse.json();
           setVoluntariados(voluntariadosData);
+          console.log(voluntariadosData);
         } else {
           console.error('Error al obtener datos de voluntariados:', await voluntariadosResponse.text());
         }
@@ -27,6 +28,7 @@ const VoluntariadoCercano = () => {
         if (organizacionesResponse.ok) {
           const organizacionesData = await organizacionesResponse.json();
           setOrganizaciones(organizacionesData);
+          console.log(organizacionesData);
         } else {
           console.error('Error al obtener datos de organizaciones:', await organizacionesResponse.text());
         }
@@ -35,6 +37,7 @@ const VoluntariadoCercano = () => {
         if (sectoresResponse.ok) {
           const sectoresData = await sectoresResponse.json();
           setSectores(sectoresData);
+          console.log(sectoresData);
         } else {
           console.error('Error al obtener datos de sectores:', await sectoresResponse.text());
         }
@@ -69,8 +72,8 @@ const VoluntariadoCercano = () => {
     const organizacion = organizaciones.find(org => org.id === voluntariado.idOrganizacion);
     return {
       ...voluntariado,
-      nombreOrganizacion: organizacion ? organizacion.nombre_organizacion : '',
-      imagenOrganizacion: organizacion ? organizacion.imagen_organizacion : '',
+      nombreOrganizacion: organizacion ? organizacion.nombre_org : '',
+      imagenOrganizacion: organizacion ? organizacion.imagen_url : '',
     };
   };
 
@@ -144,27 +147,27 @@ const VoluntariadoCercano = () => {
           <div className="checkbox-container">
             <div className="column">
               {sectores.slice(0, Math.ceil(sectores.length / 2)).map(sector => (
-                <div key={sector.id}>
+                <div key={sector.idSector}>
                   <input
                     type="checkbox"
-                    id={`sector-${sector.id}`}
-                    value={sector.id}
+                    id={`sector-${sector.idSector}`}
+                    value={sector.idSector}
                     onChange={handleCheckboxChange}
                   />
-                  <label htmlFor={`sector-${sector.id}`}>{sector.nombre}</label>
+                  <label htmlFor={`sector-${sector.idSector}`}>{sector.nombre}</label>
                 </div>
               ))}
             </div>
             <div className="column">
               {sectores.slice(Math.ceil(sectores.length / 2)).map(sector => (
-                <div key={sector.id}>
+                <div key={sector.idSector}>
                   <input
                     type="checkbox"
-                    id={`sector-${sector.id}`}
-                    value={sector.id}
+                    id={`sector-${sector.idSector}`}
+                    value={sector.idSector}
                     onChange={handleCheckboxChange}
                   />
-                  <label htmlFor={`sector-${sector.id}`}>{sector.nombre}</label>
+                  <label htmlFor={`sector-${sector.idSector}`}>{sector.nombre}</label>
                 </div>
               ))}
             </div>
@@ -189,7 +192,7 @@ const VoluntariadoCercano = () => {
               {resultadosFiltrados.map((voluntariado, index) => (
                 <li key={index} className="voluntariado-item">
                   <Link href={`/organizacion/${voluntariado.idOrganizacion}`} passHref>
-                    <img className='imagen_organizacion' src={voluntariado.imagenOrganizacion} alt={`Imagen de ${voluntariado.nombreOrganizacion}`} />
+                    <img className='imagen_organizacion' src={voluntariado.imagen_url} alt={`Imagen de ${voluntariado.nombreOrganizacion}`} />
                   </Link>
                   <div className="voluntariado-info">
                     <Link href={`/voluntariado/${voluntariado.id}`} passHref>

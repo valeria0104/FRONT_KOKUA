@@ -54,5 +54,17 @@
   {
     "idUsuario": 5,
     "idSector": 4
+  },
+  {
+    "idUsuario": 7,
+    "idSector": 1
+  },
+  {
+    "idUsuario": 7,
+    "idSector": 2
+  },
+  {
+    "idUsuario": 7,
+    "idSector": 3
   }
 ]

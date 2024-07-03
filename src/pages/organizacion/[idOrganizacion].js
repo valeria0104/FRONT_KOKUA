@@ -20,11 +20,12 @@ const Organizacion = () => {
       if (!idOrganizacion) return;
 
       try {
+    
         const response = await fetch(`/api/organizacion/${idOrganizacion}`);
         if (response.ok) {
           const data = await response.json();
           setOrganizacion(data.organizacion);
-
+           console.log(data);
           // Ordenar voluntariados por fecha de inicio más cercana a la actual y luego por nombre
           const sortedVoluntariados = data.voluntariado.sort((a, b) => {
             const dateA = new Date(formatDate(a.fechaInicio));
@@ -210,13 +211,13 @@ const Organizacion = () => {
         <>
           <div className='EncabezadoOrganizacion'>
             <section className='Rectangulo'>
-              <h1>{organizacion.nombre_organizacion.toUpperCase()}</h1>
+              <h1>{organizacion.nombre_org.toUpperCase()}</h1>
             </section>
             <section className='DescripcionOrganizacion'>
               <section className='ImagenOrga'>
-                <img src={organizacion.imagen_organizacion} alt={`Imagen de ${organizacion.nombre_organizacion}`} />
+                <img src={organizacion.imagen_url} alt={`Imagen de ${organizacion.nombre_org}`} />
               </section>
-              <p>{organizacion.descripcion_organizacion}</p>
+              <p>{organizacion.descripcion}</p>
             </section>
             <section className='LineaSepararion'></section>
           </div>
@@ -235,7 +236,7 @@ const Organizacion = () => {
             <ul className='VoluntariadosGrid'>
               {currentVoluntariados.length > 0 ? (
                 currentVoluntariados.map((voluntariado) => (
-                  <li key={voluntariado.id} className='VoluntariadoItem'>
+                  <li key={voluntariado.idVoluntariado} className='VoluntariadoItem'>
                     <img
                       className='imagen_Voluntariadoorg'
                       src={voluntariado.imagen}
@@ -245,10 +246,10 @@ const Organizacion = () => {
                     <p>Fecha de inicio: {voluntariado.fechaInicio}</p>
                     <p>Distrito: {getDistritoByIdUbigeo(voluntariado.idUbigeo)}</p>
                     <span
-                      className={`corazon ${favoritos.includes(voluntariado.id) ? 'favorito' : ''}`}
-                      onClick={() => handletoggleFavorito (voluntariado.id)}
+                      className={`corazon ${favoritos.includes(voluntariado.idVoluntariado) ? 'favorito' : ''}`}
+                      onClick={() => handletoggleFavorito (voluntariado.idVoluntariado)}
                     ></span>
-                    <Link href={`/voluntariado/${voluntariado.id}`} passHref>
+                    <Link href={`/voluntariado/${voluntariado.idVoluntariado}`} passHref>
                       <button className='btnUnirse'>Unirse</button>
                     </Link>
                   </li>

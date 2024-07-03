@@ -1,13 +1,20 @@
 import { promises as fs } from 'fs';
 import path from 'path';
-
+/*
 const getOrganizacionById = async (idOrganizacion) => {
   const orgFilePath = path.join(process.cwd(), 'src/pages/json/organizacion.json');
   const orgData = await fs.readFile(orgFilePath, 'utf-8');
   const organizaciones = JSON.parse(orgData);
   return organizaciones.find(org => org.id === parseInt(idOrganizacion));
-};
+};*/
 
+const getOrganizacionById = async (idOrganizacion) => {
+  const response = await fetch(`http://localhost:3001/api/v1/organizacions/${idOrganizacion}`);
+  const organizacion = await response.json();
+  console.log('Organización:', organizacion); 
+  return organizacion;
+};
+/*
 const getVoluntariadoByOrganizacionId = async (idOrganizacion) => {
   const volFilePath = path.join(process.cwd(), 'src/pages/json/voluntariado.json');
   const volData = await fs.readFile(volFilePath, 'utf-8');
@@ -20,6 +27,20 @@ const getVoluntariadoByOrganizacionId = async (idOrganizacion) => {
     const ubicacion = ubicaciones.find(ubicacion => ubicacion.IdUbigeo === voluntariado.IdUbigeo);
     return { ...voluntariado, ubicacion: ubicacion ? ubicacion.Distrito : null };
   });
+};*/
+
+const getVoluntariadoByOrganizacionId = async (idOrganizacion) => {
+  const response = await fetch(`http://localhost:3001/api/v1/voluntariados/organizacion/${idOrganizacion}`);
+  const voluntariados = await response.json();
+
+  const ubicacionesResponse = await fetch('http://localhost:3001/api/v1/ubigeos');
+  const ubicaciones = await ubicacionesResponse.json();
+  console.log('Voluntariado', voluntariados); 
+  return voluntariados.map(voluntariado => {
+    const ubicacion = ubicaciones.find(ubicacion => ubicacion.IdUbigeo === voluntariado.idUbigeo);
+    return {...voluntariado, ubicacion: ubicacion? ubicacion.Distrito : null };
+  });
+  
 };
 
 export default async (req, res) => {

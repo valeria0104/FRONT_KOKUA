@@ -1,12 +1,15 @@
-
-import path from 'path';
-import { promises as fs } from 'fs';
+import axios from 'axios';
 
 export default async function handler(req, res) {
-    // Construye la ruta absoluta al archivo JSON
-    const jsonDirectory = path.join(process.cwd(), 'src/pages/json');
-    // Lee el archivo JSON
-    const fileContents = await fs.readFile(jsonDirectory + '/UbicacionRegistrar.json', 'utf8');
-    // Devuelve el contenido del archivo en la respuesta
-    res.status(200).json(JSON.parse(fileContents));
+  try {
+    const response = await fetch('http://localhost:3001/api/v1/ubigeos');
+    if (!response.ok) {
+      throw new Error(`Error fetching data: ${response.status}`);
+    }
+    const data = await response.json();
+    res.status(200).json(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error fetching data' });
+  }
 }

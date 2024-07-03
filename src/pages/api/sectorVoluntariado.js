@@ -1,14 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 
-const categoriasFilePath = path.join(process.cwd(), 'src', 'pages', 'json', 'sectorVoluntariado.json');
-
-console.log('Ruta del archivo JSON de categorías:', categoriasFilePath);
+const apiUrl = 'http://localhost:3001/api/v1/sectors';
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
     try {
-      const categoriasData = JSON.parse(fs.readFileSync(categoriasFilePath, 'utf8'));
+      const response = await fetch(apiUrl);
+      const categoriasData = await response.json();
       return res.status(200).json(categoriasData);
     } catch (error) {
       console.log(error.message);

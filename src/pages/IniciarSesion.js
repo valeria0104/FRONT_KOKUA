@@ -29,7 +29,7 @@ function App() {
                         if (usuarioRegistrado.tipo_usuario === 1) {
                             router.push('/VoluntariadoCercano');
                         } else if (usuarioRegistrado.tipo_usuario === 2) {
-                            router.push('/PruebaUserOrg');
+                            router.push('/VoluntariadoOrg');
                         }
                     } else {
                         alert('Contraseña incorrecta');
