@@ -9,7 +9,7 @@ const VoluntariadoDetalle = () => {
     const { idVoluntariado } = router.query;
     const [voluntariado, setVoluntariado] = useState(null);
     const [sector, setSector] = useState(null);
-     console.log(router.query);
+    console.log(router.query);
     useEffect(() => {
         const fetchVoluntariado = async () => {
             if (!idVoluntariado) return;
@@ -30,29 +30,29 @@ const VoluntariadoDetalle = () => {
         fetchVoluntariado();
     }, [idVoluntariado]);
 
-    
+
     useEffect(() => {
         fetch(`/api/sectorIdVoluntariado/${idVoluntariado}`)
-          .then(response => response.json())
-          .then(data => {
-            console.log('Sectores fetched from API:', data);
-            setSector(data);
-            console.log(sector);
-            
-          })
-          .catch(error => console.error('Error fetching categorias:', error));
-      
+            .then(response => response.json())
+            .then(data => {
+                console.log('Sectores fetched from API:', data);
+                setSector(data);
+                console.log(sector);
+
+            })
+            .catch(error => console.error('Error fetching categorias:', error));
+
         if (voluntariado && Array.isArray(sector)) {
-          const sectorEncontrado = sector.find(sector => sector.idSector === voluntariado.idSector);
-          setSector(sectorEncontrado);
-          console.log(sectorEncontrado);
+            const sectorEncontrado = sector.find(sector => sector.idSector === voluntariado.idSector);
+            setSector(sectorEncontrado);
+            console.log(sectorEncontrado);
         }
-      }, [voluntariado]);
+    }, [voluntariado]);
 
     if (!voluntariado || !sector) {
         return <Layout><p>Cargando...</p></Layout>;
     }
-  
+
     return (
         <Layout>
             <div className='todo-cadavolun'>
@@ -84,8 +84,8 @@ const VoluntariadoDetalle = () => {
                         <p>{voluntariado.descripcion}</p>
                         <p><strong>Requisitos:</strong></p>
                         <ul className='requisitos-list'>
-                            {voluntariado.requisitos.split('. ').map((requisito, index) => (
-                                requisito.trim() && <li key={index}>{requisito.trim()}</li>
+                            {voluntariado.requisitos.split('.').filter(requisito => requisito.trim() !== '' && !/^\d+$/.test(requisito.trim())).map((requisito, index) => (
+                                <li key={index}>{index + 1}. {requisito.trim()}</li>
                             ))}
                         </ul>
                         <p className='mootivadora'><strong>""</strong> {voluntariado.frase_motivadora} <strong>""</strong></p>
