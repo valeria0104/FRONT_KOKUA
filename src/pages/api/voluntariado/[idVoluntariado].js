@@ -49,6 +49,7 @@ export default async (req, res) => {
     if (voluntariado) {
       const organizacionResponse = await fetch(`http://localhost:3001/api/v1/organizacions/${voluntariado.idOrganizacion}`);
       const organizacion = await organizacionResponse.json();
+      
 
       if (organizacion) {
         res.status(200).json({ ...voluntariado, organizacion });

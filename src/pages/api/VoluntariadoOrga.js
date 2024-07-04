@@ -1,6 +1,8 @@
 import { promises as fs } from 'fs';
 import path from 'path';
-
+import IdOrganizacion from './organizacion/[idOrganizacion]';
+import IdVoluntariado from './voluntariado/[idVoluntariado]';
+/*
 // Función para obtener información de ubicación por ID de Ubigeo
 const getUbicacionByIdUbigeo = async (idUbigeo) => {
   const ubicacionFilePath = path.join(process.cwd(), 'src/pages/json/UbicacionRegistrar.json');
@@ -8,23 +10,29 @@ const getUbicacionByIdUbigeo = async (idUbigeo) => {
   const ubicaciones = JSON.parse(ubicacionData);
   return ubicaciones.find(ubicacion => ubicacion.IdUbigeo === idUbigeo);
 };
+*/
+const getUbicacionByIdUbigeo = async (idUbigeo) => {
+const response = await fetch(`http://localhost:3001/api/v1/ubigeos/${idUbigeo}`);
+const ubicaciones = await response.json();
+  console.log('Organización:', ubicaciones); 
+  return ubicaciones;
+}
+
 
 export default async (req, res) => {
   // Ruta al archivo JSON
-  const filePath = path.join(process.cwd(), 'src/pages/json/voluntariado.json');
 
   try {
-    // Leer el archivo JSON
-    const jsonData = await fs.readFile(filePath, 'utf-8');
-    // Convertir los datos JSON
-    let voluntariados = JSON.parse(jsonData);
+    const response = await fetch(`http://localhost:3001/api/v1/voluntariados`);
+    const voluntariados = await response.json();
+
 
     // Agregar información de ubicación a cada voluntariado
     for (let voluntariado of voluntariados) {
       const ubicacion = await getUbicacionByIdUbigeo(voluntariado.idUbigeo);
       if (ubicacion) {
-        voluntariado.departamento = ubicacion.Departamento;
-        voluntariado.distrito = ubicacion.Distrito;
+        voluntariado.departamento = ubicacion.departamento;
+        voluntariado.distrito = ubicacion.distrito;
       }
     }
 

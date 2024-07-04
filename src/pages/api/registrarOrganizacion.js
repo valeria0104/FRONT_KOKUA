@@ -1,53 +1,90 @@
 import { promises as fs } from 'fs';
 import path from 'path';
-
+import axios from 'axios';
 const usuariosFilePath = path.join(process.cwd(), 'src/pages/json/organizacion.json');
+/*import axios from 'axios';
 
+export default async function handler(req, res) {
+  if (req.method === 'POST') {
+    const {
+      nombre,
+      apellido_paterno,
+      apellido_materno,
+      correo,
+      contrasena,
+      idUbigeo,
+      sectors,
+      tipo_usuario
+    } = req.body;
+
+    try {
+      // Make a POST request to your backend server
+      const response = await axios.post('http://localhost:3001/api/v1/usuarios', {
+        nombre,
+        apellido_paterno,
+        apellido_materno,
+        correo,
+        contrasena,
+        idUbigeo,
+        sectors,
+        tipo_usuario :Number(tipo_usuario)
+      });
+
+      // Handle the response from the backend server
+      if (response.status === 201) {
+        res.status(201).json({ success: true, usuario: response.data });
+      } else {
+        res.status(500).json({ error: 'Error al registrar usuario' });
+      }
+    } catch (error) {
+      console.error('Error al registrar usuario:', error);
+      res.status(500).json({ error: 'Error al registrar usuario' });
+    }
+  } else {
+    res.status(405).json({ error: 'Método no permitido' });
+  }
+} */
 export default async function handler(req, res) {
     if (req.method === 'POST') {
         const {
-            nombre_organizacion,
+            nombre_org,
             correo,
-            descripcion_organizacion,
-            horario_organizacion,
-            contacto_organizacion,
+            descripcion,
+            hora_atencion,
+            contacto,
             contrasena,
-            imagen_organizacion,
+            imagen_url,
             tipo_usuario
         } = req.body;
 
         try {
-            // Leer el archivo de usuarios
-            let usuariosData = await fs.readFile(usuariosFilePath, 'utf-8');
-            let usuarios = JSON.parse(usuariosData);
+             // Make a POST request to your backend server
+      const response = await axios.post('http://localhost:3001/api/v1/organizacions', {
+          
+                nombre_org,
+            correo,
+            descripcion,
+            imagen_url,
+            hora_atencion,
+            contacto,
+           
+          
+            tipo_usuario: Number(tipo_usuario),
+            contrasena
+              
+            });
 
-            // Obtener el último ID registrado
-            let ultimoId = usuarios.length > 0 ? usuarios[usuarios.length - 1].id : 0;
-
-            const nuevoVoluntariado = {
-                id: ultimoId + 1,
-                nombre_organizacion,
-                correo,
-                descripcion_organizacion,
-                imagen_organizacion,
-                horario_organizacion,
-                contacto_organizacion,
-                tipo_usuario: Number(tipo_usuario),
-                contrasena
-            };
-
-            // Agregar el nuevo usuario
-            usuarios.push(nuevoVoluntariado);
-
-            // Escribir en el archivo de usuarios
-            await fs.writeFile(usuariosFilePath, JSON.stringify(usuarios, null, 2));
-
-            res.status(201).json({ success: true, usuario: nuevoVoluntariado });
-        } catch (error) {
-            console.error('Error al registrar usuario:', error);
-            res.status(500).json({ error: 'Error al registrar usuario' });
-        }
-    } else {
-        res.status(405).json({ error: 'Método no permitido' });
+            // Handle the response from the backend server
+      if (response.status === 201) {
+        res.status(201).json({ success: true, usuario: response.data });
+      } else {
+        res.status(500).json({ error: 'Error al registrar organizacion' });
+      }
+    } catch (error) {
+      console.error('Error al registrar usuario:', error);
+      res.status(500).json({ error: 'Error al registrar organizacion' });
     }
+  } else {
+    res.status(405).json({ error: 'Método no permitido' });
+  }
 }

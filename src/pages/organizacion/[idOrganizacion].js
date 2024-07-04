@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Layout from '../componentes/Layout2.js';
 import { useAuth} from '../contexto/AuthContext'; 
+import { formatDate } from '../componentes/funciones.js';
 const Organizacion = () => {
   const router = useRouter();
   const { idOrganizacion } = router.query;
@@ -28,8 +29,8 @@ const Organizacion = () => {
            console.log(data);
           // Ordenar voluntariados por fecha de inicio más cercana a la actual y luego por nombre
           const sortedVoluntariados = data.voluntariado.sort((a, b) => {
-            const dateA = new Date(formatDate(a.fechaInicio));
-            const dateB = new Date(formatDate(b.fechaInicio));
+            const dateA = new Date(formatDate(a.fecha_inicio));
+            const dateB = new Date(formatDate(b.fecha_inicio));
 
             if (Math.abs(dateA - new Date()) < Math.abs(dateB - new Date())) {
               return 1;
@@ -75,8 +76,8 @@ const Organizacion = () => {
               return 1;
             }
             // Ordenar por fecha de inicio más cercana a la actual y luego por nombre
-            const dateA = new Date(formatDate(a.fechaInicio));
-            const dateB = new Date(formatDate(b.fechaInicio));
+            const dateA = new Date(formatDate(a.fecha_inicio));
+            const dateB = new Date(formatDate(b.fecha_inicio));
 
             if (Math.abs(dateA - new Date()) < Math.abs(dateB - new Date())) {
               return 1;
@@ -124,7 +125,7 @@ const Organizacion = () => {
     try {
       // Crear el contenido del cuerpo de la solicitud
       const bodyContent = {
-        idUsuario: user.id,
+        idUsuario: user.idUsuario,
         idVoluntariado
       };
   
@@ -159,8 +160,8 @@ const Organizacion = () => {
           }
   
           // Ordenar por fecha de inicio más cercana a la actual y luego por nombre
-          const dateA = new Date(a.fechaInicio);
-          const dateB = new Date(b.fechaInicio);
+          const dateA = new Date(a.fecha_inicio);
+          const dateB = new Date(b.fecha_inicio);
   
           if (Math.abs(dateA - new Date()) < Math.abs(dateB - new Date())) {
             return -1;
@@ -215,10 +216,11 @@ const Organizacion = () => {
             </section>
             <section className='DescripcionOrganizacion'>
               <section className='ImagenOrga'>
-                <img src={organizacion.imagen_url} alt={`Imagen de ${organizacion.nombre_org}`} />
+                <img className='imagenvoluntariados' src={organizacion.imagen_url} alt={`Imagen de ${organizacion.nombre_org}`} />
               </section>
               <p>{organizacion.descripcion}</p>
             </section>
+            
             <section className='LineaSepararion'></section>
           </div>
           <div className='Seccion2Orga'>
@@ -239,11 +241,11 @@ const Organizacion = () => {
                   <li key={voluntariado.idVoluntariado} className='VoluntariadoItem'>
                     <img
                       className='imagen_Voluntariadoorg'
-                      src={voluntariado.imagen}
+                      src={voluntariado.imagen_url}
                       alt={`Imagen de ${voluntariado.nombre}`}
                     />
                     <p>Nombre del voluntariado: {voluntariado.nombre}</p>
-                    <p>Fecha de inicio: {voluntariado.fechaInicio}</p>
+                    <p>Fecha de inicio: {formatDate(voluntariado.fecha_inicio)}</p>
                     <p>Distrito: {getDistritoByIdUbigeo(voluntariado.idUbigeo)}</p>
                     <span
                       className={`corazon ${favoritos.includes(voluntariado.idVoluntariado) ? 'favorito' : ''}`}

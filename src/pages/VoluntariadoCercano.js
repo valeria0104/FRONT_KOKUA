@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Layout from './componentes/Layout2.js';
 import Link from 'next/link';
+
 import { geocodeAddress, calculateDistance } from '../utils/googleMaps'; // Importamos la función calculateDistance
 
 const VoluntariadoCercano = () => {
@@ -195,7 +196,7 @@ const VoluntariadoCercano = () => {
                     <img className='imagen_organizacion' src={voluntariado.imagen_url} alt={`Imagen de ${voluntariado.nombreOrganizacion}`} />
                   </Link>
                   <div className="voluntariado-info">
-                    <Link href={`/voluntariado/${voluntariado.id}`} passHref>
+                    <Link href={`/voluntariado/${voluntariado.idVoluntariado}`} passHref>
                       <h3 className='nombre-cadavolun'>
                         <p>{voluntariado.nombre}</p>
                       </h3>

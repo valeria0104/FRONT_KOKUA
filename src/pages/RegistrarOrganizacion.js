@@ -6,14 +6,14 @@ import Link from "next/link";
 const RegisterPage = () => {
     const [formData, setFormData] = useState(
         {
-            nombre_organizacion: "",
+            nombre_org: "",
             correo: "",
-            descripcion_organizacion: "",
-            horario_organizacion: "",
-            contacto_organizacion: "",
+            descripcion: "",
+            hora_atencion: "",
+            contacto: "",
             contrasena: "",
             repetir_organizacion: "",
-            imagen_organizacion: "",
+            imagen_url: "",
             tipo_usuario: 2
         }
     );
@@ -58,13 +58,13 @@ const RegisterPage = () => {
             }
 
             const nuevoVoluntariado = {
-                nombre_organizacion: formData.nombre_organizacion,
+                nombre_org: formData.nombre_org,
                 correo: formData.correo,
-                descripcion_organizacion: formData.descripcion_organizacion,
-                horario_organizacion: formData.horario_organizacion,
-                contacto_organizacion: formData.contacto_organizacion,
+                descripcion: formData.descripcion,
+                hora_atencion: formData.hora_atencion,
+                contacto: formData.contacto,
                 contrasena: formData.contrasena,
-                imagen_organizacion: formData.imagen_organizacion,
+                imagen_url: formData.imagen_url,
                 tipo_usuario: 2
             };
           
@@ -98,10 +98,10 @@ const RegisterPage = () => {
                 <h1>¡Registrate para ayudar!</h1>
                 <div className='registro-organizacion'>
                     <p>
-                        <label htmlFor="nombre_organizacion">Nombre de la Organización:</label>
-                        <input className='input-registrar' type="text" id="nombre_organizacion" name="nombre_organizacion"
-                            value={formData.nombre_organizacion}
-                            onChange={(e) => setFormData({ ...formData, nombre_organizacion: e.target.value })} />
+                        <label htmlFor="nombre_org">Nombre de la Organización:</label>
+                        <input className='input-registrar' type="text" id="nombre_org" name="nombre_org"
+                            value={formData.nombre_org}
+                            onChange={(e) => setFormData({ ...formData, nombre_org: e.target.value })} />
                     </p>
                     <p>
                         <label htmlFor="correo_organizacion">Correo electrónico:</label>
@@ -110,22 +110,22 @@ const RegisterPage = () => {
                             onChange={(e) => setFormData({ ...formData, correo: e.target.value })}/>
                     </p>
                     <p>
-                        <label htmlFor="descripcion_organizacion">Descripción de la organización:</label>
-                        <input className='input-registrar' type="text" id="descripcion_organizacion" name="descripcion_organizacion"
-                            value={formData.descripcion_organizacion}
-                            onChange={(e) => setFormData({ ...formData, descripcion_organizacion: e.target.value })} />
+                        <label htmlFor="descripcion">Descripción de la organización:</label>
+                        <input className='input-registrar' type="text" id="descripcion" name="descripcion"
+                            value={formData.descripcion}
+                            onChange={(e) => setFormData({ ...formData, descripcion: e.target.value })} />
                     </p>
                     <p>
-                        <label htmlFor="horario_organizacion">Horario de atención de la organización:</label>
-                        <input className='input-registrar' type="text" id="horario_organizacion" name="horario_organizacion"
-                            value={formData.horario_organizacion}
-                            onChange={(e) => setFormData({ ...formData, horario_organizacion: e.target.value })} />
+                        <label htmlFor="hora_atencion">Horario de atención de la organización:</label>
+                        <input className='input-registrar' type="text" id="hora_atencion" name="hora_atencion"
+                            value={formData.hora_atencion}
+                            onChange={(e) => setFormData({ ...formData, hora_atencion: e.target.value })} />
                     </p>
                     <p>
-                        <label htmlFor="contacto_organizacion">Contacto  de la organización:</label>
-                        <input className='input-registrar' type="text" id="contacto_organizacion" name="contacto_organizacion"
-                            value={formData.contacto_organizacion}
-                            onChange={(e) => setFormData({ ...formData, contacto_organizacion: e.target.value })} />
+                        <label htmlFor="contacto">Contacto  de la organización:</label>
+                        <input className='input-registrar' type="text" id="contacto" name="contacto"
+                            value={formData.contacto}
+                            onChange={(e) => setFormData({ ...formData, contacto: e.target.value })} />
                     </p>
                     <p>
                         <label htmlFor="contrasena_organizaciob">Contraseña:</label>
@@ -140,11 +140,11 @@ const RegisterPage = () => {
                             onChange={(e) => setFormData({ ...formData, repetir_organizacion: e.target.value })} />
                    </p>
                    <p>
-    <label htmlFor="imagen_organizacion">URL de la imagen de la organización:</label>
-    <input type="text" id="imagen_organizacion" name="imagen_organizacion"
+    <label htmlFor="imagen_url">URL de la imagen de la organización:</label>
+    <input type="text" id="imagen_url" name="imagen_url"
         placeholder="Ingrese la URL de la imagen"
-        value={formData.imagen_organizacion}
-        onChange={(e) => setFormData({ ...formData, imagen_organizacion: e.target.value })} />
+        value={formData.imagen_url}
+        onChange={(e) => setFormData({ ...formData, imagen_url: e.target.value })} />
 </p>
                    
                    </div>

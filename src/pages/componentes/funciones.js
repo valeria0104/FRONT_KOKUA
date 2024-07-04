@@ -12,6 +12,13 @@ export function cambiarImagen(delta) {
     imagen.src = imagenes[imagenIndex];
 }
 
+  export function formatDate(dateString) {
+    const date = new Date(dateString);
+
+    return date.toLocaleDateString('es-ES', { year: 'numeric', month: '2-digit', day: '2-digit' });
+
+
+  }
 
 export function mostrarTestimonios(testimonios) {
     const contenedorTestimonios = document.getElementById('contenedor-testimonios');
