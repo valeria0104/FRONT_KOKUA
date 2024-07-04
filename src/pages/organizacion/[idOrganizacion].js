@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Layout from '../componentes/Layout2.js';
-import { useAuth} from '../contexto/AuthContext'; 
+import { useAuth } from '../contexto/AuthContext';
 import { formatDate } from '../componentes/funciones.js';
 const Organizacion = () => {
   const router = useRouter();
@@ -21,12 +21,12 @@ const Organizacion = () => {
       if (!idOrganizacion) return;
 
       try {
-    
+
         const response = await fetch(`/api/organizacion/${idOrganizacion}`);
         if (response.ok) {
           const data = await response.json();
           setOrganizacion(data.organizacion);
-           console.log(data);
+          console.log(data);
           // Ordenar voluntariados por fecha de inicio más cercana a la actual y luego por nombre
           const sortedVoluntariados = data.voluntariado.sort((a, b) => {
             const dateA = new Date(formatDate(a.fecha_inicio));
@@ -106,7 +106,7 @@ const Organizacion = () => {
   const formatDate = (fecha) => {
     const date = new Date(fecha);
     const year = date.getFullYear();
-    const month = date.getMonth() + 1; 
+    const month = date.getMonth() + 1;
     const day = date.getDate();
     return `${day}/${month}/${year}`;
   };
@@ -119,19 +119,19 @@ const Organizacion = () => {
   };
 
   // Función para manejar la marcación de favoritos
-  const handletoggleFavorito = async (idVoluntariado) =>{
+  const handletoggleFavorito = async (idVoluntariado) => {
     const method = favoritos.includes(idVoluntariado) ? 'DELETE' : 'POST';
     const updatedFavoritos = favoritos.includes(idVoluntariado)
       ? favoritos.filter((fav) => fav !== idVoluntariado)
       : [...favoritos, idVoluntariado];
-  
+
     try {
       // Crear el contenido del cuerpo de la solicitud
       const bodyContent = {
         idUsuario: user.idUsuario,
         idVoluntariado
       };
-  
+
       // Solo agregar tipo_relacion cuando el método es POST
       if (method === 'POST') {
         bodyContent.doc_identidad = null;
@@ -139,7 +139,7 @@ const Organizacion = () => {
         bodyContent.tipo_relacion = 2;
 
       }
-  
+
       // Enviar la solicitud al servidor
       const response = await fetch('/api/favoritos', {
         method,
@@ -149,23 +149,23 @@ const Organizacion = () => {
       console.log(bodyContent);
       if (response.ok) {
         setFavoritos(updatedFavoritos);
-  
+
         // Reordenar los voluntariados después de marcar/desmarcar como favorito
         const sortedVoluntariados = voluntariados.sort((a, b) => {
           const isAFavorito = updatedFavoritos.includes(a.id);
           const isBFavorito = updatedFavoritos.includes(b.id);
-  
+
           if (isAFavorito && !isBFavorito) {
             return -1;
           }
           if (!isAFavorito && isBFavorito) {
             return 1;
           }
-  
+
           // Ordenar por fecha de inicio más cercana a la actual y luego por nombre
           const dateA = new Date(a.fecha_inicio);
           const dateB = new Date(b.fecha_inicio);
-  
+
           if (Math.abs(dateA - new Date()) < Math.abs(dateB - new Date())) {
             return -1;
           }
@@ -174,7 +174,7 @@ const Organizacion = () => {
           }
           return a.nombre.localeCompare(b.nombre);
         });
-  
+
         setVoluntariados([...sortedVoluntariados]);
       } else {
         console.error('Error al actualizar favorito:', await response.text());
@@ -218,12 +218,12 @@ const Organizacion = () => {
               <h1>{organizacion.nombre_org.toUpperCase()}</h1>
             </section>
             <section className='DescripcionOrganizacion'>
-              <section className='ImagenOrga'>
+              <section className='ImagenDescripcionContainer'>
                 <img className='imagenvoluntariados' src={organizacion.imagen_url} alt={`Imagen de ${organizacion.nombre_org}`} />
+                <p>{organizacion.descripcion}</p>
               </section>
-              <p>{organizacion.descripcion}</p>
             </section>
-            
+
             <section className='LineaSepararion'></section>
           </div>
           <div className='Seccion2Orga'>
@@ -252,7 +252,7 @@ const Organizacion = () => {
                     <p>Distrito: {getDistritoByIdUbigeo(voluntariado.idUbigeo)}</p>
                     <span
                       className={`corazon ${favoritos.includes(voluntariado.idVoluntariado) ? 'favorito' : ''}`}
-                      onClick={() => handletoggleFavorito (voluntariado.idVoluntariado)}
+                      onClick={() => handletoggleFavorito(voluntariado.idVoluntariado)}
                     ></span>
                     <Link href={`/voluntariado/${voluntariado.idVoluntariado}`} passHref>
                       <button className='btnUnirse'>Unirse</button>
