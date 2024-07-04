@@ -102,10 +102,13 @@ const Organizacion = () => {
     }
   }, [user, voluntariados]);
 
-  // Función para formatear la fecha al formato "yyyy/mm/dd" para compatibilidad con Date
+
   const formatDate = (fecha) => {
-    const partes = fecha.split('/');
-    return `${partes[2]}/${partes[1]}/${partes[0]}`;
+    const date = new Date(fecha);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1; 
+    const day = date.getDate();
+    return `${day}/${month}/${year}`;
   };
 
   // Función para obtener el nombre del distrito a partir del ID de ubigeo
