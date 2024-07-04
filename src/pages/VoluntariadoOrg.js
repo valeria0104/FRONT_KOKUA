@@ -53,7 +53,6 @@ function App() {
                   <p><strong>Distrito:</strong> {voluntariado.distrito}</p>
                   <Link href="/editarInformacion">
                     <p className="editar-link">Editar</p>
-                    
                   </Link>
                 </div>
               </div>
