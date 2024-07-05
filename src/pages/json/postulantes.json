@@ -42,5 +42,42 @@
     "correo": "erikama145@gmail.com",
     "idVoluntariado": "3",
     "idOrganizacion": "1"
+  },
+  {
+    "nombre": "Sheyla",
+    "apellidoPaterno": "Mucha",
+    "apellidoMaterno": "Mucha",
+    "tipoDocumento": "DNI",
+    "documento": "75607919",
+    "telefono": "996068385",
+    "correo": "astrid@gmail.com",
+    "idVoluntariado": "2",
+    "idOrganizacion": "5"
+  },
+  {
+    "nombre": "Sheyla",
+    "apellidoPaterno": "Mucha",
+    "apellidoMaterno": "Mucha",
+    "tipoDocumento": "DNI",
+    "documento": "75235347",
+    "telefono": "996068385",
+    "correo": "astrid@gmail.com",
+    "idVoluntariado": "2",
+    "idOrganizacion": "5",
+    "idUsuario": 101,
+    "tipo_relacion": 1
+  },
+  {
+    "nombre": "Sheyla",
+    "apellidoPaterno": "Mucha",
+    "apellidoMaterno": "Mucha",
+    "tipoDocumento": "DNI",
+    "doc_identidad": "75607919",
+    "telefono": "996068385",
+    "correo": "astrid@gmail.com",
+    "idVoluntariado": "2",
+    "idOrganizacion": "5",
+    "idUsuario": 101,
+    "tipo_relacion": 1
   }
 ]

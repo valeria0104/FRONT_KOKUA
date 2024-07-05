@@ -5,5 +5,34 @@
     "doc_identidad": null,
     "telefono": null,
     "tipo_relacion": 2
+  },
+  {
+    "idVoluntariado": "2",
+    "doc_identidad": "75607919",
+    "telefono": "996068385",
+    "tipo_relacion": 1
+  },
+  {
+    "idVoluntariado": "2",
+    "idUsuario": 101,
+    "doc_identidad": "75607918",
+    "telefono": "996068385",
+    "correo": "fdfdffh@gmail.com",
+    "tipo_relacion": 1
+  },
+  {
+    "idVoluntariado": "3",
+    "idUsuario": 101,
+    "doc_identidad": "75607918",
+    "telefono": "996068385",
+    "correo": "astrid@gmail.com",
+    "tipo_relacion": 1
+  },
+  {
+    "idUsuario": 101,
+    "idVoluntariado": 1,
+    "doc_identidad": null,
+    "telefono": null,
+    "tipo_relacion": 2
   }
 ]
